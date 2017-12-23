@@ -5,6 +5,8 @@
  */
 package dominogamev3;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sierra Kilo
@@ -16,6 +18,34 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
      */
     public MainSingleGameJFrame() {
         initComponents();
+
+        // Create an object of the Logic Class
+        Solo1GameLogic gameInstance = new Solo1GameLogic();
+
+        // Get the heap of the game and show put it on the GUI
+        Heap heapObj = gameInstance.getHeap();
+        ArrayList<ArrayList<Tile>> heapTiles = heapObj.getHeap();
+        String rowText;
+
+        for (int i = 0; i < heapTiles.size(); i++) {
+            ArrayList<Tile> row = heapTiles.get(i);
+            rowText = "";
+
+            for (int j = 0; j < row.size(); j++) {
+                Tile piece = row.get(j);
+                rowText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
+            }
+
+            if (i == 0) {
+                jRowLabel1.setText(rowText);
+            } else if (i == 1) {
+                jRowLabel2.setText(rowText);
+            } else if (i == 2) {
+                jRowLabel3.setText(rowText);
+            } else if (i == 3) {
+                jRowLabel4.setText(rowText);
+            }
+        }
     }
 
     /**
@@ -31,10 +61,10 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jRowLabel2 = new javax.swing.JLabel();
+        jRowLabel1 = new javax.swing.JLabel();
+        jRowLabel4 = new javax.swing.JLabel();
+        jRowLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -70,13 +100,21 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Heap", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        jLabel2.setText("row2");
+        jRowLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRowLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRowLabel2.setText("row2");
 
-        jLabel3.setText("row1");
+        jRowLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRowLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRowLabel1.setText("row1");
 
-        jLabel4.setText("row4");
+        jRowLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRowLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRowLabel4.setText("row4");
 
-        jLabel5.setText("row3");
+        jRowLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRowLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRowLabel3.setText("row3");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -85,23 +123,23 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(174, 174, 174)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRowLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRowLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRowLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRowLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRowLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRowLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRowLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRowLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -261,21 +299,6 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                // Create an object of the Logic Class
-                Solo1GameLogic gameInstance = new Solo1GameLogic();
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
                 new MainMultiGameJFrame().setVisible(true);
             }
         });
@@ -285,10 +308,6 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -300,6 +319,10 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel jRowLabel1;
+    private javax.swing.JLabel jRowLabel2;
+    private javax.swing.JLabel jRowLabel3;
+    private javax.swing.JLabel jRowLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

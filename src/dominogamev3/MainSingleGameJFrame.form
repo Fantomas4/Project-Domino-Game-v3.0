@@ -146,10 +146,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel4" min="-2" pref="582" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" pref="582" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="582" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" pref="582" max="-2" attributes="0"/>
+                      <Component id="jRowLabel4" min="-2" pref="582" max="-2" attributes="0"/>
+                      <Component id="jRowLabel3" min="-2" pref="582" max="-2" attributes="0"/>
+                      <Component id="jRowLabel2" min="-2" pref="582" max="-2" attributes="0"/>
+                      <Component id="jRowLabel1" min="-2" pref="582" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -159,36 +159,52 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jRowLabel1" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jRowLabel2" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jRowLabel3" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jRowLabel4" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="jRowLabel2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="24" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="row2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="jRowLabel1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="24" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="row1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="jRowLabel4">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="24" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="row4"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="jRowLabel3">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="24" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="row3"/>
           </Properties>
         </Component>
