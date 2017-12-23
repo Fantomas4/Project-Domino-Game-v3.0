@@ -166,8 +166,7 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         setVisible(false);
         mainGameFrame.setVisible(true);
         
-        // Create an object of the Logic Class
-        Solo1GameLogic gameInstance = new Solo1GameLogic();
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
