@@ -161,10 +161,13 @@ public class MainMenuJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //We switch to the MainGameJFrame
-        JFrame mainGameFrame = new MainGameJFrame();
+        // Switch to the MainMultiGameJFrame
+        JFrame mainGameFrame = new MainMultiGameJFrame();
         setVisible(false);
         mainGameFrame.setVisible(true);
+        
+        // Create an object of the Logic Class
+        Solo1GameLogic gameInstance = new Solo1GameLogic();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -173,8 +176,8 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         // Firstly, we display the InputDialog to the user so that the amount of bots is set.
         String input = SetBotsAmountInputDialog();
         System.out.println(input);
-        //We switch to the MainGameJFrame
-        JFrame mainGameFrame = new MainGameJFrame();
+        //We switch to the MainMultiGameJFrame
+        JFrame mainGameFrame = new MainMultiGameJFrame();
         setVisible(false);
         mainGameFrame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -184,8 +187,8 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         // Firstly, we display the InputDialog to the user so that the amount of bots is set.
         String input = SetBotsAmountInputDialog();
         System.out.println(input);
-        //We switch to the MainGameJFrame
-        JFrame mainGameFrame = new MainGameJFrame();
+        //We switch to the MainMultiGameJFrame
+        JFrame mainGameFrame = new MainMultiGameJFrame();
         setVisible(false);
         mainGameFrame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
