@@ -7,6 +7,7 @@ package dominogamev3;
 
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
@@ -426,16 +427,34 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         } else {
             // there are more 2 possible moves 
             // so the user is asked about where to place tile.
+            
             System.out.println("> There are 2 possible moves with this tile.");
             System.out.println("> Do you want to place the tile left or right?");
+            
+            String[] values = {"Left side", "Right side"};
+            Object selected = JOptionPane.showInputDialog(null, "There are 2 possible moves with this tile.\n"
+                    + "On which side of the table do you want to place the tile?",
+                    "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
 
-//            if (result.get(0).whereToPlace().equals(answer)) {
-//                gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), answer);
-//                break;
-//            } else if (result.get(1).whereToPlace().equals(answer)) {
-//                gameInstance.humanPlays(choice, chosenTile, result.get(1).needsRotation(), answer);
-//                break;
-//            }
+            String selectedString = selected.toString();
+            
+            System.out.println("DIAG: object selected is: " + selected);
+            System.out.println("DIAG: selectedString is: " + selectedString);
+            
+            String side;
+            if (selectedString.equals("Left side")) {
+                side = "left";
+            } else {
+                side = "right";
+            }
+
+            if (result.get(0).whereToPlace().equals(side)) {
+                System.out.println("MPIKA PERIPTOSI 1");
+                gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
+            } else if (result.get(1).whereToPlace().equals(side)) {
+                System.out.println("MPIKA PERIPTOSI 2");
+                gameInstance.humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
+            }
         }
 
         // *** WORK IN PROGRESS ***
