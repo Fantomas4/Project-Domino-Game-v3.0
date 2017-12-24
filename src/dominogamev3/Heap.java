@@ -73,13 +73,22 @@ public class Heap {
     /**
      * Returns the last tile of a specific row (1-4).
      * @param choice the number of the row (1-4) from which the last tile will be returned.
-     * @return a Tile object representing the last tile of the chosen row.
+     * @return a Tile object representing the last tile of the chosen row, or null if the
+     * chosen row is empty.
      */
     public Tile chooseTile(int choice) {
         //choice: 1-4
         ArrayList<Tile> row;
         row = heapTiles.get(choice - 1);
-        return row.get(row.size() - 1);
+        
+        if (row.size() > 0) {
+            // the row is not empty so we return its last Tile
+            return row.get(row.size() - 1);
+        } else {
+            // the row is empty, so null is returned
+            return null;
+        }
+        
 
     }
 

@@ -30,9 +30,17 @@ public class Solo1GameLogic extends SingleplayerGameLogic {
      * if there is no possible move.
      */
     public boolean possibleMoveExists() {
-        ArrayList<PossibleMove> result;
+        ArrayList<PossibleMove> result = new ArrayList<>();
+        Tile testTile;
+        
         for (int i = 1; i < 5; i++) {
-            result = checkTileChoice(heap.chooseTile(i)); //choose tile accepts int in range 1-4.
+            testTile = heap.chooseTile(i);
+            
+            if (testTile != null) {
+                // testTile != null means a tile was returned from the heap
+                result = checkTileChoice(testTile); //choose tile accepts int in range 1-4.
+            }
+            
 
             if (result.size() > 0) { //if a list containing at least one possible move is returned
                 return true;

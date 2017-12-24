@@ -363,10 +363,29 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
 
         jTableLabel.setText(tableText);
 
+        
         // Get the heap of the game and show it on the GUI
         Heap heapObj = gameInstance.getHeap();
         ArrayList<ArrayList<Tile>> heapTiles = heapObj.getHeap();
+        
+        
+        // for diagnostic purposes, print heap to console
+        int rowsAmount = 0; // the amount of rows the heap displayed has.
 
+        for (int i = 0; i < heapTiles.size(); i++) {
+            ArrayList<Tile> row = heapTiles.get(i);
+            if (row.size() > 0) {
+                rowsAmount++;
+            }
+            for (int j = 0; j < row.size(); j++) {
+                Tile piece = row.get(j);
+                System.out.printf("|%d %d| ", piece.getNum1(), piece.getNum2());
+            }
+            System.out.printf("%n%n");
+        }
+
+        
+        
         String tileText;
         String rowText;
 
@@ -427,20 +446,20 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         } else {
             // there are more 2 possible moves 
             // so the user is asked about where to place tile.
-            
+
             System.out.println("> There are 2 possible moves with this tile.");
             System.out.println("> Do you want to place the tile left or right?");
-            
+
             String[] values = {"Left side", "Right side"};
             Object selected = JOptionPane.showInputDialog(null, "There are 2 possible moves with this tile.\n"
                     + "On which side of the table do you want to place the tile?",
                     "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
 
             String selectedString = selected.toString();
-            
+
             System.out.println("DIAG: object selected is: " + selected);
             System.out.println("DIAG: selectedString is: " + selectedString);
-            
+
             String side;
             if (selectedString.equals("Left side")) {
                 side = "left";
@@ -458,6 +477,14 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         }
 
         // *** WORK IN PROGRESS ***
+        if (gameInstance.gameStatus() == 0) {
+            System.out.println("*** Game over! There are no possible moves left! ***");
+            JOptionPane.showMessageDialog(null, "info",
+                    "information", JOptionPane.INFORMATION_MESSAGE);
+        } else if (gameInstance.gameStatus() == 2) {
+            System.out.println("*** Congratulations! You have won! ***");
+        }
+
         updateGuiElements();
 
     }
