@@ -6,6 +6,7 @@
 package dominogamev3;
 
 import java.util.ArrayList;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
 /**
@@ -14,53 +15,28 @@ import javax.swing.JRadioButton;
  */
 public class MainSingleGameJFrame extends javax.swing.JFrame {
 
+    Solo1GameLogic gameInstance;
+    Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
+    int choice;
+    JLabel[] rowLabelArray;
+    JRadioButton[] choiceRadioButtonArray;
+
     /**
      * Creates new form MainGameJFrame
      */
     public MainSingleGameJFrame() {
         initComponents();
 
+        // initialize necessary class fields
+        rowLabelArray = new JLabel[]{jRowLabel1, jRowLabel2, jRowLabel3, jRowLabel4};
+        choiceRadioButtonArray = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4};
+
         // Create an object of the Logic Class
-        Solo1GameLogic gameInstance = new Solo1GameLogic();
+        gameInstance = new Solo1GameLogic();
 
-        // Get the heap of the game and show put it on the GUI
-        Heap heapObj = gameInstance.getHeap();
-        ArrayList<ArrayList<Tile>> heapTiles = heapObj.getHeap();
-        
-        String tileText;
-        String rowText;
-        int pos = 0;
+        // update the GUI elements (heap, radiobutton text etc...)
+        updateGuiElements();
 
-        for (int i = 0; i < heapTiles.size(); i++) {
-            ArrayList<Tile> row = heapTiles.get(i);
-            rowText = "";
-            
-            JRadioButton[] RadioButtonArray = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4};
-            
-
-            for (int j = 0; j < row.size(); j++) {
-                Tile piece = row.get(j);
-                
-                tileText = "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
-                rowText += tileText;
-                
-                if (j == row.size() - 1) {
-                    System.out.println("MPIKAAAAAAAA!!!!");
-                    RadioButtonArray[pos].setText(tileText);
-                    pos++;
-                }
-            }
-
-            if (i == 0) {
-                jRowLabel1.setText(rowText);
-            } else if (i == 1) {
-                jRowLabel2.setText(rowText);
-            } else if (i == 2) {
-                jRowLabel3.setText(rowText);
-            } else if (i == 3) {
-                jRowLabel4.setText(rowText);
-            }
-        }
     }
 
     /**
@@ -74,7 +50,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jTableLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jRowLabel2 = new javax.swing.JLabel();
         jRowLabel1 = new javax.swing.JLabel();
@@ -87,7 +63,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        jSubmitButton = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -101,20 +77,20 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Table", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTableLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTableLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addComponent(jTableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -166,18 +142,38 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton1.setText("tile1");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton2.setText("tile2");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton3.setText("tile3");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton4.setText("tile4");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -224,11 +220,11 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setText("Submit you choice!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jSubmitButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jSubmitButton.setText("Submit you choice!");
+        jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jSubmitButtonActionPerformed(evt);
             }
         });
 
@@ -240,7 +236,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
         jPanel4Layout.setVerticalGroup(
@@ -249,7 +245,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(jSubmitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
 
@@ -328,9 +324,124 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        submitAction();
+    }//GEN-LAST:event_jSubmitButtonActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        choice = 1;
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        choice = 2;
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+        choice = 3;
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+        choice = 4;
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void updateGuiElements() {
+
+        // Get the table of the game and show in on the GUI
+        Table tableObj = gameInstance.getTable();
+        ArrayList<Tile> tableTiles = tableObj.getTable();
+        String tableText = "";
+
+        for (Tile piece : tableTiles) {
+            tableText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
+        }
+
+        jTableLabel.setText(tableText);
+
+        // Get the heap of the game and show it on the GUI
+        Heap heapObj = gameInstance.getHeap();
+        ArrayList<ArrayList<Tile>> heapTiles = heapObj.getHeap();
+
+        String tileText;
+        String rowText;
+
+        // IMPORTANT! Reset all row Labels' text before proceeding
+        jRowLabel1.setText("");
+        jRowLabel2.setText("");
+        jRowLabel3.setText("");
+        jRowLabel4.setText("");
+
+        for (int i = 0; i < heapTiles.size(); i++) {
+            rowText = "";
+            ArrayList<Tile> row = heapTiles.get(i);
+
+            if (row.size() > 0) {
+
+                // if the row contains tiles, then we add them to the GUI.
+                // Otherwise, the "" default text is added for an empty row on the GUI.
+                for (int j = 0; j < row.size(); j++) {
+                    Tile piece = row.get(j);
+
+                    tileText = "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
+                    rowText += tileText;
+
+                    if (j == row.size() - 1) {
+                        choiceRadioButtonArray[i].setText(tileText);
+                    }
+                }
+            } else {
+                // if row.size() == 0
+                // disable the radiobutton choice for this row
+
+                if (choiceRadioButtonArray[i].isEnabled()) {
+                    choiceRadioButtonArray[i].setText("");
+                    choiceRadioButtonArray[i].setEnabled(false);
+                }
+
+            }
+
+            rowLabelArray[i].setText(rowText);
+
+        }
+    }
+
+    private void submitAction() {
+        ArrayList<PossibleMove> result;
+
+        chosenTile = gameInstance.getHeap().chooseTile(choice);
+        result = gameInstance.checkTileChoice(chosenTile);
+
+        // *** WORK IN PROGRESS ***
+        if (result.size() == 0) {
+            // there is no possible move with the chosen tile.
+            System.out.println("> There is no possible move with the chosen tile! Try again!");
+            // continue
+        } else if (result.size() == 1) {
+            // there is one possible move so tile is placed automatically
+            gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
+        } else {
+            // there are more 2 possible moves 
+            // so the user is asked about where to place tile.
+            System.out.println("> There are 2 possible moves with this tile.");
+            System.out.println("> Do you want to place the tile left or right?");
+
+//            if (result.get(0).whereToPlace().equals(answer)) {
+//                gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), answer);
+//                break;
+//            } else if (result.get(1).whereToPlace().equals(answer)) {
+//                gameInstance.humanPlays(choice, chosenTile, result.get(1).needsRotation(), answer);
+//                break;
+//            }
+        }
+
+        // *** WORK IN PROGRESS ***
+        updateGuiElements();
+
+    }
 
     /**
      * @param args the command line arguments
@@ -372,8 +483,6 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -395,5 +504,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jRowLabel3;
     private javax.swing.JLabel jRowLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jSubmitButton;
+    private javax.swing.JLabel jTableLabel;
     // End of variables declaration//GEN-END:variables
 }

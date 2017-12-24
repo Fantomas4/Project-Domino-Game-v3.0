@@ -61,12 +61,12 @@ public class Heap {
         row = heapTiles.get(choice - 1);
         row.remove(row.size() - 1);
         
-        // we check if the row from which we removed the last tile
-        // has now become empty. In case it is now empty, we delete the row
-        // from the row list ArrayList.
-        if (row.isEmpty()) {
-            heapTiles.remove(choice - 1);
-        }
+//        // we check if the row from which we removed the last tile
+//        // has now become empty. In case it is now empty, we delete the row
+//        // from the row list ArrayList.
+//        if (row.isEmpty()) {
+//            heapTiles.remove(choice - 1);
+//        }
 
     }
 
