@@ -78,7 +78,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Table", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        jTableLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTableLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTableLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -477,15 +477,20 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         }
 
         // *** WORK IN PROGRESS ***
+        
+        updateGuiElements();
+        
         if (gameInstance.gameStatus() == 0) {
             System.out.println("*** Game over! There are no possible moves left! ***");
-            JOptionPane.showMessageDialog(null, "info",
-                    "information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Game over!\nThere are no possible moves left!",
+                    "Loss", JOptionPane.INFORMATION_MESSAGE);
         } else if (gameInstance.gameStatus() == 2) {
             System.out.println("*** Congratulations! You have won! ***");
+            JOptionPane.showMessageDialog(null, "Congratulations! You have won!",
+                    "Win", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        updateGuiElements();
+        
 
     }
 
