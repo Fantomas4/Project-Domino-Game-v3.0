@@ -14,7 +14,7 @@ import javax.swing.JRadioButton;
  *
  * @author Sierra Kilo
  */
-public class MainSingleGameJFrame extends javax.swing.JFrame {
+public class Solo1GameJFrame extends javax.swing.JFrame {
 
     Solo1GameLogic gameInstance;
     Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
@@ -25,7 +25,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainGameJFrame
      */
-    public MainSingleGameJFrame() {
+    public Solo1GameJFrame() {
         initComponents();
 
         // initialize necessary class fields
@@ -513,13 +513,13 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMultiGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMultiGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMultiGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMultiGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -529,7 +529,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMultiGameJFrame().setVisible(true);
+                new HungarianGameJFrame().setVisible(true);
             }
         });
     }

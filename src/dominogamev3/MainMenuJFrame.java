@@ -161,8 +161,8 @@ public class MainMenuJFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        // Switch to the MainMultiGameJFrame
-        JFrame mainGameFrame = new MainSingleGameJFrame();
+        // Switch to the HungarianGameJFrame
+        JFrame mainGameFrame = new Solo1GameJFrame();
         setVisible(false);
         mainGameFrame.setVisible(true);
         
@@ -175,8 +175,8 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         // Firstly, we display the InputDialog to the user so that the amount of bots is set.
         String input = SetBotsAmountInputDialog();
         System.out.println(input);
-        //We switch to the MainMultiGameJFrame
-        JFrame mainGameFrame = new MainMultiGameJFrame();
+        //We switch to the HungarianGameJFrame
+        JFrame mainGameFrame = new HungarianGameJFrame();
         setVisible(false);
         mainGameFrame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -186,8 +186,8 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         // Firstly, we display the InputDialog to the user so that the amount of bots is set.
         String input = SetBotsAmountInputDialog();
         System.out.println(input);
-        //We switch to the MainMultiGameJFrame
-        JFrame mainGameFrame = new MainMultiGameJFrame();
+        //We switch to the HungarianGameJFrame
+        JFrame mainGameFrame = new HungarianGameJFrame();
         setVisible(false);
         mainGameFrame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
