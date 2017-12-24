@@ -32,8 +32,8 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         rowLabelArray = new JLabel[]{jRowLabel1, jRowLabel2, jRowLabel3, jRowLabel4};
         choiceRadioButtonArray = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4};
 
-        // Create an object of the Logic Class
-        gameInstance = new Solo1GameLogic();
+        // Initialize the object of the Logic Class
+        initializeGameInstance();
 
         // update the GUI elements (heap, radiobutton text etc...)
         updateGuiElements();
@@ -71,7 +71,6 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -270,7 +269,7 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("New game");
+        jMenuItem1.setText("Reset current game");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -278,11 +277,8 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Reset current game");
+        jMenuItem2.setText("Exit to main Menu");
         jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Exit to main Menu");
-        jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
 
@@ -321,10 +317,6 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
         // TODO add your handling code here:
         submitAction();
@@ -349,6 +341,12 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         choice = 4;
     }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        initializeGameInstance();
+        updateGuiElements();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void updateGuiElements() {
 
@@ -493,6 +491,10 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
         
 
     }
+    
+    private void initializeGameInstance() {
+        gameInstance = new Solo1GameLogic();
+    }
 
     /**
      * @param args the command line arguments
@@ -539,7 +541,6 @@ public class MainSingleGameJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
