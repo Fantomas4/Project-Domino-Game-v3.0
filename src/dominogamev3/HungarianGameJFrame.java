@@ -5,17 +5,38 @@
  */
 package dominogamev3;
 
+import java.util.ArrayList;
+import javax.swing.JRadioButton;
+
 /**
  *
  * @author Sierra Kilo
  */
 public class HungarianGameJFrame extends javax.swing.JFrame {
-
+    
+    HungarianGameLogic gameInstance;
+    Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
+    int choice;
+    JRadioButton[] choiceRadioButtonArray;
+    
     /**
      * Creates new form MainGameJFrame
      */
-    public HungarianGameJFrame() {
+    public HungarianGameJFrame(int gamemode) {
         initComponents();
+        
+        // initialize necessary class fields
+        choiceRadioButtonArray = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4};
+
+        // Initialize the object of the Logic Class
+        initializeGameInstance(gamemode);
+
+        // update the GUI elements (heap, radiobutton text etc...)
+        updateGuiElements();
+    }
+    
+    private void initializeGameInstance(int gamemode) {
+        gameInstance = new HungarianGameLogic(gamemode);
     }
 
     /**
@@ -31,6 +52,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPlayingNowLabel = new javax.swing.JLabel();
         jTablePanel = new javax.swing.JPanel();
+        jTableLabel = new javax.swing.JLabel();
         jHandPanel = new javax.swing.JPanel();
         jMoveChoicePanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -56,9 +78,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 765, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,15 +87,19 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         jTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Table", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
+        jTableLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jTableLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTableLabel.setText("jLabel1");
+
         javax.swing.GroupLayout jTablePanelLayout = new javax.swing.GroupLayout(jTablePanel);
         jTablePanel.setLayout(jTablePanelLayout);
         jTablePanelLayout.setHorizontalGroup(
             jTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jTableLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jTablePanelLayout.setVerticalGroup(
             jTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 75, Short.MAX_VALUE)
+            .addComponent(jTableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
         );
 
         jHandPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player's hand", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
@@ -198,6 +222,81 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jSubmitButtonActionPerformed
 
+    private void updateGuiElements() {
+
+        // Set the player who plays first
+        gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
+        
+        // Set the GUI label that shows who plays now
+        String playerName = gameInstance.getPlayingNowObj().getPlayerName();
+        jPlayingNowLabel.setText("Player " + playerName + " plays now");
+        
+        // Get the table of the game and show in on the GUI
+        Table tableObj = gameInstance.getTable();
+        ArrayList<Tile> tableTiles = tableObj.getTable();
+        String tableText = "";
+
+        for (Tile piece : tableTiles) {
+            tableText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
+        }
+
+        jTableLabel.setText(tableText);
+
+        
+        // Get the hand of the player and show it on the GUI
+        
+        
+        
+        // for diagnostic purposes, print the hand to console
+        
+
+        
+        
+        String tileText;
+        String rowText;
+
+        // IMPORTANT! Reset the hand label of the GUI before proceeding!
+        jRowLabel1.setText("");
+        jRowLabel2.setText("");
+        jRowLabel3.setText("");
+        jRowLabel4.setText("");
+
+        for (int i = 0; i < heapTiles.size(); i++) {
+            rowText = "";
+            ArrayList<Tile> row = heapTiles.get(i);
+
+            if (row.size() > 0) {
+
+                // if the row contains tiles, then we add them to the GUI.
+                // Otherwise, the "" default text is added for an empty row on the GUI.
+                for (int j = 0; j < row.size(); j++) {
+                    Tile piece = row.get(j);
+
+                    tileText = "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
+                    rowText += tileText;
+
+                    if (j == row.size() - 1) {
+                        choiceRadioButtonArray[i].setText(tileText);
+                    }
+                }
+            } else {
+                // if row.size() == 0
+                // disable the radiobutton choice for this row
+
+                if (choiceRadioButtonArray[i].isEnabled()) {
+                    choiceRadioButtonArray[i].setText("");
+                    choiceRadioButtonArray[i].setEnabled(false);
+                }
+
+            }
+
+            rowLabelArray[i].setText(rowText);
+
+        }
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -232,12 +331,12 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HungarianGameJFrame().setVisible(true);
-            }
-        });
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new HungarianGameJFrame().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -256,6 +355,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jSubmitButton;
+    private javax.swing.JLabel jTableLabel;
     private javax.swing.JPanel jTablePanel;
     // End of variables declaration//GEN-END:variables
 }

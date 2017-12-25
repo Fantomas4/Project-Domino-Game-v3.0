@@ -529,7 +529,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HungarianGameJFrame().setVisible(true);
+                new Solo1GameJFrame().setVisible(true);
             }
         });
     }
