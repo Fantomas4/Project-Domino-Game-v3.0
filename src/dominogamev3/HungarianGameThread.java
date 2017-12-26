@@ -26,9 +26,9 @@ public class HungarianGameThread extends Thread {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         do {
-
+            System.out.println("DIAG: THREAD CHECKPOINT 1");
             gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
 
             do {
@@ -159,7 +159,9 @@ public class HungarianGameThread extends Thread {
                     // round ends
                     break;
                 }
-
+            
+                notifyAll();
+                
             } while (true);
 
             int roundPoints = gameInstance.giveRoundPoints();
