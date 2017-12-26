@@ -18,18 +18,19 @@ import javax.swing.JRadioButton;
 public class HungarianGameThread extends Thread {
 
     private HungarianGameLogic gameInstance;
-    private JFrame gameFrame;
+    private HungarianGameJFrame gameFrame;
 
-    public HungarianGameThread(int gamemode, JFrame gameFrame) {
+    public HungarianGameThread(int gamemode, HungarianGameJFrame gameFrame) {
         gameInstance = new HungarianGameLogic(gamemode);
         this.gameFrame = gameFrame;
     }
 
-    private synchronized void updateGUI() {
+    private void updateGUI() {
 
         // Set the GUI label that shows who plays now:
         System.out.println("DIAG: updateguielements CHECKPOINT 1");
-        gameFrame.jPlayingNowLabel.setText("Player " + gameThread.getGameInstance().getPlayingNowObj().getPlayerName() + " plays now");
+        gameFrame.getPlayingNowLabel().setText("Player " + gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
+
 
         // Get the table of the game and show in on the GUI:
         Table tableObj = gameThread.getGameInstance().getTable();
