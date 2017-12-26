@@ -28,22 +28,12 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
 
-        int handSize = 0;
-
-        if (gamemode == 2) {
-            handSize = 12;
-        } else if (gamemode == 3) {
-            handSize = 8;
-        } else if (gamemode == 4) {
-            handSize = 6;
-        }
-
         // initialize and start the Hungarian Game Thread
         gameThread = new HungarianGameThread(gamemode);
         gameThread.start();
 
         // update the GUI elements (heap, radiobutton text etc...)
-        updateGuiElements();
+        //updateGuiElements();
     }
 
     /**
@@ -364,12 +354,12 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new HungarianGameJFrame().setVisible(true);
-//            }
-//        });
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new HungarianGameJFrame(2).setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
