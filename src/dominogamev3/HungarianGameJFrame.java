@@ -46,56 +46,61 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         return jTableLabel;
     }
     
-    public JRadioButton getRadioButton1() {
-        return jRadioButton1;
+    public JRadioButton[] getChoiceRadioButtons() {
+        return choiceRadioButtons;
     }
     
-    public JRadioButton getRadioButton2() {
-        return jRadioButton2;
-    }
+//    public JRadioButton getRadioButton1() {
+//        return jRadioButton1;
+//    }
+//    
+//    public JRadioButton getRadioButton2() {
+//        return jRadioButton2;
+//    }
+//    
+//    public JRadioButton getRadioButton3() {
+//        return jRadioButton3;
+//    }
+//    
+//    public JRadioButton getRadioButton4() {
+//        return jRadioButton4;
+//    }
+//    
+//    public JRadioButton getRadioButton5() {
+//        return jRadioButton5;
+//    }
+//    
+//    public JRadioButton getRadioButton6() {
+//        return jRadioButton6;
+//    }
+//    
+//    public JRadioButton getRadioButton7() {
+//        return jRadioButton7;
+//    }
+//    
+//    public JRadioButton getRadioButton8() {
+//        return jRadioButton8;
+//    }
+//    
+//    public JRadioButton getRadioButton9() {
+//        return jRadioButton9;
+//    }
+//    
+//    public JRadioButton getRadioButton10() {
+//        return jRadioButton10;
+//    }
+//    
+//    public JRadioButton getRadioButton11() {
+//        return jRadioButton11;
+//    }
+//    
+//    public JRadioButton getRadioButton12() {
+//        return jRadioButton12;
+//    }
     
-    public JRadioButton getRadioButton3() {
-        return jRadioButton3;
-    }
-    
-    public JRadioButton getRadioButton4() {
-        return jRadioButton4;
-    }
-    
-    public JRadioButton getRadioButton5() {
-        return jRadioButton5;
-    }
-    
-    public JRadioButton getRadioButton6() {
-        return jRadioButton6;
-    }
-    
-    public JRadioButton getRadioButton7() {
-        return jRadioButton7;
-    }
-    
-    public JRadioButton getRadioButton8() {
-        return jRadioButton8;
-    }
-    
-    public JRadioButton getRadioButton9() {
-        return jRadioButton9;
-    }
-    
-    public JRadioButton getRadioButton10() {
-        return jRadioButton10;
-    }
-    
-    public JRadioButton getRadioButton11() {
-        return jRadioButton11;
-    }
-    
-    public JRadioButton getRadioButton12() {
-        return jRadioButton12;
-    }
-     public JButton getSubmitButton() {
+    public JButton getSubmitButton() {
          return jSubmitButton;
-     }
+    }
     
     // Getter functions code END
 

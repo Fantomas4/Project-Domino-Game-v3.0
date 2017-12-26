@@ -33,7 +33,7 @@ public class HungarianGameThread extends Thread {
 
 
         // Get the table of the game and show in on the GUI:
-        Table tableObj = gameThread.getGameInstance().getTable();
+        Table tableObj = gameInstance.getTable();
         ArrayList<Tile> tableTiles = tableObj.getTable();
         String tableText = "";
 
@@ -41,17 +41,20 @@ public class HungarianGameThread extends Thread {
             tableText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
         }
 
-        jTableLabel.setText(tableText);
+        gameFrame.getTableLabel().setText(tableText);
 
         // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
         // reset all the radio buttons by emptying their text and disabling them.
+        
+        JRadioButton[] choiceRadioButtons = gameFrame.getChoiceRadioButtons();
+        
         for (JRadioButton button : choiceRadioButtons) {
             button.setText("");
             button.setEnabled(false);
         }
 
         int pos = 0; // position indicator used to traverse the choiceRadioButtons array
-        ArrayList<Tile> playerHand = gameThread.getGameInstance().getPlayingNowObj().getPlayerTiles();
+        ArrayList<Tile> playerHand = gameInstance.getPlayingNowObj().getPlayerTiles();
 
         for (int i = 0; i < playerHand.size(); i++) {
             choiceRadioButtons[pos].setText("|" + playerHand.get(i).getNum1() + " " + playerHand.get(i).getNum2() + "|");
@@ -63,7 +66,7 @@ public class HungarianGameThread extends Thread {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         do {
             System.out.println("DIAG: THREAD CHECKPOINT 1");
             gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
