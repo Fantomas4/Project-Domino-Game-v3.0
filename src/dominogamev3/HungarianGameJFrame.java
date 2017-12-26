@@ -6,6 +6,8 @@
 package dominogamev3;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
 /**
@@ -29,12 +31,73 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
 
         // initialize and start the Hungarian Game Thread
-        gameThread = new HungarianGameThread(gamemode);
+        gameThread = new HungarianGameThread(gamemode, this);
         gameThread.start();
 
-        // update the GUI elements (heap, radiobutton text etc...)
-        //updateGuiElements();
     }
+    
+    // Getter functions code START
+    
+    public JLabel getPlayingNowLabel() {
+        return jPlayingNowLabel;
+    }
+    
+    public JLabel getTableLabel() {
+        return jTableLabel;
+    }
+    
+    public JRadioButton getRadioButton1() {
+        return jRadioButton1;
+    }
+    
+    public JRadioButton getRadioButton2() {
+        return jRadioButton2;
+    }
+    
+    public JRadioButton getRadioButton3() {
+        return jRadioButton3;
+    }
+    
+    public JRadioButton getRadioButton4() {
+        return jRadioButton4;
+    }
+    
+    public JRadioButton getRadioButton5() {
+        return jRadioButton5;
+    }
+    
+    public JRadioButton getRadioButton6() {
+        return jRadioButton6;
+    }
+    
+    public JRadioButton getRadioButton7() {
+        return jRadioButton7;
+    }
+    
+    public JRadioButton getRadioButton8() {
+        return jRadioButton8;
+    }
+    
+    public JRadioButton getRadioButton9() {
+        return jRadioButton9;
+    }
+    
+    public JRadioButton getRadioButton10() {
+        return jRadioButton10;
+    }
+    
+    public JRadioButton getRadioButton11() {
+        return jRadioButton11;
+    }
+    
+    public JRadioButton getRadioButton12() {
+        return jRadioButton12;
+    }
+     public JButton getSubmitButton() {
+         return jSubmitButton;
+     }
+    
+    // Getter functions code END
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -275,50 +338,6 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jSubmitButtonActionPerformed
-
-    private synchronized void updateGuiElements() {
-
-        while (gameThread.getGameInstance().scoreLimitReached() == false) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-
-            }
-
-            // Set the GUI label that shows who plays now:
-            System.out.println("DIAG: updateguielements CHECKPOINT 1");
-            jPlayingNowLabel.setText("Player " + gameThread.getGameInstance().getPlayingNowObj().getPlayerName() + " plays now");
-
-            // Get the table of the game and show in on the GUI:
-            Table tableObj = gameThread.getGameInstance().getTable();
-            ArrayList<Tile> tableTiles = tableObj.getTable();
-            String tableText = "";
-
-            for (Tile piece : tableTiles) {
-                tableText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
-            }
-
-            jTableLabel.setText(tableText);
-
-            // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
-            // reset all the radio buttons by emptying their text and disabling them.
-            for (JRadioButton button : choiceRadioButtons) {
-                button.setText("");
-                button.setEnabled(false);
-            }
-
-            int pos = 0; // position indicator used to traverse the choiceRadioButtons array
-            ArrayList<Tile> playerHand = gameThread.getGameInstance().getPlayingNowObj().getPlayerTiles();
-
-            for (int i = 0; i < playerHand.size(); i++) {
-                choiceRadioButtons[pos].setText("|" + playerHand.get(i).getNum1() + " " + playerHand.get(i).getNum2() + "|");
-                choiceRadioButtons[pos].setEnabled(true);
-                pos++;
-            }
-
-            // for diagnostic purposes, print the hand to console
-        }
-    }
 
     /**
      * @param args the command line arguments

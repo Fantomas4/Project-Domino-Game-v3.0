@@ -8,6 +8,8 @@ package dominogamev3;
 import static dominogamev3.DominoGameMain.intChoiceValidityCheck;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -16,13 +18,47 @@ import java.util.Scanner;
 public class HungarianGameThread extends Thread {
 
     private HungarianGameLogic gameInstance;
+    private JFrame gameFrame;
 
-    public HungarianGameThread(int gamemode) {
+    public HungarianGameThread(int gamemode, JFrame gameFrame) {
         gameInstance = new HungarianGameLogic(gamemode);
+        this.gameFrame = gameFrame;
     }
-    
-    public HungarianGameLogic getGameInstance() {
-        return gameInstance;
+
+    private synchronized void updateGUI() {
+
+        // Set the GUI label that shows who plays now:
+        System.out.println("DIAG: updateguielements CHECKPOINT 1");
+        gameFrame.jPlayingNowLabel.setText("Player " + gameThread.getGameInstance().getPlayingNowObj().getPlayerName() + " plays now");
+
+        // Get the table of the game and show in on the GUI:
+        Table tableObj = gameThread.getGameInstance().getTable();
+        ArrayList<Tile> tableTiles = tableObj.getTable();
+        String tableText = "";
+
+        for (Tile piece : tableTiles) {
+            tableText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
+        }
+
+        jTableLabel.setText(tableText);
+
+        // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
+        // reset all the radio buttons by emptying their text and disabling them.
+        for (JRadioButton button : choiceRadioButtons) {
+            button.setText("");
+            button.setEnabled(false);
+        }
+
+        int pos = 0; // position indicator used to traverse the choiceRadioButtons array
+        ArrayList<Tile> playerHand = gameThread.getGameInstance().getPlayingNowObj().getPlayerTiles();
+
+        for (int i = 0; i < playerHand.size(); i++) {
+            choiceRadioButtons[pos].setText("|" + playerHand.get(i).getNum1() + " " + playerHand.get(i).getNum2() + "|");
+            choiceRadioButtons[pos].setEnabled(true);
+            pos++;
+        }
+
+        // for diagnostic purposes, print the hand to console
     }
 
     @Override
@@ -89,13 +125,13 @@ public class HungarianGameThread extends Thread {
 
                 } else {
                     //the player that plays now is Human
-                    
+
                     // suspend the thread until a notify() call from the GUI part of the program is executed
                     // to indicate that the user has finished his move.
                     try {
                         wait();
                     } catch (InterruptedException e) {
-                        
+
                     }
 
 //                    do {
@@ -159,9 +195,9 @@ public class HungarianGameThread extends Thread {
                     // round ends
                     break;
                 }
-            
+
                 notifyAll();
-                
+
             } while (true);
 
             int roundPoints = gameInstance.giveRoundPoints();
