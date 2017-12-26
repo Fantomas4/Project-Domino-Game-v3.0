@@ -16,7 +16,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     
     HungarianGameThread gameThread;
     Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
-    JRadioButton[] choiceRadioButtonArray;
+    JRadioButton[] choiceRadioButtons;
     
     /**
      * Creates new form MainGameJFrame
@@ -25,7 +25,20 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         initComponents();
         
         // initialize necessary class fields
-        choiceRadioButtonArray = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4};
+        
+        choiceRadioButtons = new JRadioButton[] {
+        
+        int handSize = 0;
+        
+        if (gamemode == 2) {
+            handSize = 12;
+        } else if (gamemode == 3) {
+            handSize = 8;
+        } else if (gamemode == 4) {
+            handSize = 6;
+        }
+        
+        
         
         // initialize and start the Hungarian Game Thread
         gameThread = new HungarianGameThread(gamemode);
@@ -49,8 +62,19 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jPlayingNowLabel = new javax.swing.JLabel();
         jTablePanel = new javax.swing.JPanel();
         jTableLabel = new javax.swing.JLabel();
-        jHandPanel = new javax.swing.JPanel();
         jMoveChoicePanel = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jRadioButton11 = new javax.swing.JRadioButton();
+        jRadioButton12 = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLogPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -85,7 +109,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         jTableLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTableLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTableLabel.setText("jLabel1");
+        jTableLabel.setText("jTableLabel");
 
         javax.swing.GroupLayout jTablePanelLayout = new javax.swing.GroupLayout(jTablePanel);
         jTablePanel.setLayout(jTablePanelLayout);
@@ -98,31 +122,68 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             .addComponent(jTableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
         );
 
-        jHandPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player's hand", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jMoveChoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pick a tile from your hand to make your move", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jMoveChoicePanel.setLayout(new java.awt.GridLayout(3, 4));
 
-        javax.swing.GroupLayout jHandPanelLayout = new javax.swing.GroupLayout(jHandPanel);
-        jHandPanel.setLayout(jHandPanelLayout);
-        jHandPanelLayout.setHorizontalGroup(
-            jHandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jHandPanelLayout.setVerticalGroup(
-            jHandPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 47, Short.MAX_VALUE)
-        );
+        jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton1.setText("jRadioButton1");
+        jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton1);
 
-        jMoveChoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Choose your move", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton2.setText("jRadioButton2");
+        jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton2);
 
-        javax.swing.GroupLayout jMoveChoicePanelLayout = new javax.swing.GroupLayout(jMoveChoicePanel);
-        jMoveChoicePanel.setLayout(jMoveChoicePanelLayout);
-        jMoveChoicePanelLayout.setHorizontalGroup(
-            jMoveChoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jMoveChoicePanelLayout.setVerticalGroup(
-            jMoveChoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 218, Short.MAX_VALUE)
-        );
+        jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton3.setText("jRadioButton3");
+        jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton3);
+
+        jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton4.setText("jRadioButton4");
+        jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton4);
+
+        jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton5.setText("jRadioButton5");
+        jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton5);
+
+        jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton6.setText("jRadioButton6");
+        jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton6);
+
+        jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton7.setText("jRadioButton7");
+        jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton7);
+
+        jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton8.setText("jRadioButton8");
+        jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton8);
+
+        jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton9.setText("jRadioButton9");
+        jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton9);
+
+        jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton10.setText("jRadioButton10");
+        jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton10);
+
+        jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton11.setText("jRadioButton11");
+        jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton11);
+
+        jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton12.setText("jRadioButton12");
+        jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMoveChoicePanel.add(jRadioButton12);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -132,7 +193,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jLogPanel.setLayout(jLogPanelLayout);
         jLogPanelLayout.setHorizontalGroup(
             jLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 910, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jLogPanelLayout.setVerticalGroup(
             jLogPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,10 +243,9 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jHandPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLogPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -194,17 +254,15 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(jTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jHandPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(32, 32, 32)
                 .addComponent(jLogPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -334,7 +392,6 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JPanel jHandPanel;
     private javax.swing.JPanel jLogPanel;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -345,6 +402,18 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jMoveChoicePanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jPlayingNowLabel;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton11;
+    private javax.swing.JRadioButton jRadioButton12;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jSubmitButton;
