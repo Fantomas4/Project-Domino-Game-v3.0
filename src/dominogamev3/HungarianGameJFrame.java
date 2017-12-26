@@ -14,9 +14,8 @@ import javax.swing.JRadioButton;
  */
 public class HungarianGameJFrame extends javax.swing.JFrame {
     
-    HungarianGameLogic gameInstance;
+    HungarianGameThread gameThread;
     Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
-    int choice;
     JRadioButton[] choiceRadioButtonArray;
     
     /**
@@ -27,16 +26,13 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         
         // initialize necessary class fields
         choiceRadioButtonArray = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4};
-
-        // Initialize the object of the Logic Class
-        initializeGameInstance(gamemode);
+        
+        // initialize and start the Hungarian Game Thread
+        gameThread = new HungarianGameThread(gamemode);
+        gameThread.start();
 
         // update the GUI elements (heap, radiobutton text etc...)
         updateGuiElements();
-    }
-    
-    private void initializeGameInstance(int gamemode) {
-        gameInstance = new HungarianGameLogic(gamemode);
     }
 
     /**
@@ -223,16 +219,13 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jSubmitButtonActionPerformed
 
     private void updateGuiElements() {
-
-        // Set the player who plays first
-        gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
         
         // Set the GUI label that shows who plays now
-        String playerName = gameInstance.getPlayingNowObj().getPlayerName();
+        String playerName = gameThread.getGameInstance().getPlayingNowObj().getPlayerName();
         jPlayingNowLabel.setText("Player " + playerName + " plays now");
         
         // Get the table of the game and show in on the GUI
-        Table tableObj = gameInstance.getTable();
+        Table tableObj = gameThread.getGameInstance().getTable();
         ArrayList<Tile> tableTiles = tableObj.getTable();
         String tableText = "";
 
