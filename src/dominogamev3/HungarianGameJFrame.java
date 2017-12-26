@@ -26,7 +26,8 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         
         // initialize necessary class fields
         
-        choiceRadioButtons = new JRadioButton[] {
+        choiceRadioButtons = new JRadioButton[] {jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
+         jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
         
         int handSize = 0;
         
@@ -125,61 +126,73 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pick a tile from your hand to make your move", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jMoveChoicePanel.setLayout(new java.awt.GridLayout(3, 4));
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton1.setText("jRadioButton1");
         jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton1);
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton2.setText("jRadioButton2");
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton2);
 
+        buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton3.setText("jRadioButton3");
         jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton3);
 
+        buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton4.setText("jRadioButton4");
         jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton4);
 
+        buttonGroup1.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton5.setText("jRadioButton5");
         jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton5);
 
+        buttonGroup1.add(jRadioButton6);
         jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton6.setText("jRadioButton6");
         jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton6);
 
+        buttonGroup1.add(jRadioButton7);
         jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton7.setText("jRadioButton7");
         jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton7);
 
+        buttonGroup1.add(jRadioButton8);
         jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton8.setText("jRadioButton8");
         jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton8);
 
+        buttonGroup1.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton9.setText("jRadioButton9");
         jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton9);
 
+        buttonGroup1.add(jRadioButton10);
         jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton10.setText("jRadioButton10");
         jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton10);
 
+        buttonGroup1.add(jRadioButton11);
         jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton11.setText("jRadioButton11");
         jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jMoveChoicePanel.add(jRadioButton11);
 
+        buttonGroup1.add(jRadioButton12);
         jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton12.setText("jRadioButton12");
         jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -278,11 +291,11 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
     private void updateGuiElements() {
         
-        // Set the GUI label that shows who plays now
+        // Set the GUI label that shows who plays now:
         String playerName = gameThread.getGameInstance().getPlayingNowObj().getPlayerName();
         jPlayingNowLabel.setText("Player " + playerName + " plays now");
         
-        // Get the table of the game and show in on the GUI
+        // Get the table of the game and show in on the GUI:
         Table tableObj = gameThread.getGameInstance().getTable();
         ArrayList<Tile> tableTiles = tableObj.getTable();
         String tableText = "";
@@ -294,56 +307,29 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jTableLabel.setText(tableText);
 
         
-        // Get the hand of the player and show it on the GUI
+        // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
         
+        // reset all the radio buttons by emptying their text and disabling them.
+        for (JRadioButton button : choiceRadioButtons) {
+            button.setText("");
+            button.setEnabled(false);
+        }
         
+        int pos = 0; // position indicator used to traverse the choiceRadioButtons array
+        ArrayList<Tile> playerHand = gameThread.getGameInstance().getPlayingNowObj().getPlayerTiles();
+        
+        for (int i = 0 ; i < playerHand.size() ; i++) {
+            choiceRadioButtons[pos].setText("|" + playerHand.get(i).getNum1() + " " + playerHand.get(i).getNum2() + "|");
+            choiceRadioButtons[pos].setEnabled(true);
+            pos++;
+        }
         
         // for diagnostic purposes, print the hand to console
         
 
         
         
-        String tileText;
-        String rowText;
-
-        // IMPORTANT! Reset the hand label of the GUI before proceeding!
-        jRowLabel1.setText("");
-        jRowLabel2.setText("");
-        jRowLabel3.setText("");
-        jRowLabel4.setText("");
-
-        for (int i = 0; i < heapTiles.size(); i++) {
-            rowText = "";
-            ArrayList<Tile> row = heapTiles.get(i);
-
-            if (row.size() > 0) {
-
-                // if the row contains tiles, then we add them to the GUI.
-                // Otherwise, the "" default text is added for an empty row on the GUI.
-                for (int j = 0; j < row.size(); j++) {
-                    Tile piece = row.get(j);
-
-                    tileText = "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
-                    rowText += tileText;
-
-                    if (j == row.size() - 1) {
-                        choiceRadioButtonArray[i].setText(tileText);
-                    }
-                }
-            } else {
-                // if row.size() == 0
-                // disable the radiobutton choice for this row
-
-                if (choiceRadioButtonArray[i].isEnabled()) {
-                    choiceRadioButtonArray[i].setText("");
-                    choiceRadioButtonArray[i].setEnabled(false);
-                }
-
-            }
-
-            rowLabelArray[i].setText(rowText);
-
-        }
+       
     }
     
     
