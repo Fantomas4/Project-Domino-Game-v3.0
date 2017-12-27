@@ -123,7 +123,7 @@
               <Font name="Dialog" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Player ... plays now"/>
+            <Property name="text" type="java.lang.String" value="... plays now"/>
           </Properties>
         </Component>
       </SubComponents>

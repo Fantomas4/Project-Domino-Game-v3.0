@@ -24,8 +24,8 @@ public class HungarianGameThread extends Thread {
     
     private static Object sharedLock;
 
-    public HungarianGameThread(int gamemode, HungarianGameJFrame gameFrame, Object sharedLock) {
-        gameInstance = new HungarianGameLogic(gamemode);
+    public HungarianGameThread(int gamemode, String username, HungarianGameJFrame gameFrame, Object sharedLock) {
+        gameInstance = new HungarianGameLogic(gamemode, username);
         this.gameFrame = gameFrame;
         this.sharedLock = sharedLock;
     }
@@ -76,7 +76,7 @@ public class HungarianGameThread extends Thread {
     private void updatePlayingNowLabel() {
         // Set the GUI label that shows who plays now:
         System.out.println("DIAG: updateguielements CHECKPOINT 1");
-        gameFrame.getPlayingNowLabel().setText("Player " + gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
+        gameFrame.getPlayingNowLabel().setText(gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
     }
 
     private void updateTableLabel() {

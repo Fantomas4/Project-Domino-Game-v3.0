@@ -27,7 +27,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainGameJFrame
      */
-    public HungarianGameJFrame(int gamemode) {
+    public HungarianGameJFrame(int gamemode, String username) {
         initComponents();
 
         // initialize necessary class fields
@@ -36,7 +36,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         sharedLock = new Object();
 
         // initialize and start the Hungarian Game Thread
-        gameThread = new HungarianGameThread(gamemode, this, sharedLock);
+        gameThread = new HungarianGameThread(gamemode, username, this, sharedLock);
         gameThread.start();
 
     }
@@ -177,7 +177,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         jPlayingNowLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jPlayingNowLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPlayingNowLabel.setText("Player ... plays now");
+        jPlayingNowLabel.setText("... plays now");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -515,7 +515,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HungarianGameJFrame(2).setVisible(true);
+                new HungarianGameJFrame(2,"testuser").setVisible(true);
             }
         });
     }

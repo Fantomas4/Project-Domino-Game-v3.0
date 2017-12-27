@@ -239,7 +239,7 @@ public class DominoGameMain {
      */
     public static void runHungarianUI(int gamemode) {
 
-        HungarianGameLogic gameInstance = new HungarianGameLogic(gamemode);
+        HungarianGameLogic gameInstance = new HungarianGameLogic(gamemode,"User");
         Scanner input = new Scanner(System.in);
         String answer;
         int choice;

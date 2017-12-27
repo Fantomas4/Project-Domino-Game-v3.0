@@ -22,7 +22,7 @@ public class HungarianGameLogic extends MultiplayerGameLogic {
      *
      * @param mode the amount of players participating in the game.
      */
-    public HungarianGameLogic(int mode) {
+    public HungarianGameLogic(int mode, String username) {
         
         super();
         
@@ -38,7 +38,7 @@ public class HungarianGameLogic extends MultiplayerGameLogic {
             tilesAmount = 6;
         }
 
-        playerOrderedList.add(new Human("User", tilesAmount, heap));
+        playerOrderedList.add(new Human(username, tilesAmount, heap));
 
         for (int i = 1; i < gamemode; i++) {
             //adds as many bots to playerlist as the chosen game mode needs.
