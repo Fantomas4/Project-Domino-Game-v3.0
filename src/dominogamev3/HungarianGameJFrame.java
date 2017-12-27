@@ -21,7 +21,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
     private JRadioButton[] choiceRadioButtons;
     private int choice; // holds an integer representing the index of the tile from the hand the human player has chosen through the GUI radio buttons.
-    
+
     private static Object sharedLock;
 
     /**
@@ -34,14 +34,13 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
         sharedLock = new Object();
-             
+
         // initialize and start the Hungarian Game Thread
         gameThread = new HungarianGameThread(gamemode, this, sharedLock);
         gameThread.start();
 
     }
 
-    // Getter functions code START
     public JLabel getPlayingNowLabel() {
         return jPlayingNowLabel;
     }
@@ -54,13 +53,21 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         return choiceRadioButtons;
     }
 
+    public void roundEndMessage() {
+        int roundPoints = gameThread.getGameInstance().giveRoundPoints();
+        
+        JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()
+                + "\nPoints given: " + roundPoints,
+                "Round end", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     private void submitAction() {
         ArrayList<PossibleMove> result;
         Tile chosenTile;
 
         chosenTile = gameThread.getGameInstance().getPlayingNowObj().chooseTile(choice);
         result = gameThread.getGameInstance().checkTileChoice(chosenTile);
-        
+
         System.out.println("DIAG: INSIDE SUBMIT ACTION FUNC!");
         if (result.size() == 0) {
             System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 1");
@@ -74,14 +81,14 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 2");
             //there is one possible move so tile is placed automatically.
             gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
-            
+
             // notify the gameThread that the human player has finished his move
             // and recover it from its suspended state
-            synchronized(sharedLock) {
+            synchronized (sharedLock) {
                 sharedLock.notifyAll();
-            } 
+            }
             System.out.println("DIAG: NOTIFYALL EXECUTED!");
-            
+
         } else {
             System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 3");
             //there are more 2 possible moves 
@@ -105,7 +112,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             } else {
                 side = "right";
             }
-            
+
             if (result.get(0).whereToPlace().equals(side)) {
                 System.out.println("MPIKA PERIPTOSI 1");
                 gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
@@ -113,13 +120,13 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                 System.out.println("MPIKA PERIPTOSI 2");
                 gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
             }
-            
+
             // notify the gameThread that the human player has finished his move
             // and recover it from its suspended state
             System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
-            synchronized(sharedLock) {
+            synchronized (sharedLock) {
                 sharedLock.notifyAll();
-            } 
+            }
         }
     }
 
