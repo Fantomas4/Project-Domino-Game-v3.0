@@ -120,7 +120,7 @@ public class Player {
      * @return a Tile object representing the tile we want to get.
      */
     public Tile chooseTile(int choice) {
-
+        
         return playerTiles.get(choice - 1);
     }
 

@@ -121,6 +121,14 @@ public class HungarianGameThread extends Thread {
 
         // for diagnostic purposes, print the hand to console
     }
+    
+    private void enableSubmitButton() {
+        gameFrame.getSubmitButton().setEnabled(true);
+    }
+    
+    private void disableSubmitButton() {
+        gameFrame.getSubmitButton().setEnabled(false);
+    }
 
     public void executeGame() throws InterruptedException {
         do {
@@ -135,29 +143,13 @@ public class HungarianGameThread extends Thread {
                 System.out.printf("%n%n%n%n%n%n%n%n%n%n%n");
                 System.out.println("==================================================================================================================================");
 
-//                //show all players' hand.
-//                System.out.println("!!!!!!!!!!!!! DIAG !!!!!!!!!!!!!!!!!!!!");
-//                for (Player player : gameInstance.getPlayerOrderedList()) {
-//
-//                    //prints each player's hand at the beginning of each move.
-//                    System.out.printf(player.getPlayerName() + " player's hand: ");
-//
-//                    ArrayList<Tile> playerTiles = player.getPlayerTiles();
-//
-//                    for (Tile piece : playerTiles) {
-//                        System.out.printf("|%d %d|", piece.getNum1(), piece.getNum2());
-//                    }
-//
-//                    System.out.printf("%n");
-//                }
-//                System.out.println("!!!!!!!!!!!!! DIAG !!!!!!!!!!!!!!!!!!!!");
-                //System.out.printf("%n");
                 System.out.println("*** Player  > " + gameInstance.getPlayingNowObj().getPlayerName() + " <  is playing now. ***");
                 System.out.printf("%n");
 
                 if (gameInstance.getPlayingNowObj() instanceof Human) {
                     System.out.println("DIAG: THREAD CHECKPOINT 2");
                     // if the player playing now is a human, show his tiles (hand) on the GUI.
+                    enableSubmitButton();
                     updateButtonChoices();
 
                     // suspend the thread and wait for the human to make a move through the GUI.
@@ -180,6 +172,8 @@ public class HungarianGameThread extends Thread {
                     // reset and disable the radio button choices
                     // and update the TableLabel.
 
+                    disableSubmitButton();
+                    
                     updatePlayingNowLabel();
 
                     resetButtonChoices(gameFrame.getChoiceRadioButtons());

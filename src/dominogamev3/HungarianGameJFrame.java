@@ -38,6 +38,10 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // initialize and start the Hungarian Game Thread
         gameThread = new HungarianGameThread(gamemode, username, this, sharedLock);
         gameThread.start();
+        
+        // since the first radio button is always selected by default, 
+        // we initialize the choice variable to 1 to reflect this.
+        choice = 1;
 
     }
 
@@ -52,6 +56,10 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     public JRadioButton[] getChoiceRadioButtons() {
         return choiceRadioButtons;
     }
+    
+    public JButton getSubmitButton() {
+        return jSubmitButton;
+    }
 
     public void roundEndMessage() {
         int roundPoints = gameThread.getGameInstance().giveRoundPoints();
@@ -64,6 +72,8 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private void submitAction() {
         ArrayList<PossibleMove> result;
         Tile chosenTile;
+        
+        System.out.println("DIAG: *********** choice number is: " + choice);
 
         chosenTile = gameThread.getGameInstance().getPlayingNowObj().chooseTile(choice);
         result = gameThread.getGameInstance().checkTileChoice(chosenTile);
@@ -128,10 +138,6 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                 sharedLock.notifyAll();
             }
         }
-    }
-
-    public JButton getSubmitButton() {
-        return jSubmitButton;
     }
 
     // Getter functions code END
@@ -216,6 +222,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("jRadioButton1");
         jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -386,10 +393,9 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTablePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
