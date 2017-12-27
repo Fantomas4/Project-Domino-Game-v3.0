@@ -11,6 +11,8 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 /**
@@ -21,11 +23,13 @@ public class HungarianGameThread extends Thread {
 
     private HungarianGameLogic gameInstance;
     private HungarianGameJFrame gameFrame;
+    ArrayList<Player> playerList; 
     
     private static Object sharedLock;
 
     public HungarianGameThread(int gamemode, String username, HungarianGameJFrame gameFrame, Object sharedLock) {
         gameInstance = new HungarianGameLogic(gamemode, username);
+        playerList = gameInstance.getPlayerOrderedList();
         this.gameFrame = gameFrame;
         this.sharedLock = sharedLock;
     }
@@ -77,6 +81,49 @@ public class HungarianGameThread extends Thread {
         // Set the GUI label that shows who plays now:
         System.out.println("DIAG: updateguielements CHECKPOINT 1");
         gameFrame.getPlayingNowLabel().setText(gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
+    }
+    
+    private void resetPlayerStatusPanel() {
+        JLabel[] nameLabels = gameFrame.getPlayerNameLabels();
+        JLabel[] tLeftLabels = gameFrame.getPlayerTilesLeftStatusLabels();
+        JLabel[] scoreLabels = gameFrame.getPlayerScoreStatusLabels();
+        
+        for (JLabel label : nameLabels) {
+            label.setText("");
+        }
+        
+        for (JLabel label : tLeftLabels) {
+            label.setText("");
+        }
+        
+        for (JLabel label : scoreLabels) {
+            label.setText("");
+        }
+    }
+    
+    private void setPlayerNameLabels() { 
+        JLabel[] nameLabels = gameFrame.getPlayerNameLabels();
+        
+        for (int i = 0 ; i < playerList.size() ; i++) {
+            nameLabels[i].setText("Player: " + playerList.get(i).getPlayerName());
+        }
+        
+    }
+    
+    private void updatePlayerTilesLeftLabels() {
+        JLabel[] tLeftLabels = gameFrame.getPlayerTilesLeftStatusLabels();
+        
+        for (int i = 0 ; i < playerList.size() ; i++) {
+            tLeftLabels[i].setText("Tiles left: " + playerList.get(i).getPlayerTilesAmount());
+        }
+    }
+    
+    private void updatePlayerScoreLabels() {
+        JLabel[] scoreLabels = gameFrame.getPlayerScoreStatusLabels();
+        
+        for (int i = 0 ; i < playerList.size() ; i++) {
+            scoreLabels[i].setText("Score: " + playerList.get(i).getScore());
+        }
     }
 
     private void updateTableLabel() {
@@ -131,6 +178,10 @@ public class HungarianGameThread extends Thread {
     }
 
     public void executeGame() throws InterruptedException {
+        
+        resetPlayerStatusPanel();
+        setPlayerNameLabels();
+        
         do {
             System.out.println("DIAG: THREAD CHECKPOINT 1");
             gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
@@ -138,6 +189,10 @@ public class HungarianGameThread extends Thread {
             do {
 
                 updatePlayingNowLabel();
+                
+                System.out.println("DIAG: PlayerOrderedList index 0: " + gameInstance.getPlayerOrderedList().get(0));
+                updatePlayerTilesLeftLabels();
+                updatePlayerScoreLabels();
                 updateTableLabel();
 
                 System.out.printf("%n%n%n%n%n%n%n%n%n%n%n");
@@ -149,6 +204,7 @@ public class HungarianGameThread extends Thread {
                 if (gameInstance.getPlayingNowObj() instanceof Human) {
                     System.out.println("DIAG: THREAD CHECKPOINT 2");
                     // if the player playing now is a human, show his tiles (hand) on the GUI.
+                    gameFrame.resetRadioButtonSelector(); // sets the selector for the radio button group to the jRadioButton1
                     enableSubmitButton();
                     updateButtonChoices();
 
@@ -178,7 +234,7 @@ public class HungarianGameThread extends Thread {
 
                     resetButtonChoices(gameFrame.getChoiceRadioButtons());
                     
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                     
                     gameInstance.botPlays();
 
@@ -193,15 +249,10 @@ public class HungarianGameThread extends Thread {
                     break;
                 }
 
-            } while (true);
-
-            int roundPoints = gameInstance.giveRoundPoints();
-            System.out.printf("%n%n%n");
-            System.out.println("                                                 *** END OF ROUND! ***");
-            System.out.println("                                              *** Round Winner: " + gameInstance.getWinnerPlayerName() + " ***");
-            System.out.println("                                                $$$ Points given: " + roundPoints + " $$$");
+            } while (true);            
             
-            gameFrame.roundEndMessage();
+            int roundPoints = gameInstance.giveRoundPoints(); // give the round points to the winner
+            gameFrame.roundEndMessage(roundPoints); 
             gameInstance.resetRound();
 
         } while (gameInstance.scoreLimitReached() == false);

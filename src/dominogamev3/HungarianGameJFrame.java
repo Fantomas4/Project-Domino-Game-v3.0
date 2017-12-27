@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 /**
@@ -18,8 +19,10 @@ import javax.swing.JRadioButton;
 public class HungarianGameJFrame extends javax.swing.JFrame {
 
     private HungarianGameThread gameThread;
-    private Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
     private JRadioButton[] choiceRadioButtons;
+    private JLabel[] playerTilesLeftLabels;
+    private JLabel[] playerScoreLabels;
+    private JLabel[] playerNameLabels;
     private int choice; // holds an integer representing the index of the tile from the hand the human player has chosen through the GUI radio buttons.
 
     private static Object sharedLock;
@@ -33,6 +36,13 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // initialize necessary class fields
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
+        
+        playerTilesLeftLabels = new JLabel[]{jTLeftLabel1, jTLeftLabel2, jTLeftLabel3, jTLeftLabel4};
+        
+        playerScoreLabels = new JLabel[]{jScoreLabel1, jScoreLabel2, jScoreLabel3, jScoreLabel4};
+        
+        playerNameLabels = new JLabel[]{jNameLabel1, jNameLabel2, jNameLabel3, jNameLabel4};
+        
         sharedLock = new Object();
 
         // initialize and start the Hungarian Game Thread
@@ -57,13 +67,30 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         return choiceRadioButtons;
     }
     
+    public JLabel[] getPlayerNameLabels() {
+        return playerNameLabels;
+    }
+    
+    public JLabel[] getPlayerTilesLeftStatusLabels() {
+        return playerTilesLeftLabels;
+    }
+    
+    public JLabel[] getPlayerScoreStatusLabels() {
+        return playerScoreLabels;
+    }
+    
     public JButton getSubmitButton() {
         return jSubmitButton;
     }
+    
+    public void resetRadioButtonSelector() {
+        // resets the selection of the tile choice radio buttons
+        // by setting the jRadioButton1 as selected.
+        jRadioButton1.setSelected(true);
+        choice = 1;
+    }
 
-    public void roundEndMessage() {
-        int roundPoints = gameThread.getGameInstance().giveRoundPoints();
-        
+    public void roundEndMessage(int roundPoints) {
         JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()
                 + "\nPoints given: " + roundPoints,
                 "Round end", JOptionPane.INFORMATION_MESSAGE);
@@ -170,6 +197,23 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jRadioButton12 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jSubmitButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPlayer1Panel = new javax.swing.JPanel();
+        jNameLabel1 = new javax.swing.JLabel();
+        jTLeftLabel1 = new javax.swing.JLabel();
+        jScoreLabel1 = new javax.swing.JLabel();
+        jPlayer2Panel = new javax.swing.JPanel();
+        jNameLabel2 = new javax.swing.JLabel();
+        jTLeftLabel2 = new javax.swing.JLabel();
+        jScoreLabel2 = new javax.swing.JLabel();
+        jPlayer3Panel = new javax.swing.JPanel();
+        jNameLabel3 = new javax.swing.JLabel();
+        jTLeftLabel3 = new javax.swing.JLabel();
+        jScoreLabel3 = new javax.swing.JLabel();
+        jPlayer4Panel = new javax.swing.JPanel();
+        jNameLabel4 = new javax.swing.JLabel();
+        jTLeftLabel4 = new javax.swing.JLabel();
+        jScoreLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -206,15 +250,11 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jTablePanel.setLayout(jTablePanelLayout);
         jTablePanelLayout.setHorizontalGroup(
             jTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jTablePanelLayout.createSequentialGroup()
-                .addComponent(jTableLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 1262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jTablePanelLayout.setVerticalGroup(
             jTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jTablePanelLayout.createSequentialGroup()
-                .addComponent(jTableLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTableLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
         );
 
         jMoveChoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pick a tile from your hand to make your move", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
@@ -224,7 +264,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("jRadioButton1");
-        jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -235,7 +275,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton2.setText("jRadioButton2");
-        jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -246,7 +286,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton3.setText("jRadioButton3");
-        jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -257,7 +297,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton4.setText("jRadioButton4");
-        jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton4ActionPerformed(evt);
@@ -268,7 +308,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton5.setText("jRadioButton5");
-        jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton5ActionPerformed(evt);
@@ -279,7 +319,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton6);
         jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton6.setText("jRadioButton6");
-        jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton6ActionPerformed(evt);
@@ -290,7 +330,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton7);
         jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton7.setText("jRadioButton7");
-        jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton7ActionPerformed(evt);
@@ -301,7 +341,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton8);
         jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton8.setText("jRadioButton8");
-        jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton8ActionPerformed(evt);
@@ -312,7 +352,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton9.setText("jRadioButton9");
-        jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton9ActionPerformed(evt);
@@ -323,7 +363,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton10);
         jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton10.setText("jRadioButton10");
-        jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton10ActionPerformed(evt);
@@ -334,7 +374,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton11);
         jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton11.setText("jRadioButton11");
-        jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton11ActionPerformed(evt);
@@ -345,7 +385,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton12);
         jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton12.setText("jRadioButton12");
-        jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton12ActionPerformed(evt);
@@ -361,6 +401,149 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jSubmitButton);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel2.setLayout(new java.awt.GridLayout(1, 4, 20, 20));
+
+        jPlayer1Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+
+        jNameLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jNameLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jNameLabel1.setText("Name: ");
+
+        jTLeftLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTLeftLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTLeftLabel1.setText("Tiles left: ...");
+
+        jScoreLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jScoreLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jScoreLabel1.setText("Score: ...");
+
+        javax.swing.GroupLayout jPlayer1PanelLayout = new javax.swing.GroupLayout(jPlayer1Panel);
+        jPlayer1Panel.setLayout(jPlayer1PanelLayout);
+        jPlayer1PanelLayout.setHorizontalGroup(
+            jPlayer1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTLeftLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jNameLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScoreLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPlayer1PanelLayout.setVerticalGroup(
+            jPlayer1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer1PanelLayout.createSequentialGroup()
+                .addComponent(jNameLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTLeftLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScoreLabel1)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPlayer1Panel);
+
+        jPlayer2Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+
+        jNameLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jNameLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jNameLabel2.setText("Name: ");
+
+        jTLeftLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTLeftLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTLeftLabel2.setText("Tiles left: ...");
+
+        jScoreLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jScoreLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jScoreLabel2.setText("Score: ...");
+
+        javax.swing.GroupLayout jPlayer2PanelLayout = new javax.swing.GroupLayout(jPlayer2Panel);
+        jPlayer2Panel.setLayout(jPlayer2PanelLayout);
+        jPlayer2PanelLayout.setHorizontalGroup(
+            jPlayer2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTLeftLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jScoreLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jNameLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPlayer2PanelLayout.setVerticalGroup(
+            jPlayer2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer2PanelLayout.createSequentialGroup()
+                .addComponent(jNameLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTLeftLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScoreLabel2)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPlayer2Panel);
+
+        jPlayer3Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+
+        jNameLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jNameLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jNameLabel3.setText("Name: ");
+
+        jTLeftLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTLeftLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTLeftLabel3.setText("Tiles left: ...");
+
+        jScoreLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jScoreLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jScoreLabel3.setText("Score: ...");
+
+        javax.swing.GroupLayout jPlayer3PanelLayout = new javax.swing.GroupLayout(jPlayer3Panel);
+        jPlayer3Panel.setLayout(jPlayer3PanelLayout);
+        jPlayer3PanelLayout.setHorizontalGroup(
+            jPlayer3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTLeftLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jScoreLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jNameLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPlayer3PanelLayout.setVerticalGroup(
+            jPlayer3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer3PanelLayout.createSequentialGroup()
+                .addComponent(jNameLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTLeftLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScoreLabel3)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPlayer3Panel);
+
+        jPlayer4Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+
+        jNameLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jNameLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jNameLabel4.setText("Name: ");
+
+        jTLeftLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTLeftLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTLeftLabel4.setText("Tiles left: ...");
+
+        jScoreLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jScoreLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jScoreLabel4.setText("Score: ...");
+
+        javax.swing.GroupLayout jPlayer4PanelLayout = new javax.swing.GroupLayout(jPlayer4Panel);
+        jPlayer4Panel.setLayout(jPlayer4PanelLayout);
+        jPlayer4PanelLayout.setHorizontalGroup(
+            jPlayer4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTLeftLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jScoreLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jNameLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPlayer4PanelLayout.setVerticalGroup(
+            jPlayer4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer4PanelLayout.createSequentialGroup()
+                .addComponent(jNameLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTLeftLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScoreLabel4)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPlayer4Panel);
 
         jMenu1.setText("File");
 
@@ -390,26 +573,29 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1375, Short.MAX_VALUE)
+                    .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -535,7 +721,16 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jMoveChoicePanel;
+    private javax.swing.JLabel jNameLabel1;
+    private javax.swing.JLabel jNameLabel2;
+    private javax.swing.JLabel jNameLabel3;
+    private javax.swing.JLabel jNameLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPlayer1Panel;
+    private javax.swing.JPanel jPlayer2Panel;
+    private javax.swing.JPanel jPlayer3Panel;
+    private javax.swing.JPanel jPlayer4Panel;
     private javax.swing.JLabel jPlayingNowLabel;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
@@ -549,8 +744,16 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JLabel jScoreLabel1;
+    private javax.swing.JLabel jScoreLabel2;
+    private javax.swing.JLabel jScoreLabel3;
+    private javax.swing.JLabel jScoreLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jSubmitButton;
+    private javax.swing.JLabel jTLeftLabel1;
+    private javax.swing.JLabel jTLeftLabel2;
+    private javax.swing.JLabel jTLeftLabel3;
+    private javax.swing.JLabel jTLeftLabel4;
     private javax.swing.JLabel jTableLabel;
     private javax.swing.JPanel jTablePanel;
     // End of variables declaration//GEN-END:variables

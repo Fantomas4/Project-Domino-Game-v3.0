@@ -87,6 +87,7 @@ public class HungarianGameLogic extends MultiplayerGameLogic {
         if (tie == false) {
             totalPoints -= playerOrderedList.get(minPlayerIndex).getRemainingTilePoints(); //removes the points of the player that has the fewest points
             //in his hand and is about to receive the totalPoints sum.
+            System.out.println("DIAG: totalpoints given by giveRoundPoints(): " + totalPoints);
             playerOrderedList.get(minPlayerIndex).increaseScore(totalPoints); // gives accumulated points to the
             // player who has the fewest points. 
             winnerName = playerOrderedList.get(minPlayerIndex).getPlayerName(); // saves the object of the player who won the round to the winner object field.
