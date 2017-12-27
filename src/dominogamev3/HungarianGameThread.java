@@ -206,7 +206,8 @@ public class HungarianGameThread extends Thread {
             System.out.println("                                                 *** END OF ROUND! ***");
             System.out.println("                                              *** Round Winner: " + gameInstance.getWinnerPlayerName() + " ***");
             System.out.println("                                                $$$ Points given: " + roundPoints + " $$$");
-
+            
+            gameFrame.roundEndMessage();
             gameInstance.resetRound();
 
         } while (gameInstance.scoreLimitReached() == false);
