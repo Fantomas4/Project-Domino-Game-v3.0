@@ -98,11 +98,11 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 //    public JRadioButton getRadioButton12() {
 //        return jRadioButton12;
 //    }
-    private void submitAction() {
+    private synchronized void submitAction() {
         ArrayList<PossibleMove> result;
         Tile chosenTile;
 
-        chosenTile = gameThread.getGameInstance().getHeap().chooseTile(choice);
+        chosenTile = gameThread.getGameInstance().getPlayingNowObj().chooseTile(choice);
         result = gameThread.getGameInstance().checkTileChoice(chosenTile);
 
         if (result.size() == 0) {
@@ -114,6 +114,11 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         } else if (result.size() == 1) {
             //there is one possible move so tile is placed automatically.
             gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
+            
+            // notify the gameThread that the human player has finished his move
+            // and recover it from its suspended state
+            notifyAll();
+            
         } else {
             //there are more 2 possible moves 
             //so user is asked about where to place tile
@@ -138,10 +143,16 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             }
             
             if (result.get(0).whereToPlace().equals(side)) {
+                System.out.println("MPIKA PERIPTOSI 1");
                 gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
             } else if (result.get(1).whereToPlace().equals(side)) {
+                System.out.println("MPIKA PERIPTOSI 2");
                 gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
             }
+            
+            // notify the gameThread that the human player has finished his move
+            // and recover it from its suspended state
+            notifyAll();
         }
     }
 
@@ -228,7 +239,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.setLayout(new java.awt.GridLayout(3, 4));
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton1.setText("jRadioButton1");
         jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -239,7 +250,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton1);
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton2.setText("jRadioButton2");
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +261,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton2);
 
         buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton3.setText("jRadioButton3");
         jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +272,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton3);
 
         buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton4.setText("jRadioButton4");
         jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -272,7 +283,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton4);
 
         buttonGroup1.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton5.setText("jRadioButton5");
         jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +294,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton5);
 
         buttonGroup1.add(jRadioButton6);
-        jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton6.setText("jRadioButton6");
         jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -294,7 +305,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton6);
 
         buttonGroup1.add(jRadioButton7);
-        jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton7.setText("jRadioButton7");
         jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -305,7 +316,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton7);
 
         buttonGroup1.add(jRadioButton8);
-        jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton8.setText("jRadioButton8");
         jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -316,7 +327,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton8);
 
         buttonGroup1.add(jRadioButton9);
-        jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton9.setText("jRadioButton9");
         jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -327,7 +338,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton9);
 
         buttonGroup1.add(jRadioButton10);
-        jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton10.setText("jRadioButton10");
         jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -338,7 +349,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton10);
 
         buttonGroup1.add(jRadioButton11);
-        jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton11.setText("jRadioButton11");
         jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -349,7 +360,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.add(jRadioButton11);
 
         buttonGroup1.add(jRadioButton12);
-        jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton12.setText("jRadioButton12");
         jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRadioButton12.addActionListener(new java.awt.event.ActionListener() {

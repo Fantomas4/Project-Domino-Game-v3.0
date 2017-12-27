@@ -117,9 +117,7 @@ public class HungarianGameThread extends Thread {
         // for diagnostic purposes, print the hand to console
     }
 
-    @Override
-
-    public void run() {
+    public synchronized void executeGame() {
         do {
             System.out.println("DIAG: THREAD CHECKPOINT 1");
             gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
@@ -204,6 +202,11 @@ public class HungarianGameThread extends Thread {
 
         System.out.println("%n%n%n");
         System.out.println("                              *** Player " + gameInstance.getWinnerPlayerName() + " has won the game by reaching the score limit! ***");
+    }
+
+    @Override
+    public void run() {
+        executeGame();
     }
 
 }

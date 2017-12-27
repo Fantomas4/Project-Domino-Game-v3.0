@@ -352,7 +352,7 @@ public class DominoGameMain {
                                 gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), answer);
                                 break;
                             } else if (result.get(1).whereToPlace().equals(answer)) {
-                                gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), answer);
+                                gameInstance.humanPlays(choice, chosenTile, result.get(1).needsRotation(), answer); //fixed bug caused by wrong result.get(0)
                                 break;
                             }
                         }
