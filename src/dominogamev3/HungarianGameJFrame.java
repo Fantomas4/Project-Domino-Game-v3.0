@@ -8,6 +8,7 @@ package dominogamev3;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
@@ -16,9 +17,10 @@ import javax.swing.JRadioButton;
  */
 public class HungarianGameJFrame extends javax.swing.JFrame {
 
-    HungarianGameThread gameThread;
-    Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
-    JRadioButton[] choiceRadioButtons;
+    private HungarianGameThread gameThread;
+    private Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
+    private JRadioButton[] choiceRadioButtons;
+    private int choice; // holds an integer representing the index of the tile from the hand the human player has chosen through the GUI radio buttons.
 
     /**
      * Creates new form MainGameJFrame
@@ -35,21 +37,20 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         gameThread.start();
 
     }
-    
+
     // Getter functions code START
-    
     public JLabel getPlayingNowLabel() {
         return jPlayingNowLabel;
     }
-    
+
     public JLabel getTableLabel() {
         return jTableLabel;
     }
-    
+
     public JRadioButton[] getChoiceRadioButtons() {
         return choiceRadioButtons;
     }
-    
+
 //    public JRadioButton getRadioButton1() {
 //        return jRadioButton1;
 //    }
@@ -97,13 +98,58 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 //    public JRadioButton getRadioButton12() {
 //        return jRadioButton12;
 //    }
-    
-    public JButton getSubmitButton() {
-         return jSubmitButton;
-    }
-    
-    // Getter functions code END
+    private void submitAction() {
+        ArrayList<PossibleMove> result;
+        Tile chosenTile;
 
+        chosenTile = gameThread.getGameInstance().getHeap().chooseTile(choice);
+        result = gameThread.getGameInstance().checkTileChoice(chosenTile);
+
+        if (result.size() == 0) {
+            //there is no possible move with the chosen tile.
+            System.out.printf("%n");
+            System.out.println("> There is no possible move with the chosen tile! Try again!");
+            System.out.printf("%n");
+            //continue
+        } else if (result.size() == 1) {
+            //there is one possible move so tile is placed automatically.
+            gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
+        } else {
+            //there are more 2 possible moves 
+            //so user is asked about where to place tile
+            System.out.println("> There are 2 possible moves with this tile.");
+            System.out.println("> Do you want to place the tile left or right?");
+
+            String[] values = {"Left side", "Right side"};
+            Object selected = JOptionPane.showInputDialog(null, "There are 2 possible moves with this tile.\n"
+                    + "On which side of the table do you want to place the tile?",
+                    "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
+
+            String selectedString = selected.toString();
+
+            System.out.println("DIAG: object selected is: " + selected);
+            System.out.println("DIAG: selectedString is: " + selectedString);
+
+            String side;
+            if (selectedString.equals("Left side")) {
+                side = "left";
+            } else {
+                side = "right";
+            }
+            
+            if (result.get(0).whereToPlace().equals(side)) {
+                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
+            } else if (result.get(1).whereToPlace().equals(side)) {
+                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
+            }
+        }
+    }
+
+    public JButton getSubmitButton() {
+        return jSubmitButton;
+    }
+
+    // Getter functions code END
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -185,72 +231,132 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton1.setText("jRadioButton1");
         jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton1);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton2.setText("jRadioButton2");
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton2);
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton3.setText("jRadioButton3");
         jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton3);
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton4.setText("jRadioButton4");
         jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton4);
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton5.setText("jRadioButton5");
         jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton5);
 
         buttonGroup1.add(jRadioButton6);
         jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton6.setText("jRadioButton6");
         jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton6);
 
         buttonGroup1.add(jRadioButton7);
         jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton7.setText("jRadioButton7");
         jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton7ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton7);
 
         buttonGroup1.add(jRadioButton8);
         jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton8.setText("jRadioButton8");
         jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton8);
 
         buttonGroup1.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton9.setText("jRadioButton9");
         jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton9ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton9);
 
         buttonGroup1.add(jRadioButton10);
         jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton10.setText("jRadioButton10");
         jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton10ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton10);
 
         buttonGroup1.add(jRadioButton11);
         jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton11.setText("jRadioButton11");
         jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton11ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton11);
 
         buttonGroup1.add(jRadioButton12);
         jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jRadioButton12.setText("jRadioButton12");
         jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton12ActionPerformed(evt);
+            }
+        });
         jMoveChoicePanel.add(jRadioButton12);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -342,7 +448,69 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
     private void jSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSubmitButtonActionPerformed
         // TODO add your handling code here:
+        submitAction();
+
     }//GEN-LAST:event_jSubmitButtonActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        choice = 1;
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+        choice = 2;
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+        choice = 3;
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+        choice = 4;
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+        choice = 5;
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        // TODO add your handling code here:
+        choice = 6;
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+        // TODO add your handling code here:
+        choice = 7;
+    }//GEN-LAST:event_jRadioButton7ActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        // TODO add your handling code here:
+        choice = 8;
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed
+        // TODO add your handling code here:
+        choice = 9;
+    }//GEN-LAST:event_jRadioButton9ActionPerformed
+
+    private void jRadioButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10ActionPerformed
+        // TODO add your handling code here:
+        choice = 10;
+    }//GEN-LAST:event_jRadioButton10ActionPerformed
+
+    private void jRadioButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11ActionPerformed
+        // TODO add your handling code here:
+        choice = 11;
+    }//GEN-LAST:event_jRadioButton11ActionPerformed
+
+    private void jRadioButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12ActionPerformed
+        // TODO add your handling code here:
+        choice = 12;
+    }//GEN-LAST:event_jRadioButton12ActionPerformed
 
     /**
      * @param args the command line arguments
