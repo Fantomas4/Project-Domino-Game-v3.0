@@ -414,6 +414,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
         if (result.size() == 0) {
             // there is no possible move with the chosen tile.
             System.out.println("> There is no possible move with the chosen tile! Try again!");
+            JOptionPane.showMessageDialog(null, "There is no possible move with the chosen tile!\nPlease select another tile.", "Unavailable move", JOptionPane.ERROR_MESSAGE);
             // continue
         } else if (result.size() == 1) {
             // there is one possible move so tile is placed automatically
@@ -458,7 +459,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
         if (gameInstance.gameStatus() == 0) {
             System.out.println("*** Game over! There are no possible moves left! ***");
             JOptionPane.showMessageDialog(null, "Game over!\nThere are no possible moves left!",
-                    "Loss", JOptionPane.INFORMATION_MESSAGE);
+                    "Game Over", JOptionPane.INFORMATION_MESSAGE);
         } else if (gameInstance.gameStatus() == 2) {
             System.out.println("*** Congratulations! You have won! ***");
             JOptionPane.showMessageDialog(null, "Congratulations! You have won!",

@@ -68,6 +68,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             System.out.printf("%n");
             System.out.println("> There is no possible move with the chosen tile! Try again!");
             System.out.printf("%n");
+            JOptionPane.showMessageDialog(null, "There is no possible move with the chosen tile!\nPlease select another tile.", "Unavailable move", JOptionPane.ERROR_MESSAGE);
             //continue
         } else if (result.size() == 1) {
             System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 2");
