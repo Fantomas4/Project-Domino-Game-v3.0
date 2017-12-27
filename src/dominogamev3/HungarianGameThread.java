@@ -19,10 +19,13 @@ public class HungarianGameThread extends Thread {
 
     private HungarianGameLogic gameInstance;
     private HungarianGameJFrame gameFrame;
+    
+    private static Object sharedLock;
 
-    public HungarianGameThread(int gamemode, HungarianGameJFrame gameFrame) {
+    public HungarianGameThread(int gamemode, HungarianGameJFrame gameFrame, Object sharedLock) {
         gameInstance = new HungarianGameLogic(gamemode);
         this.gameFrame = gameFrame;
+        this.sharedLock = sharedLock;
     }
 
     public HungarianGameLogic getGameInstance() {
@@ -117,7 +120,7 @@ public class HungarianGameThread extends Thread {
         // for diagnostic purposes, print the hand to console
     }
 
-    public synchronized void executeGame() {
+    public void executeGame() {
         do {
             System.out.println("DIAG: THREAD CHECKPOINT 1");
             gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
@@ -151,19 +154,23 @@ public class HungarianGameThread extends Thread {
                 System.out.printf("%n");
 
                 if (gameInstance.getPlayingNowObj() instanceof Human) {
-
+                    System.out.println("DIAG: THREAD CHECKPOINT 2");
                     // if the player playing now is a human, show his tiles (hand) on the GUI.
                     updateButtonChoices();
 
                     // suspend the thread and wait for the human to make a move through the GUI.
                     // suspend the thread until a notify() call from the GUI part of the program is executed
                     // to indicate that the user has finished his move.
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
+                    synchronized (sharedLock) {
+                        try {
+                            System.out.println("DIAG: WAITING....");
+                            sharedLock.wait();
+                        } catch (InterruptedException e) {
 
+                        }
                     }
 
+                    System.out.println("DIAG: PROCEEDING...");
                     updateTableLabel();
 
                 } else {

@@ -21,6 +21,8 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
     private JRadioButton[] choiceRadioButtons;
     private int choice; // holds an integer representing the index of the tile from the hand the human player has chosen through the GUI radio buttons.
+    
+    private static Object sharedLock;
 
     /**
      * Creates new form MainGameJFrame
@@ -31,9 +33,10 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // initialize necessary class fields
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
-
+        sharedLock = new Object();
+             
         // initialize and start the Hungarian Game Thread
-        gameThread = new HungarianGameThread(gamemode, this);
+        gameThread = new HungarianGameThread(gamemode, this, sharedLock);
         gameThread.start();
 
     }
@@ -51,75 +54,35 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         return choiceRadioButtons;
     }
 
-//    public JRadioButton getRadioButton1() {
-//        return jRadioButton1;
-//    }
-//    
-//    public JRadioButton getRadioButton2() {
-//        return jRadioButton2;
-//    }
-//    
-//    public JRadioButton getRadioButton3() {
-//        return jRadioButton3;
-//    }
-//    
-//    public JRadioButton getRadioButton4() {
-//        return jRadioButton4;
-//    }
-//    
-//    public JRadioButton getRadioButton5() {
-//        return jRadioButton5;
-//    }
-//    
-//    public JRadioButton getRadioButton6() {
-//        return jRadioButton6;
-//    }
-//    
-//    public JRadioButton getRadioButton7() {
-//        return jRadioButton7;
-//    }
-//    
-//    public JRadioButton getRadioButton8() {
-//        return jRadioButton8;
-//    }
-//    
-//    public JRadioButton getRadioButton9() {
-//        return jRadioButton9;
-//    }
-//    
-//    public JRadioButton getRadioButton10() {
-//        return jRadioButton10;
-//    }
-//    
-//    public JRadioButton getRadioButton11() {
-//        return jRadioButton11;
-//    }
-//    
-//    public JRadioButton getRadioButton12() {
-//        return jRadioButton12;
-//    }
-    private synchronized void submitAction() {
+    private void submitAction() {
         ArrayList<PossibleMove> result;
         Tile chosenTile;
 
         chosenTile = gameThread.getGameInstance().getPlayingNowObj().chooseTile(choice);
         result = gameThread.getGameInstance().checkTileChoice(chosenTile);
-
+        
+        System.out.println("DIAG: INSIDE SUBMIT ACTION FUNC!");
         if (result.size() == 0) {
+            System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 1");
             //there is no possible move with the chosen tile.
             System.out.printf("%n");
             System.out.println("> There is no possible move with the chosen tile! Try again!");
             System.out.printf("%n");
             //continue
         } else if (result.size() == 1) {
+            System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 2");
             //there is one possible move so tile is placed automatically.
             gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
             
             // notify the gameThread that the human player has finished his move
             // and recover it from its suspended state
-            notifyAll();
+            synchronized(sharedLock) {
+                sharedLock.notifyAll();
+            } 
+            System.out.println("DIAG: NOTIFYALL EXECUTED!");
             
         } else {
+            System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 3");
             //there are more 2 possible moves 
             //so user is asked about where to place tile
             System.out.println("> There are 2 possible moves with this tile.");
@@ -152,7 +115,10 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
             
             // notify the gameThread that the human player has finished his move
             // and recover it from its suspended state
-            notifyAll();
+            System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
+            synchronized(sharedLock) {
+                sharedLock.notifyAll();
+            } 
         }
     }
 
