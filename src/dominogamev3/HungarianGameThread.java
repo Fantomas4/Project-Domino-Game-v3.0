@@ -8,6 +8,8 @@ package dominogamev3;
 import static dominogamev3.DominoGameMain.intChoiceValidityCheck;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
@@ -120,7 +122,7 @@ public class HungarianGameThread extends Thread {
         // for diagnostic purposes, print the hand to console
     }
 
-    public void executeGame() {
+    public void executeGame() throws InterruptedException {
         do {
             System.out.println("DIAG: THREAD CHECKPOINT 1");
             gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
@@ -181,7 +183,9 @@ public class HungarianGameThread extends Thread {
                     updatePlayingNowLabel();
 
                     resetButtonChoices(gameFrame.getChoiceRadioButtons());
-
+                    
+                    Thread.sleep(2000);
+                    
                     gameInstance.botPlays();
 
                     updateTableLabel();
@@ -213,7 +217,11 @@ public class HungarianGameThread extends Thread {
 
     @Override
     public void run() {
-        executeGame();
+        try {
+            executeGame();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HungarianGameThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
