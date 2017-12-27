@@ -25,13 +25,56 @@ public class HungarianGameThread extends Thread {
         this.gameFrame = gameFrame;
     }
 
-    private void updateGUI() {
+    public HungarianGameLogic getGameInstance() {
+        return gameInstance;
+    }
 
+//    private void updateGUI() {
+//
+//        // Set the GUI label that shows who plays now:
+//        System.out.println("DIAG: updateguielements CHECKPOINT 1");
+//        gameFrame.getPlayingNowLabel().setText("Player " + gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
+//
+//
+//        // Get the table of the game and show in on the GUI:
+//        Table tableObj = gameInstance.getTable();
+//        ArrayList<Tile> tableTiles = tableObj.getTable();
+//        String tableText = "";
+//
+//        for (Tile piece : tableTiles) {
+//            tableText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
+//        }
+//
+//        gameFrame.getTableLabel().setText(tableText);
+//
+//        // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
+//        // reset all the radio buttons by emptying their text and disabling them.
+//        
+//        JRadioButton[] choiceRadioButtons = gameFrame.getChoiceRadioButtons();
+//        
+//        for (JRadioButton button : choiceRadioButtons) {
+//            button.setText("");
+//            button.setEnabled(false);
+//        }
+//
+//        int pos = 0; // position indicator used to traverse the choiceRadioButtons array
+//        ArrayList<Tile> playerHand = gameInstance.getPlayingNowObj().getPlayerTiles();
+//
+//        for (int i = 0; i < playerHand.size(); i++) {
+//            choiceRadioButtons[pos].setText("|" + playerHand.get(i).getNum1() + " " + playerHand.get(i).getNum2() + "|");
+//            choiceRadioButtons[pos].setEnabled(true);
+//            pos++;
+//        }
+//
+//        // for diagnostic purposes, print the hand to console
+//    }
+    private void updatePlayingNowLabel() {
         // Set the GUI label that shows who plays now:
         System.out.println("DIAG: updateguielements CHECKPOINT 1");
         gameFrame.getPlayingNowLabel().setText("Player " + gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
+    }
 
-
+    private void updateTableLabel() {
         // Get the table of the game and show in on the GUI:
         Table tableObj = gameInstance.getTable();
         ArrayList<Tile> tableTiles = tableObj.getTable();
@@ -42,16 +85,25 @@ public class HungarianGameThread extends Thread {
         }
 
         gameFrame.getTableLabel().setText(tableText);
+    }
 
-        // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
+    private void resetButtonChoices(JRadioButton[] buttons) {
         // reset all the radio buttons by emptying their text and disabling them.
-        
-        JRadioButton[] choiceRadioButtons = gameFrame.getChoiceRadioButtons();
-        
-        for (JRadioButton button : choiceRadioButtons) {
+
+        for (JRadioButton button : buttons) {
             button.setText("");
             button.setEnabled(false);
         }
+
+    }
+
+    private void updateButtonChoices() {
+        // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
+
+        JRadioButton[] choiceRadioButtons = gameFrame.getChoiceRadioButtons();
+
+        // reset all the radio buttons by emptying their text and disabling them.
+        resetButtonChoices(gameFrame.getChoiceRadioButtons());
 
         int pos = 0; // position indicator used to traverse the choiceRadioButtons array
         ArrayList<Tile> playerHand = gameInstance.getPlayingNowObj().getPlayerTiles();
@@ -66,12 +118,17 @@ public class HungarianGameThread extends Thread {
     }
 
     @Override
+
     public void run() {
         do {
             System.out.println("DIAG: THREAD CHECKPOINT 1");
             gameInstance.setPlayingNowPlayer(gameInstance.firstPlayerIndex());
 
             do {
+
+                updatePlayingNowLabel();
+                updateTableLabel();
+
                 System.out.printf("%n%n%n%n%n%n%n%n%n%n%n");
                 System.out.println("==================================================================================================================================");
 
@@ -95,41 +152,12 @@ public class HungarianGameThread extends Thread {
                 System.out.println("*** Player  > " + gameInstance.getPlayingNowObj().getPlayerName() + " <  is playing now. ***");
                 System.out.printf("%n");
 
-                // if the player playing now is a human, print his tiles (hand).
                 if (gameInstance.getPlayingNowObj() instanceof Human) {
-                    System.out.printf("*** Player tiles: ");
 
-                    ArrayList<Tile> playerTiles = gameInstance.getPlayingNowObj().getPlayerTiles();
+                    // if the player playing now is a human, show his tiles (hand) on the GUI.
+                    updateButtonChoices();
 
-                    for (Tile piece : playerTiles) {
-                        System.out.printf("|%d %d|", piece.getNum1(), piece.getNum2());
-                    }
-                    System.out.printf(" ***");
-                    System.out.printf("%n");
-                }
-
-                System.out.println("==================================================================================================================================");
-
-                System.out.printf("%n");
-                System.out.printf("*** Table: ");
-
-                ArrayList<Tile> tableTiles = gameInstance.getTable().getTable();
-
-                for (Tile piece : tableTiles) {
-                    System.out.printf("|%d %d|", piece.getNum1(), piece.getNum2());
-                }
-
-                System.out.printf(" ***");
-                System.out.printf("%n%n");
-
-                if (gameInstance.getPlayingNowObj() instanceof Bot) {
-                    //the player that plays now is a bot
-
-                    gameInstance.botPlays();
-
-                } else {
-                    //the player that plays now is Human
-
+                    // suspend the thread and wait for the human to make a move through the GUI.
                     // suspend the thread until a notify() call from the GUI part of the program is executed
                     // to indicate that the user has finished his move.
                     try {
@@ -138,60 +166,22 @@ public class HungarianGameThread extends Thread {
 
                     }
 
-//                    do {
-//                        System.out.println("> Choose the tile you want to play with (1-" + gameInstance.getPlayingNowObj().getPlayerTilesAmount() + ").");
-//                        System.out.printf("%n");
-//                        choice = intChoiceValidityCheck(1, gameInstance.getPlayingNowObj().getPlayerTilesAmount());
-//
-//                        // choice number accepted.
-//                        ArrayList<PossibleMove> result;
-//                        Tile chosenTile = gameInstance.getPlayingNowObj().chooseTile(choice);
-//                        result = gameInstance.checkTileChoice(chosenTile);
-//
-//                        if (result.size() == 0) {
-//                            //there is no possible move with the chosen tile.
-//                            System.out.printf("%n");
-//                            System.out.println("> There is no possible move with the chosen tile! Try again!");
-//                            System.out.printf("%n");
-//                            //continue
-//                        } else if (result.size() == 1) {
-//                            //there is one possible move so tile is placed automatically.
-//                            gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
-//                            break;
-//                        } else {
-//                            //there are more 2 possible moves 
-//                            //so user is asked about where to place tile
-//                            System.out.printf("%n");
-//                            System.out.println("> There are 2 possible moves with this tile.");
-//                            System.out.printf("%n");
-//                            System.out.println("> Do you want to place the tile left or right?");
-//                            do {
-//                                System.out.printf("%n");
-//                                System.out.printf("> Please enter left or right as an answer: ");
-//                                answer = input.nextLine();
-//                                System.out.printf("%n");
-//
-//                                if (answer.equals("left") || answer.equals("right")) {
-//                                    break;
-//                                } else {
-//                                    System.out.println("> Wrong entry!");
-//                                }
-//
-//                            } while (true);
-//
-//                            if (result.get(0).whereToPlace().equals(answer)) {
-//                                gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), answer);
-//                                break;
-//                            } else if (result.get(1).whereToPlace().equals(answer)) {
-//                                gameInstance.humanPlays(choice, chosenTile, result.get(0).needsRotation(), answer);
-//                                break;
-//                            }
-//                        }
-//
-//                    } while (true);
+                    updateTableLabel();
+
+                } else {
+                    // if the player playing now is a bot, update the playingNowLabel,
+                    // reset and disable the radio button choices
+                    // and update the TableLabel.
+
+                    updatePlayingNowLabel();
+
+                    resetButtonChoices(gameFrame.getChoiceRadioButtons());
+
+                    gameInstance.botPlays();
+
+                    updateTableLabel();
+
                 }
-                System.out.printf("%n");
-                System.out.println("==================================================================================================================================");
 
                 if (gameInstance.whoPlaysNext() >= 0) {
                     gameInstance.setPlayingNowPlayer(gameInstance.whoPlaysNext());
@@ -199,8 +189,6 @@ public class HungarianGameThread extends Thread {
                     // round ends
                     break;
                 }
-
-                notifyAll();
 
             } while (true);
 
