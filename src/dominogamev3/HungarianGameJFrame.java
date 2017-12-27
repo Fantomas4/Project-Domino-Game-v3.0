@@ -147,7 +147,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                 gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
             } else if (result.get(1).whereToPlace().equals(side)) {
                 System.out.println("MPIKA PERIPTOSI 2");
-                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
+                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
             }
             
             // notify the gameThread that the human player has finished his move
