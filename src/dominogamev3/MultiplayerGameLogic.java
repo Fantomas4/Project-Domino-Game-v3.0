@@ -22,9 +22,11 @@ public class MultiplayerGameLogic extends BasicGameLogic {
     protected int tilesAmount; // how many tiles each player is supposed to be given. Depends on type of game (2,3 or 4 players).
     // value is initialized for gamemode == 2 (2 players).
     protected int scoreLimit; // the amount of points that when reached by a player, leads to the end of the game.
-    
+    protected int roundCount; // used to count the number of rounds for a multiplayer game instance.
+            
     public MultiplayerGameLogic() {
         super();
+        roundCount = 1;
     }
 
     /**
@@ -160,5 +162,13 @@ public class MultiplayerGameLogic extends BasicGameLogic {
      */
     public String getWinnerPlayerName() {
         return winnerName;
+    }
+    
+    public void incRoundCount() {
+        roundCount++;
+    }
+    
+    public int getRoundCount() {
+        return roundCount;
     }
 }

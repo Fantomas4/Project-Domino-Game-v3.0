@@ -58,6 +58,10 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     public JLabel getPlayingNowLabel() {
         return jPlayingNowLabel;
     }
+    
+    public JLabel getRoundCounterLabel() {
+        return jRoundCounterLabel;
+    }
 
     public JLabel getTableLabel() {
         return jTableLabel;
@@ -180,6 +184,8 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPlayingNowLabel = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jRoundCounterLabel = new javax.swing.JLabel();
         jTablePanel = new javax.swing.JPanel();
         jTableLabel = new javax.swing.JLabel();
         jMoveChoicePanel = new javax.swing.JPanel();
@@ -229,15 +235,29 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jPlayingNowLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPlayingNowLabel.setText("... plays now");
 
+        jSeparator1.setForeground(new java.awt.Color(187, 187, 187));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jRoundCounterLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRoundCounterLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jRoundCounterLabel.setText("Round ...");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRoundCounterLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addComponent(jRoundCounterLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Table", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
@@ -585,7 +605,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -744,11 +764,13 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JLabel jRoundCounterLabel;
     private javax.swing.JLabel jScoreLabel1;
     private javax.swing.JLabel jScoreLabel2;
     private javax.swing.JLabel jScoreLabel3;
     private javax.swing.JLabel jScoreLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jSubmitButton;
     private javax.swing.JLabel jTLeftLabel1;
     private javax.swing.JLabel jTLeftLabel2;

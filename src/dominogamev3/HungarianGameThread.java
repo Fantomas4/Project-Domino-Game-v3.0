@@ -83,6 +83,10 @@ public class HungarianGameThread extends Thread {
         gameFrame.getPlayingNowLabel().setText(gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
     }
     
+    private void updateRoundCounterLabel() {
+        gameFrame.getRoundCounterLabel().setText("Round: " + gameInstance.getRoundCount());
+    }
+    
     private void resetPlayerStatusPanel() {
         JLabel[] nameLabels = gameFrame.getPlayerNameLabels();
         JLabel[] tLeftLabels = gameFrame.getPlayerTilesLeftStatusLabels();
@@ -189,6 +193,7 @@ public class HungarianGameThread extends Thread {
             do {
 
                 updatePlayingNowLabel();
+                updateRoundCounterLabel();
                 
                 System.out.println("DIAG: PlayerOrderedList index 0: " + gameInstance.getPlayerOrderedList().get(0));
                 updatePlayerTilesLeftLabels();
@@ -254,6 +259,7 @@ public class HungarianGameThread extends Thread {
             int roundPoints = gameInstance.giveRoundPoints(); // give the round points to the winner
             gameFrame.roundEndMessage(roundPoints); 
             gameInstance.resetRound();
+            gameInstance.incRoundCount();
 
         } while (gameInstance.scoreLimitReached() == false);
 
