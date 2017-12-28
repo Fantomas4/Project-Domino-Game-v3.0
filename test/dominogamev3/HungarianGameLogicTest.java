@@ -45,7 +45,7 @@ public class HungarianGameLogicTest {
     public void testGiveRoundPoints() {
         System.out.println("giveRoundPoints");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         int humanPoints = instance.getPlayerOrderedList().get(0).getRemainingTilePoints();
         //System.out.println(humanPoints);
         int botPoints = instance.getPlayerOrderedList().get(1).getRemainingTilePoints();
@@ -71,7 +71,7 @@ public class HungarianGameLogicTest {
     public void testPossibleMoveExists() {
        System.out.println("possibleMoveExists");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         instance.setPlayingNowPlayer(0);
         Player subject = instance.getPlayingNowObj();
         boolean expResult = true;
@@ -86,7 +86,7 @@ public class HungarianGameLogicTest {
     public void testCheckTileChoice() {
        System.out.println("checkTileChoice");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         instance.setPlayingNowPlayer(1);
         instance.botPlays();
         ArrayList<Tile> tableTiles = instance.getTable().getTable();
@@ -132,7 +132,7 @@ public class HungarianGameLogicTest {
     public void testWhoPlaysNext() {
         System.out.println("whoPlaysNext");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         int expResult;
         instance.setPlayingNowPlayer(1);
         if (instance.possibleMoveExists(instance.getPlayingNowObj())) {
@@ -151,7 +151,7 @@ public class HungarianGameLogicTest {
     public void testBotPlays() {
         System.out.println("botPlays");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         int index = 1;
         instance.setPlayingNowPlayer(index);
         instance.botPlays();

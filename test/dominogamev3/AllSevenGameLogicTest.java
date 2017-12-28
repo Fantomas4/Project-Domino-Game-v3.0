@@ -45,7 +45,7 @@ public class AllSevenGameLogicTest {
     public void testGiveRoundPoints() {
         System.out.println("giveRoundPoints");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode);
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
         int humanPoints = instance.getPlayerOrderedList().get(0).getRemainingTilePoints();
         //System.out.println(humanPoints);
         int botPoints = instance.getPlayerOrderedList().get(1).getRemainingTilePoints();
@@ -71,7 +71,7 @@ public class AllSevenGameLogicTest {
     public void testPossibleMoveExists() {
         System.out.println("possibleMoveExists");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode);
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
         instance.setPlayingNowPlayer(0);
         Player subject = instance.getPlayingNowObj();
         boolean expResult = true;
@@ -86,7 +86,7 @@ public class AllSevenGameLogicTest {
     public void testCheckTileChoice() {
         System.out.println("checkTileChoice");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode);
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
         instance.setPlayingNowPlayer(1);
         instance.botPlays();
         ArrayList<Tile> tableTiles = instance.getTable().getTable();
@@ -163,7 +163,7 @@ public class AllSevenGameLogicTest {
     public void testWhoPlaysNext() {
         System.out.println("whoPlaysNext");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode);
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
         int expResult;
         instance.setPlayingNowPlayer(1);
         if (instance.possibleMoveExists(instance.getPlayingNowObj())) {
@@ -182,7 +182,7 @@ public class AllSevenGameLogicTest {
     public void testBotPlays() {
         System.out.println("botPlays");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode);
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
         int index = 1;
         instance.setPlayingNowPlayer(index);
         instance.botPlays();

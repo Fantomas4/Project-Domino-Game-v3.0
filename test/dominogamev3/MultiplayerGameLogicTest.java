@@ -45,7 +45,7 @@ public class MultiplayerGameLogicTest {
     public void testFirstPlayerIndex() {
         System.out.println("firstPlayerIndex");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         int expResult = 0;
         if (instance.getPlayerOrderedList().get(1).getHighestTile().getNum1() > instance.getPlayerOrderedList().get(0).getHighestTile().getNum1()) {
             expResult = 1;
@@ -61,7 +61,7 @@ public class MultiplayerGameLogicTest {
     public void testHumanPlays() {
         System.out.println("humanPlays");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         int index = 0;
         instance.setPlayingNowPlayer(index);
         ArrayList<Tile> playerHand = instance.getPlayingNowObj().getPlayerTiles();
@@ -80,7 +80,7 @@ public class MultiplayerGameLogicTest {
     public void testScoreLimitReached() {
         System.out.println("scoreLimitReached");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         boolean expResult = false;
         boolean result = instance.scoreLimitReached();
         assertEquals(expResult, result);
@@ -93,7 +93,7 @@ public class MultiplayerGameLogicTest {
     public void testResetRound() {
         System.out.println("resetRound");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         instance.setPlayingNowPlayer(1);
         instance.botPlays();
         instance.resetRound();
@@ -121,7 +121,7 @@ public class MultiplayerGameLogicTest {
     public void testSetPlayingNowPlayer() {
         System.out.println("setPlayingNowPlayer");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         int index = 1;
         instance.setPlayingNowPlayer(index);
         int expResult = index;
@@ -136,7 +136,7 @@ public class MultiplayerGameLogicTest {
     public void testGetPlayerOrderedList() {
         System.out.println("getPlayerOrderedList");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         int expResult = 2;
         int result = instance.getPlayerOrderedList().size();
         assertEquals(expResult, result);
@@ -149,7 +149,7 @@ public class MultiplayerGameLogicTest {
     public void testGetPlayingNowIndex() {
         System.out.println("getPlayingNowIndex");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         instance.setPlayingNowPlayer(instance.firstPlayerIndex());
         int expResult = instance.firstPlayerIndex();
         int result = instance.getPlayingNowIndex();
@@ -163,7 +163,7 @@ public class MultiplayerGameLogicTest {
     public void testGetPlayingNowObj() {
         System.out.println("getPlayingNowObj");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         instance.setPlayingNowPlayer(instance.firstPlayerIndex());
         int index = instance.firstPlayerIndex();
         Player expResult = instance.getPlayerOrderedList().get(index);
@@ -178,12 +178,39 @@ public class MultiplayerGameLogicTest {
     public void testGetWinnerPlayerName() {
         System.out.println("getWinnerPlayerName");
         int mode = 2;
-        HungarianGameLogic instance = new HungarianGameLogic(mode);
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
         ArrayList<Player> playerOrderedList = instance.getPlayerOrderedList();
         playerOrderedList.get(1).increaseScore(101);
         String expResult = playerOrderedList.get(1).getPlayerName();
         instance.scoreLimitReached();
         String result = instance.getWinnerPlayerName();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of incRoundCount method, of class MultiplayerGameLogic.
+     */
+    @Test
+    public void testIncRoundCount() {
+        System.out.println("incRoundCount");
+        int mode = 2;
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
+        int expResult = 2;
+        instance.incRoundCount();
+        int result = instance.getRoundCount();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of getRoundCount method, of class MultiplayerGameLogic.
+     */
+    @Test
+    public void testGetRoundCount() {
+        System.out.println("getRoundCount");
+        int mode = 2;
+        HungarianGameLogic instance = new HungarianGameLogic(mode,"User");
+        int result = instance.getRoundCount();
+        int expResult = 1;
         assertEquals(expResult, result);
     }
     
