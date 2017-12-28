@@ -38,45 +38,6 @@ public class HungarianGameThread extends Thread {
         return gameInstance;
     }
 
-//    private void updateGUI() {
-//
-//        // Set the GUI label that shows who plays now:
-//        System.out.println("DIAG: updateguielements CHECKPOINT 1");
-//        gameFrame.getPlayingNowLabel().setText("Player " + gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
-//
-//
-//        // Get the table of the game and show in on the GUI:
-//        Table tableObj = gameInstance.getTable();
-//        ArrayList<Tile> tableTiles = tableObj.getTable();
-//        String tableText = "";
-//
-//        for (Tile piece : tableTiles) {
-//            tableText += "|" + piece.getNum1() + " " + piece.getNum2() + "| ";
-//        }
-//
-//        gameFrame.getTableLabel().setText(tableText);
-//
-//        // Get the hand of the player and show it on the GUI using the JRadioButtons as choices:
-//        // reset all the radio buttons by emptying their text and disabling them.
-//        
-//        JRadioButton[] choiceRadioButtons = gameFrame.getChoiceRadioButtons();
-//        
-//        for (JRadioButton button : choiceRadioButtons) {
-//            button.setText("");
-//            button.setEnabled(false);
-//        }
-//
-//        int pos = 0; // position indicator used to traverse the choiceRadioButtons array
-//        ArrayList<Tile> playerHand = gameInstance.getPlayingNowObj().getPlayerTiles();
-//
-//        for (int i = 0; i < playerHand.size(); i++) {
-//            choiceRadioButtons[pos].setText("|" + playerHand.get(i).getNum1() + " " + playerHand.get(i).getNum2() + "|");
-//            choiceRadioButtons[pos].setEnabled(true);
-//            pos++;
-//        }
-//
-//        // for diagnostic purposes, print the hand to console
-//    }
     private void updatePlayingNowLabel() {
         // Set the GUI label that shows who plays now:
         System.out.println("DIAG: updateguielements CHECKPOINT 1");
