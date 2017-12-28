@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class AllSevenGameLogic extends MultiplayerGameLogic {
 
-    public AllSevenGameLogic(int mode) {
+    public AllSevenGameLogic(int mode, String username) {
         
         super();
         
@@ -29,7 +29,7 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
             tilesAmount = 5;
         }
 
-        playerOrderedList.add(new Human("User", tilesAmount, heap));
+        playerOrderedList.add(new Human(username, tilesAmount, heap));
 
         for (int i = 1; i < gamemode; i++) {
             //adds as many bots to playerlist as the chosen game mode needs.

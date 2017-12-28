@@ -5,10 +5,29 @@
  */
 package dominogamev3;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sierra Kilo
  */
 public class AllSevenGameThread {
+    
+    private AllSevenGameLogic gameInstance;
+    private AllSevenGameJFrame gameFrame;
+    ArrayList<Player> playerList; 
+    
+    private static Object sharedLock;
+    
+    public AllSevenGameThread(int gamemode, String username, AllSevenGameJFrame gameFrame, Object sharedLock) {
+        gameInstance = new AllSevenGameLogic(gamemode, username);
+        playerList = gameInstance.getPlayerOrderedList();
+        this.gameFrame = gameFrame;
+        this.sharedLock = sharedLock;
+    }
+    
+    public AllSevenGameLogic getGameInstance() {
+        return gameInstance;
+    }
     
 }

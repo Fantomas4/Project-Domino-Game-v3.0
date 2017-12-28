@@ -387,7 +387,7 @@ public class DominoGameMain {
 
     public static void runAllSevenUI(int gamemode) {
 
-        AllSevenGameLogic gameInstance = new AllSevenGameLogic(gamemode);
+        AllSevenGameLogic gameInstance = new AllSevenGameLogic(gamemode, "Human");
         Scanner input = new Scanner(System.in);
         String answer;
         int choice;
