@@ -181,7 +181,8 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        tileChoicesButtonGroup = new javax.swing.ButtonGroup();
+        moveTypeButtonGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPlayingNowLabel = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -201,6 +202,13 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jRadioButton10 = new javax.swing.JRadioButton();
         jRadioButton11 = new javax.swing.JRadioButton();
         jRadioButton12 = new javax.swing.JRadioButton();
+        jRadioButton13 = new javax.swing.JRadioButton();
+        jRadioButton14 = new javax.swing.JRadioButton();
+        jRadioButton15 = new javax.swing.JRadioButton();
+        jRadioButton16 = new javax.swing.JRadioButton();
+        jRadioButton17 = new javax.swing.JRadioButton();
+        jRadioButton18 = new javax.swing.JRadioButton();
+        jRadioButton19 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jSubmitButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -220,6 +228,9 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jNameLabel4 = new javax.swing.JLabel();
         jTLeftLabel4 = new javax.swing.JLabel();
         jScoreLabel4 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jRadioButton20 = new javax.swing.JRadioButton();
+        jRadioButton21 = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -280,7 +291,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jMoveChoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pick a tile from your hand to make your move", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jMoveChoicePanel.setLayout(new java.awt.GridLayout(3, 4));
 
-        buttonGroup1.add(jRadioButton1);
+        tileChoicesButtonGroup.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("jRadioButton1");
@@ -292,7 +303,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton1);
 
-        buttonGroup1.add(jRadioButton2);
+        tileChoicesButtonGroup.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton2.setText("jRadioButton2");
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -303,7 +314,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton2);
 
-        buttonGroup1.add(jRadioButton3);
+        tileChoicesButtonGroup.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton3.setText("jRadioButton3");
         jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -314,7 +325,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton3);
 
-        buttonGroup1.add(jRadioButton4);
+        tileChoicesButtonGroup.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton4.setText("jRadioButton4");
         jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -325,7 +336,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton4);
 
-        buttonGroup1.add(jRadioButton5);
+        tileChoicesButtonGroup.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton5.setText("jRadioButton5");
         jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -336,7 +347,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton5);
 
-        buttonGroup1.add(jRadioButton6);
+        tileChoicesButtonGroup.add(jRadioButton6);
         jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton6.setText("jRadioButton6");
         jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -347,7 +358,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton6);
 
-        buttonGroup1.add(jRadioButton7);
+        tileChoicesButtonGroup.add(jRadioButton7);
         jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton7.setText("jRadioButton7");
         jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -358,7 +369,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton7);
 
-        buttonGroup1.add(jRadioButton8);
+        tileChoicesButtonGroup.add(jRadioButton8);
         jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton8.setText("jRadioButton8");
         jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -369,7 +380,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton8);
 
-        buttonGroup1.add(jRadioButton9);
+        tileChoicesButtonGroup.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton9.setText("jRadioButton9");
         jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -380,7 +391,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton9);
 
-        buttonGroup1.add(jRadioButton10);
+        tileChoicesButtonGroup.add(jRadioButton10);
         jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton10.setText("jRadioButton10");
         jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -391,7 +402,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton10);
 
-        buttonGroup1.add(jRadioButton11);
+        tileChoicesButtonGroup.add(jRadioButton11);
         jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton11.setText("jRadioButton11");
         jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -402,7 +413,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton11);
 
-        buttonGroup1.add(jRadioButton12);
+        tileChoicesButtonGroup.add(jRadioButton12);
         jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton12.setText("jRadioButton12");
         jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -412,6 +423,40 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
             }
         });
         jMoveChoicePanel.add(jRadioButton12);
+
+        jRadioButton13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton13.setText("jRadioButton13");
+        jMoveChoicePanel.add(jRadioButton13);
+
+        tileChoicesButtonGroup.add(jRadioButton14);
+        jRadioButton14.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton14.setText("jRadioButton14");
+        jMoveChoicePanel.add(jRadioButton14);
+
+        tileChoicesButtonGroup.add(jRadioButton15);
+        jRadioButton15.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton15.setText("jRadioButton15");
+        jMoveChoicePanel.add(jRadioButton15);
+
+        tileChoicesButtonGroup.add(jRadioButton16);
+        jRadioButton16.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton16.setText("jRadioButton16");
+        jMoveChoicePanel.add(jRadioButton16);
+
+        tileChoicesButtonGroup.add(jRadioButton17);
+        jRadioButton17.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton17.setText("jRadioButton17");
+        jMoveChoicePanel.add(jRadioButton17);
+
+        tileChoicesButtonGroup.add(jRadioButton18);
+        jRadioButton18.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton18.setText("jRadioButton18");
+        jMoveChoicePanel.add(jRadioButton18);
+
+        tileChoicesButtonGroup.add(jRadioButton19);
+        jRadioButton19.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jRadioButton19.setText("jRadioButton19");
+        jMoveChoicePanel.add(jRadioButton19);
 
         jSubmitButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jSubmitButton.setText("Submit you choice!");
@@ -443,7 +488,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jPlayer1Panel.setLayout(jPlayer1PanelLayout);
         jPlayer1PanelLayout.setHorizontalGroup(
             jPlayer1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jTLeftLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
             .addComponent(jNameLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScoreLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -478,7 +523,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jPlayer2Panel.setLayout(jPlayer2PanelLayout);
         jPlayer2PanelLayout.setHorizontalGroup(
             jPlayer2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jTLeftLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
             .addComponent(jScoreLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jNameLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -513,7 +558,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jPlayer3Panel.setLayout(jPlayer3PanelLayout);
         jPlayer3PanelLayout.setHorizontalGroup(
             jPlayer3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jTLeftLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
             .addComponent(jScoreLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jNameLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -548,7 +593,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jPlayer4Panel.setLayout(jPlayer4PanelLayout);
         jPlayer4PanelLayout.setHorizontalGroup(
             jPlayer4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+            .addComponent(jTLeftLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
             .addComponent(jScoreLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jNameLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -564,6 +609,20 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPlayer4Panel);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Choose move type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel4.setLayout(new java.awt.GridLayout(1, 2));
+
+        jRadioButton20.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRadioButton20.setSelected(true);
+        jRadioButton20.setText("Play using a tile from your hand");
+        jRadioButton20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jRadioButton20);
+
+        jRadioButton21.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRadioButton21.setText("Pass and get a random tile from the heap");
+        jRadioButton21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jRadioButton21);
 
         jMenu1.setText("File");
 
@@ -592,15 +651,16 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1375, Short.MAX_VALUE)
-                    .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTablePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1485, Short.MAX_VALUE)
+                    .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -612,10 +672,12 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -733,7 +795,6 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -747,6 +808,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jNameLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPlayer1Panel;
     private javax.swing.JPanel jPlayer2Panel;
     private javax.swing.JPanel jPlayer3Panel;
@@ -756,7 +818,16 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
     private javax.swing.JRadioButton jRadioButton12;
+    private javax.swing.JRadioButton jRadioButton13;
+    private javax.swing.JRadioButton jRadioButton14;
+    private javax.swing.JRadioButton jRadioButton15;
+    private javax.swing.JRadioButton jRadioButton16;
+    private javax.swing.JRadioButton jRadioButton17;
+    private javax.swing.JRadioButton jRadioButton18;
+    private javax.swing.JRadioButton jRadioButton19;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton20;
+    private javax.swing.JRadioButton jRadioButton21;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
@@ -778,5 +849,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jTLeftLabel4;
     private javax.swing.JLabel jTableLabel;
     private javax.swing.JPanel jTablePanel;
+    private javax.swing.ButtonGroup moveTypeButtonGroup;
+    private javax.swing.ButtonGroup tileChoicesButtonGroup;
     // End of variables declaration//GEN-END:variables
 }
