@@ -18,7 +18,7 @@ import javax.swing.JRadioButton;
  */
 public class AllSevenGameJFrame extends javax.swing.JFrame {
 
-    private HungarianGameThread gameThread;
+    private AllSevenGameThread gameThread;
     private JRadioButton[] choiceRadioButtons;
     private JLabel[] playerTilesLeftLabels;
     private JLabel[] playerScoreLabels;
