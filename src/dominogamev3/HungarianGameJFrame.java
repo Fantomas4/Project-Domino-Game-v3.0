@@ -224,8 +224,6 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -565,26 +563,15 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         jPanel2.add(jPlayer4Panel);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Game");
 
-        jMenuItem1.setText("New game");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
+        jMenuItem1.setText("Reset current game");
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Reset current game");
+        jMenuItem2.setText("Exit to main Menu");
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Exit");
-        jMenu1.add(jMenuItem3);
-
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -620,10 +607,6 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
@@ -735,11 +718,9 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jMoveChoicePanel;
     private javax.swing.JLabel jNameLabel1;
     private javax.swing.JLabel jNameLabel2;

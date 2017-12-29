@@ -162,7 +162,7 @@ public class MainMenuJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         // Switch to the Solo1GameJFrame
-        JFrame Solo1GameFrame = new Solo1GameJFrame();
+        JFrame Solo1GameFrame = new Solo1GameJFrame(this);
         setVisible(false);
         Solo1GameFrame.setVisible(true);
         

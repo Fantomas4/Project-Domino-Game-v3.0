@@ -35,7 +35,8 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         // initialize necessary class fields
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
-            jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
+            jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12, jRadioButton13, jRadioButton14, 
+            jRadioButton15, jRadioButton16, jRadioButton17, jRadioButton18, jRadioButton19};
         
         playerTilesLeftLabels = new JLabel[]{jTLeftLabel1, jTLeftLabel2, jTLeftLabel3, jTLeftLabel4};
         
