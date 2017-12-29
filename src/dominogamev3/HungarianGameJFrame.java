@@ -710,7 +710,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HungarianGameJFrame(2,"testuser").setVisible(true);
+                new HungarianGameJFrame(4,"testuser").setVisible(true);
             }
         });
     }
