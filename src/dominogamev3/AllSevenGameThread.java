@@ -22,6 +22,10 @@ public class AllSevenGameThread extends Thread {
     private AllSevenGameLogic gameInstance;
     private AllSevenGameJFrame gameFrame;
     ArrayList<Player> playerList;
+    private boolean holdPlayerTurn; // when set to true, the game will not give a turn to the next player. Instead, it
+    // will hold the turn on the current player. Used for when a human player has no possible move
+    // and is being given tiles from the heap until a move is possible. In this scenario, the turn
+    // must remain as is and should not progress to the next player.
 
     private static Object sharedLock;
 
@@ -29,6 +33,7 @@ public class AllSevenGameThread extends Thread {
         gameInstance = new AllSevenGameLogic(gamemode, username);
         playerList = gameInstance.getPlayerOrderedList();
         this.gameFrame = gameFrame;
+        holdPlayerTurn = false;
         this.sharedLock = sharedLock;
     }
 
@@ -131,13 +136,13 @@ public class AllSevenGameThread extends Thread {
 
         // for diagnostic purposes, print the hand to console
     }
-    
+
     private void enableMoveTypeRadioButtons() {
         for (JRadioButton button : gameFrame.getMoveTypeRadioButtons()) {
             button.setEnabled(true);
         }
     }
-    
+
     private void disableMoveTypeRadioButtons() {
         for (JRadioButton button : gameFrame.getMoveTypeRadioButtons()) {
             button.setEnabled(false);
@@ -185,19 +190,43 @@ public class AllSevenGameThread extends Thread {
                     enableSubmitButton();
                     updateButtonChoices();
 
-                    // suspend the thread and wait for the human to make a move through the GUI.
-                    // suspend the thread until a notify() call from the GUI part of the program is executed
-                    // to indicate that the user has finished his move.
-                    synchronized (sharedLock) {
-                        try {
-                            System.out.println("DIAG: WAITING....");
-                            sharedLock.wait();
-                        } catch (InterruptedException e) {
+                    if (gameInstance.possibleMoveExists(gameInstance.getPlayingNowObj()) == true) {
+                        // if the human has a possible move
+                        
+                        holdPlayerTurn = false; // allow the game to progress to the next player normally
+                        
+                        // suspend the thread and wait for the human to make a move through the GUI.
+                        // suspend the thread until a notify() call from the GUI part of the program is executed
+                        // to indicate that the user has finished his move.
+                        synchronized (sharedLock) {
+                            try {
+                                System.out.println("DIAG: WAITING....");
+                                sharedLock.wait();
+                            } catch (InterruptedException e) {
 
+                            }
                         }
+
+                        System.out.println("DIAG: PROCEEDING...");
+
+                    } else {
+                        // if the human does not have a possible move, give him a random tile from the heap
+                        Tile randomTile;
+                        if (gameInstance.getHeap().getAllTiles().size() > 2) {
+                            // if the heap contains more than 2 pieces, one can be given to the user.
+                            randomTile = gameInstance.getHeap().pickRandomTile();
+                            gameInstance.getPlayingNowObj().addTileToPlayer(randomTile);
+                            // the new tile is always added to the LAST position of the player's hand
+                        } else {
+                            System.out.printf("> Two or less tiles are left in the heap. You can not be given another tile.");
+                            //JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given another tile.", "Heap tile limit reached", JOptionPane.ERROR_MESSAGE);
+                        }
+                        
+                        holdPlayerTurn = true; // we block the progress to the next player because the human was automatically 
+                                               // given a random tile (he had no move), and on the next loop it will be determined
+                                               // whether he now has a valid move or he must be given a random tile again
                     }
 
-                    System.out.println("DIAG: PROCEEDING...");
                     updateTableLabel();
 
                 } else {
@@ -206,7 +235,7 @@ public class AllSevenGameThread extends Thread {
                     // and update the TableLabel.
 
                     disableMoveTypeRadioButtons();
-                    
+
                     disableSubmitButton();
 
                     updatePlayingNowLabel();
@@ -221,12 +250,23 @@ public class AllSevenGameThread extends Thread {
 
                 }
 
-                if (gameInstance.whoPlaysNext() >= 0) {
-                    gameInstance.setPlayingNowPlayer(gameInstance.whoPlaysNext());
-                } else {
-                    // round ends
-                    break;
+                if (holdPlayerTurn == false) {
+                    // if the game should normally progress to the next player
+                    if (gameInstance.whoPlaysNext() >= 0) {
+                        gameInstance.setPlayingNowPlayer(gameInstance.whoPlaysNext());
+                    } else if (gameInstance.whoPlaysNext() == -1) {
+                        // round ends because a player has played all his tiles
+                        System.out.println("^^^^^^round ends because a player has played all his tiles");
+                        break;
+                    } else if (gameInstance.whoPlaysNext() == -2) {
+                        // round ends because no player has a possible move
+                        System.out.println("^^^^^^round ends because no player has a possible move");
+                        break;
+                    }
                 }
+                // else (holdPlayerTurn == true), if there is an action in progress for the current player, for example
+                // if he is being given tiles from the heap because he has no move,
+                // continue the loop and check again after the notify signal from the GUI.
 
             } while (true);
 

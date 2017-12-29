@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dominogamev3;;
+package dominogamev3;
+
+;
 
 import java.util.ArrayList;
 
@@ -11,12 +13,14 @@ import java.util.ArrayList;
  *
  * @author Sierra Kilo
  */
+
+
 public class AllSevenGameLogic extends MultiplayerGameLogic {
 
     public AllSevenGameLogic(int mode, String username) {
-        
+
         super();
-        
+
         gamemode = mode;
         scoreLimit = 100;
         playerOrderedList = new ArrayList<>();
@@ -36,7 +40,7 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
             playerOrderedList.add(new Bot("Bot" + i, tilesAmount, heap));
         }
     }
-    
+
     public int giveRoundPoints() {
 
         //increases player points in player object and returns total points added.
@@ -84,7 +88,7 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
         return totalPoints;
 
     }
-    
+
     public boolean possibleMoveExists(Player subject) {
         ArrayList<PossibleMove> result;
         ArrayList<Tile> playerTiles;
@@ -140,57 +144,38 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
     }
 
     public int whoPlaysNext() {
+        
+        int resultIndex;
+        boolean playersHavePossibleMove = false;
 
         // returns the index of playerOrderedList for the player that is to play next 
-        // or -1 if the round must end (when no player has a possible move or a player has played all his tiles).
-        
-        int resultIndex = -1;
-        
+        // or a negative number if the round must end (-1 a player has played all his tiles or -2 when no player has a possible move).
         for (Player player : playerOrderedList) {
             if (player.getPlayerTiles().size() == 0) {
                 return -1; // a player has played all his tile, and the round must end.
             }
+            
+            if (possibleMoveExists(player) == true) {
+                playersHavePossibleMove = true;
+            }
         }
-
-        if (possibleMoveExists(playerOrderedList.get(playingNowIndex)) == true) {
-            //first we check if the player who plays now has a possible move.
-            //System.out.println("===================Mpika 1");
-            resultIndex = playingNowIndex;
-        } else {
-            //System.out.println("===================Mpika 2");
-            //System.out.println("===================DIAG: before playingNowIndex: " + playingNowIndex);
-            int indexLimit = playerOrderedList.size() - 1; // last index number
-            int pos = playingNowIndex + 1; // we begin from the immediate next index from the index of the player playing now.
-            //then we search in the order of the playerOrderedList for the first player that has a possible move.
-            //System.out.println("===================DIAG: after playingNowIndex: " + playingNowIndex);
-            int loops = 0; // counter - number of times the do-while loop below has been executed
-
-            do {
-                //System.out.println("===================POS IS: " + pos);
-                if (pos > indexLimit) {
-                    //System.out.println("===================Mpika 3");
-                    // if we reach the last true index number, we reset the pos to 0 index.
-                    pos = 0;
-                }
-
-                if (possibleMoveExists(playerOrderedList.get(pos)) == true) {
-                    //System.out.println("===================Mpika 4");
-                    resultIndex = pos;
-                    break;
-                } else {
-                    //System.out.println("===================Mpika 5");
-                    pos++;
-                }
-
-                loops++;
-
-            } while (loops < playerOrderedList.size() - 1); // we check playerOrderedList.size() - 1 times since we have already 
-            //checked whether the playingNowIndex player had a move using the initial if statement at the beginning of the function.               
+        
+        if (playersHavePossibleMove == false) {
+            // if no player was found to have a possible move, the round must end
+            return -2;
         }
+        
 
-        //System.out.println("DIAG: the resultIndex return by function is: " + resultIndex);
+        int indexLimit = playerOrderedList.size() - 1; // last index number
+        resultIndex = playingNowIndex + 1; // we begin from the immediate next index from the index of the player playing now.
+
+        if (resultIndex > indexLimit) {
+            //System.out.println("===================Mpika 3");
+            // if we reach the last true index number, we reset the pos to 0 index.
+            resultIndex = 0;
+        }
+        
         return resultIndex;
-
     }
 
     public void botPlays() {
