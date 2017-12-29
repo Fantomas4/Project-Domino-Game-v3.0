@@ -19,6 +19,7 @@ import javax.swing.JRadioButton;
 public class AllSevenGameJFrame extends javax.swing.JFrame {
 
     private AllSevenGameThread gameThread;
+    private JRadioButton[] moveTypeRadioButtons;
     private JRadioButton[] choiceRadioButtons;
     private JLabel[] playerTilesLeftLabels;
     private JLabel[] playerScoreLabels;
@@ -34,6 +35,8 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         initComponents();
 
         // initialize necessary class fields
+        moveTypeRadioButtons = new JRadioButton[]{jRadioButtonMoveType1, jRadioButtonMoveType2};
+        
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12, jRadioButton13, jRadioButton14,
             jRadioButton15, jRadioButton16, jRadioButton17, jRadioButton18, jRadioButton19};
@@ -46,7 +49,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         sharedLock = new Object();
 
-        // initialize and start the Hungarian Game Thread
+        // initialize and start the AllSeven Game Thread
         gameThread = new AllSevenGameThread(gamemode, username, this, sharedLock);
         gameThread.start();
 
@@ -86,6 +89,10 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
     public JButton getSubmitButton() {
         return jSubmitButton;
+    }
+    
+    public JRadioButton[] getMoveTypeRadioButtons() {
+        return moveTypeRadioButtons;
     }
 
     public void resetRadioButtonSelector() {
@@ -631,12 +638,14 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Choose move type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jPanel4.setLayout(new java.awt.GridLayout(1, 2));
 
+        moveTypeButtonGroup.add(jRadioButtonMoveType1);
         jRadioButtonMoveType1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jRadioButtonMoveType1.setSelected(true);
         jRadioButtonMoveType1.setText("Play using a tile from your hand");
         jRadioButtonMoveType1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel4.add(jRadioButtonMoveType1);
 
+        moveTypeButtonGroup.add(jRadioButtonMoveType2);
         jRadioButtonMoveType2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jRadioButtonMoveType2.setText("Pass and get a random tile from the heap");
         jRadioButtonMoveType2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -787,13 +796,13 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AllSevenGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AllSevenGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AllSevenGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HungarianGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AllSevenGameJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -807,7 +816,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HungarianGameJFrame(2, "testuser").setVisible(true);
+                new AllSevenGameJFrame(2, "testuser").setVisible(true);
             }
         });
     }

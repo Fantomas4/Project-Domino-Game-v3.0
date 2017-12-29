@@ -131,6 +131,18 @@ public class AllSevenGameThread extends Thread {
 
         // for diagnostic purposes, print the hand to console
     }
+    
+    private void enableMoveTypeRadioButtons() {
+        for (JRadioButton button : gameFrame.getMoveTypeRadioButtons()) {
+            button.setEnabled(true);
+        }
+    }
+    
+    private void disableMoveTypeRadioButtons() {
+        for (JRadioButton button : gameFrame.getMoveTypeRadioButtons()) {
+            button.setEnabled(false);
+        }
+    }
 
     private void enableSubmitButton() {
         gameFrame.getSubmitButton().setEnabled(true);
@@ -169,6 +181,7 @@ public class AllSevenGameThread extends Thread {
                     System.out.println("DIAG: THREAD CHECKPOINT 2");
                     // if the player playing now is a human, show his tiles (hand) on the GUI.
                     gameFrame.resetRadioButtonSelector(); // sets the selector for the radio button group to the jRadioButton1
+                    enableMoveTypeRadioButtons();
                     enableSubmitButton();
                     updateButtonChoices();
 
@@ -192,6 +205,8 @@ public class AllSevenGameThread extends Thread {
                     // reset and disable the radio button choices
                     // and update the TableLabel.
 
+                    disableMoveTypeRadioButtons();
+                    
                     disableSubmitButton();
 
                     updatePlayingNowLabel();
@@ -231,7 +246,7 @@ public class AllSevenGameThread extends Thread {
         try {
             executeGame();
         } catch (InterruptedException ex) {
-            Logger.getLogger(HungarianGameThread.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllSevenGameThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
