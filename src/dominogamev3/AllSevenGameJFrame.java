@@ -35,21 +35,21 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         // initialize necessary class fields
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
-            jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12, jRadioButton13, jRadioButton14, 
+            jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12, jRadioButton13, jRadioButton14,
             jRadioButton15, jRadioButton16, jRadioButton17, jRadioButton18, jRadioButton19};
-        
+
         playerTilesLeftLabels = new JLabel[]{jTLeftLabel1, jTLeftLabel2, jTLeftLabel3, jTLeftLabel4};
-        
+
         playerScoreLabels = new JLabel[]{jScoreLabel1, jScoreLabel2, jScoreLabel3, jScoreLabel4};
-        
+
         playerNameLabels = new JLabel[]{jNameLabel1, jNameLabel2, jNameLabel3, jNameLabel4};
-        
+
         sharedLock = new Object();
 
         // initialize and start the Hungarian Game Thread
         gameThread = new AllSevenGameThread(gamemode, username, this, sharedLock);
         gameThread.start();
-        
+
         // since the first radio button is always selected by default, 
         // we initialize the choice variable to 1 to reflect this.
         choice = 1;
@@ -59,7 +59,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     public JLabel getPlayingNowLabel() {
         return jPlayingNowLabel;
     }
-    
+
     public JLabel getRoundCounterLabel() {
         return jRoundCounterLabel;
     }
@@ -71,23 +71,23 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     public JRadioButton[] getChoiceRadioButtons() {
         return choiceRadioButtons;
     }
-    
+
     public JLabel[] getPlayerNameLabels() {
         return playerNameLabels;
     }
-    
+
     public JLabel[] getPlayerTilesLeftStatusLabels() {
         return playerTilesLeftLabels;
     }
-    
+
     public JLabel[] getPlayerScoreStatusLabels() {
         return playerScoreLabels;
     }
-    
+
     public JButton getSubmitButton() {
         return jSubmitButton;
     }
-    
+
     public void resetRadioButtonSelector() {
         // resets the selection of the tile choice radio buttons
         // by setting the jRadioButton1 as selected.
@@ -102,72 +102,89 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     }
 
     private void submitAction() {
-        ArrayList<PossibleMove> result;
-        Tile chosenTile;
-        
-        System.out.println("DIAG: *********** choice number is: " + choice);
 
-        chosenTile = gameThread.getGameInstance().getPlayingNowObj().chooseTile(choice);
-        result = gameThread.getGameInstance().checkTileChoice(chosenTile);
+        if (jRadioButtonMoveType1.isSelected() == true) {
 
-        System.out.println("DIAG: INSIDE SUBMIT ACTION FUNC!");
-        if (result.size() == 0) {
-            System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 1");
-            //there is no possible move with the chosen tile.
-            System.out.printf("%n");
-            System.out.println("> There is no possible move with the chosen tile! Try again!");
-            System.out.printf("%n");
-            JOptionPane.showMessageDialog(null, "There is no possible move with the chosen tile!\nPlease select another tile.", "Unavailable move", JOptionPane.ERROR_MESSAGE);
-            //continue
-        } else if (result.size() == 1) {
-            System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 2");
-            //there is one possible move so tile is placed automatically.
-            gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
+            ArrayList<PossibleMove> result;
+            Tile chosenTile;
 
-            // notify the gameThread that the human player has finished his move
-            // and recover it from its suspended state
-            synchronized (sharedLock) {
-                sharedLock.notifyAll();
-            }
-            System.out.println("DIAG: NOTIFYALL EXECUTED!");
+            System.out.println("DIAG: *********** choice number is: " + choice);
 
-        } else {
-            System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 3");
-            //there are more 2 possible moves 
-            //so user is asked about where to place tile
-            System.out.println("> There are 2 possible moves with this tile.");
-            System.out.println("> Do you want to place the tile left or right?");
+            chosenTile = gameThread.getGameInstance().getPlayingNowObj().chooseTile(choice);
+            result = gameThread.getGameInstance().checkTileChoice(chosenTile);
 
-            String[] values = {"Left side", "Right side"};
-            Object selected = JOptionPane.showInputDialog(null, "There are 2 possible moves with this tile.\n"
-                    + "On which side of the table do you want to place the tile?",
-                    "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
+            System.out.println("DIAG: INSIDE SUBMIT ACTION FUNC!");
+            if (result.size() == 0) {
+                System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 1");
+                //there is no possible move with the chosen tile.
+                System.out.printf("%n");
+                System.out.println("> There is no possible move with the chosen tile! Try again!");
+                System.out.printf("%n");
+                JOptionPane.showMessageDialog(null, "There is no possible move with the chosen tile!\nPlease select another tile.", "Unavailable move", JOptionPane.ERROR_MESSAGE);
+                //continue
+            } else if (result.size() == 1) {
+                System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 2");
+                //there is one possible move so tile is placed automatically.
+                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), result.get(0).whereToPlace());
 
-            String selectedString = selected.toString();
+                // notify the gameThread that the human player has finished his move
+                // and recover it from its suspended state
+                synchronized (sharedLock) {
+                    sharedLock.notifyAll();
+                }
+                System.out.println("DIAG: NOTIFYALL EXECUTED!");
 
-            System.out.println("DIAG: object selected is: " + selected);
-            System.out.println("DIAG: selectedString is: " + selectedString);
-
-            String side;
-            if (selectedString.equals("Left side")) {
-                side = "left";
             } else {
-                side = "right";
-            }
+                System.out.println("DIAG: SUBMIT ACTION FUNC CHECKPOINT 3");
+                //there are more 2 possible moves 
+                //so user is asked about where to place tile
+                System.out.println("> There are 2 possible moves with this tile.");
+                System.out.println("> Do you want to place the tile left or right?");
 
-            if (result.get(0).whereToPlace().equals(side)) {
-                System.out.println("MPIKA PERIPTOSI 1");
-                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
-            } else if (result.get(1).whereToPlace().equals(side)) {
-                System.out.println("MPIKA PERIPTOSI 2");
-                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
-            }
+                String[] values = {"Left side", "Right side"};
+                Object selected = JOptionPane.showInputDialog(null, "There are 2 possible moves with this tile.\n"
+                        + "On which side of the table do you want to place the tile?",
+                        "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
 
-            // notify the gameThread that the human player has finished his move
-            // and recover it from its suspended state
-            System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
-            synchronized (sharedLock) {
-                sharedLock.notifyAll();
+                String selectedString = selected.toString();
+
+                System.out.println("DIAG: object selected is: " + selected);
+                System.out.println("DIAG: selectedString is: " + selectedString);
+
+                String side;
+                if (selectedString.equals("Left side")) {
+                    side = "left";
+                } else {
+                    side = "right";
+                }
+
+                if (result.get(0).whereToPlace().equals(side)) {
+                    System.out.println("MPIKA PERIPTOSI 1");
+                    gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
+                } else if (result.get(1).whereToPlace().equals(side)) {
+                    System.out.println("MPIKA PERIPTOSI 2");
+                    gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
+                }
+
+                // notify the gameThread that the human player has finished his move
+                // and recover it from its suspended state
+                System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
+                synchronized (sharedLock) {
+                    sharedLock.notifyAll();
+                }
+            }
+        } else if (jRadioButtonMoveType2.isSelected() == true) {
+            // user chose to take a random tile from the heap;
+            System.out.println("DIAG: getAllTiles size: " + gameThread.getGameInstance().getHeap().getAllTiles().size());
+            if (gameThread.getGameInstance().getHeap().getAllTiles().size() > 2) {
+                // if the heap contains more than 2 pieces, one can be given to the user.
+                gameThread.getGameInstance().getPlayingNowObj().addTileToPlayer(gameThread.getGameInstance().getHeap().pickRandomTile());
+                synchronized (sharedLock) {
+                    sharedLock.notifyAll();
+                }
+            } else {
+                System.out.printf("> Two or less tiles are left in the heap. You can not be given a tile.");
+                JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given a tile.", "Unavailable move", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -230,8 +247,8 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jTLeftLabel4 = new javax.swing.JLabel();
         jScoreLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jRadioButton20 = new javax.swing.JRadioButton();
-        jRadioButton21 = new javax.swing.JRadioButton();
+        jRadioButtonMoveType1 = new javax.swing.JRadioButton();
+        jRadioButtonMoveType2 = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -614,16 +631,16 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Choose move type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jPanel4.setLayout(new java.awt.GridLayout(1, 2));
 
-        jRadioButton20.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jRadioButton20.setSelected(true);
-        jRadioButton20.setText("Play using a tile from your hand");
-        jRadioButton20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jRadioButton20);
+        jRadioButtonMoveType1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRadioButtonMoveType1.setSelected(true);
+        jRadioButtonMoveType1.setText("Play using a tile from your hand");
+        jRadioButtonMoveType1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jRadioButtonMoveType1);
 
-        jRadioButton21.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jRadioButton21.setText("Pass and get a random tile from the heap");
-        jRadioButton21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jRadioButton21);
+        jRadioButtonMoveType2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRadioButtonMoveType2.setText("Pass and get a random tile from the heap");
+        jRadioButtonMoveType2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jRadioButtonMoveType2);
 
         jMenu1.setText("File");
 
@@ -790,7 +807,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HungarianGameJFrame(2,"testuser").setVisible(true);
+                new HungarianGameJFrame(2, "testuser").setVisible(true);
             }
         });
     }
@@ -827,8 +844,6 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton18;
     private javax.swing.JRadioButton jRadioButton19;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton20;
-    private javax.swing.JRadioButton jRadioButton21;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
@@ -836,6 +851,8 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JRadioButton jRadioButton9;
+    private javax.swing.JRadioButton jRadioButtonMoveType1;
+    private javax.swing.JRadioButton jRadioButtonMoveType2;
     private javax.swing.JLabel jRoundCounterLabel;
     private javax.swing.JLabel jScoreLabel1;
     private javax.swing.JLabel jScoreLabel2;
