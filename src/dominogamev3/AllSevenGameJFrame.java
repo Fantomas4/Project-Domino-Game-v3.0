@@ -186,6 +186,9 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
             if (gameThread.getGameInstance().getHeap().getAllTiles().size() > 2) {
                 // if the heap contains more than 2 pieces, one can be given to the user.
                 gameThread.getGameInstance().getPlayingNowObj().addTileToPlayer(gameThread.getGameInstance().getHeap().pickRandomTile());
+                // notify the gameThread that the human player has finished his move
+                // and recover it from its suspended state
+                System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
                 synchronized (sharedLock) {
                     sharedLock.notifyAll();
                 }

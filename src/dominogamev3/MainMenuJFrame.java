@@ -188,14 +188,18 @@ public class MainMenuJFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        // Firstly, we display the InputDialog to the user so that the amount of bots is set.
-        String input = enterBotsAmountInputDialog();
-        int gamemode = Integer.parseInt(input);
+        String input;
+        // Firstly, we display the InputDialog to the user so that he enters his name.
+        input = enterUsernameInputDialog();
+        String username = input;
+        // Then, we display the InputDialog to the user so that the amount of bots is set.
+        input = enterBotsAmountInputDialog();
+        int gamemode = Integer.parseInt(input) + 1;
         System.out.println(input);
-        //We switch to the HungarianGameJFrame
-        //JFrame mainGameFrame = new HungarianGameJFrame(gamemode);
+        //We switch to the AllSevenGameJFrame
+        JFrame mainGameFrame = new AllSevenGameJFrame(gamemode, username);
         setVisible(false);
-        //mainGameFrame.setVisible(true);
+        mainGameFrame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private String enterUsernameInputDialog() {
