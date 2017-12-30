@@ -107,6 +107,11 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
                 + "\nPoints given: " + roundPoints,
                 "Round end", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void giveRandomHeapTileErrorMessage() {
+        JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given any more tiles.",
+                "Unavailable move", JOptionPane.ERROR_MESSAGE);
+    }
 
     private void submitAction() {
 
@@ -194,7 +199,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
                 }
             } else {
                 System.out.printf("> Two or less tiles are left in the heap. You can not be given a tile.");
-                JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given a tile.", "Unavailable move", JOptionPane.ERROR_MESSAGE);
+                giveRandomHeapTileErrorMessage();
             }
         }
     }

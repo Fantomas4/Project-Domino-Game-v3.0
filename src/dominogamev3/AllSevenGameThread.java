@@ -219,7 +219,7 @@ public class AllSevenGameThread extends Thread {
                             // the new tile is always added to the LAST position of the player's hand
                         } else {
                             System.out.printf("> Two or less tiles are left in the heap. You can not be given another tile.");
-                            //JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given another tile.", "Heap tile limit reached", JOptionPane.ERROR_MESSAGE);
+                            gameFrame.giveRandomHeapTileErrorMessage();
                         }
                         
                         holdPlayerTurn = true; // we block the progress to the next player because the human was automatically 
