@@ -164,15 +164,15 @@ public class AllSevenGameLogicTest {
         System.out.println("whoPlaysNext");
         int mode = 2;
         AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
-        int expResult;
+        int expResult = 0;
         instance.setPlayingNowPlayer(1);
-        if (instance.possibleMoveExists(instance.getPlayingNowObj())) {
-            expResult = 1;
-        } else {
-            expResult = 0;
-        }
         int result = instance.whoPlaysNext();
         assertEquals(expResult, result);
+        int expResult2 = -1;
+        instance.setPlayingNowPlayer(1);
+        instance.playerOrderedList.get(1).givePlayerTiles(0);
+        int result2 = instance.whoPlaysNext();
+        assertEquals(expResult2, result2);
     }
 
     /**
