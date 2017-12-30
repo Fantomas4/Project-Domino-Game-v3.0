@@ -101,12 +101,6 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jRadioButton1.setSelected(true);
         choice = 1;
     }
-
-    public void roundEndMessage(int roundPoints) {
-        JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()
-                + "\nPoints given: " + roundPoints,
-                "Round end", JOptionPane.INFORMATION_MESSAGE);
-    }
     
     public void giveRandomHeapTileErrorMessage() {
         JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given any more tiles.",
@@ -116,6 +110,16 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     public void noPossibleMoveAvailableMessage() {
         JOptionPane.showMessageDialog(null, "You have no possible moves with your tiles, so you will be given a random tile from the heap.",
                 "No available move", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void roundEndMessage(int roundPoints) {
+        JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()
+                + "\nPoints given: " + roundPoints,
+                "Round end", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void gameWinnerMessage(String name) {
+        JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE); 
     }
         
     

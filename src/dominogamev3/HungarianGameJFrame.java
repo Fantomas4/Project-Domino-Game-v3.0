@@ -99,6 +99,10 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                 + "\nPoints given: " + roundPoints,
                 "Round end", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void gameWinnerMessage(String name) {
+        JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE); 
+    }
 
     private void submitAction() {
         ArrayList<PossibleMove> result;

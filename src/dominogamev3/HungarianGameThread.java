@@ -226,6 +226,7 @@ public class HungarianGameThread extends Thread {
 
         System.out.println("%n%n%n");
         System.out.println("                              *** Player " + gameInstance.getWinnerPlayerName() + " has won the game by reaching the score limit! ***");
+        gameFrame.gameWinnerMessage(gameInstance.getWinnerPlayerName());
     }
 
     @Override

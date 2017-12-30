@@ -192,9 +192,9 @@ public class AllSevenGameThread extends Thread {
 
                     if (gameInstance.possibleMoveExists(gameInstance.getPlayingNowObj()) == true) {
                         // if the human has a possible move
-                        
+
                         holdPlayerTurn = false; // allow the game to progress to the next player normally
-                        
+
                         // suspend the thread and wait for the human to make a move through the GUI.
                         // suspend the thread until a notify() call from the GUI part of the program is executed
                         // to indicate that the user has finished his move.
@@ -218,14 +218,16 @@ public class AllSevenGameThread extends Thread {
                             randomTile = gameInstance.getHeap().pickRandomTile();
                             gameInstance.getPlayingNowObj().addTileToPlayer(randomTile);
                             // the new tile is always added to the LAST position of the player's hand
+
+                            holdPlayerTurn = true; // we block the progress to the next player because the human was automatically 
+                            // given a random tile (he had no move), and on the next loop it will be determined
+                            // whether he now has a valid move or he must be given a random tile again
                         } else {
+                            holdPlayerTurn = false;
                             System.out.printf("> Two or less tiles are left in the heap. You can not be given another tile.");
                             gameFrame.giveRandomHeapTileErrorMessage();
                         }
-                        
-                        holdPlayerTurn = true; // we block the progress to the next player because the human was automatically 
-                                               // given a random tile (he had no move), and on the next loop it will be determined
-                                               // whether he now has a valid move or he must be given a random tile again
+
                     }
 
                     updateTableLabel();
@@ -234,7 +236,7 @@ public class AllSevenGameThread extends Thread {
                     // if the player playing now is a bot, update the playingNowLabel,
                     // reset and disable the radio button choices
                     // and update the TableLabel.
-
+                    System.out.println("DIAG: BOT CHECKPOINT 1");
                     disableMoveTypeRadioButtons();
 
                     disableSubmitButton();
@@ -245,16 +247,42 @@ public class AllSevenGameThread extends Thread {
 
                     Thread.sleep(500);
 
-                    gameInstance.botPlays();
+                    if (gameInstance.possibleMoveExists(gameInstance.getPlayingNowObj()) == true) {
+                        // if the bot has a possible move
+                        holdPlayerTurn = false; // allow the game to progress to the next player normally
 
-                    updateTableLabel();
+                        gameInstance.botPlays();
 
+                    } else {
+                        // if the bot does not have a possible move, give it a random tile from the heap
+                        Tile randomTile;
+
+                        if (gameInstance.getHeap().getAllTiles().size() > 2) {
+                            gameFrame.noPossibleMoveAvailableMessage();
+                            // if the heap contains more than 2 pieces, one can be given to the bot.
+                            randomTile = gameInstance.getHeap().pickRandomTile();
+                            gameInstance.getPlayingNowObj().addTileToPlayer(randomTile);
+                            // the new tile is always added to the LAST position of the bot's hand
+
+                            holdPlayerTurn = true; // we block the progress to the next player because the bot was automatically 
+                            // given a random tile (it had no move), and on the next loop it will be determined
+                            // whether it now has a valid move or it must be given a random tile again
+                        } else {
+                            holdPlayerTurn = false;
+                            System.out.printf("> BOT: Two or less tiles are left in the heap. You can not be given another tile.");
+                        }
+
+                        updateTableLabel();
+                    }
                 }
 
+                System.out.println("DIAG: Playing before: " + gameInstance.getPlayingNowIndex());
+                System.out.println("DIAG: holdPlayerTurn at CHECKPOINT 1 is: " + holdPlayerTurn);
                 if (holdPlayerTurn == false) {
                     // if the game should normally progress to the next player
                     if (gameInstance.whoPlaysNext() >= 0) {
                         gameInstance.setPlayingNowPlayer(gameInstance.whoPlaysNext());
+                        System.out.println("DIAG: Playing before: " + gameInstance.getPlayingNowIndex());
                     } else if (gameInstance.whoPlaysNext() == -1) {
                         // round ends because a player has played all his tiles
                         System.out.println("^^^^^^round ends because a player has played all his tiles");
@@ -268,7 +296,6 @@ public class AllSevenGameThread extends Thread {
                 // else (holdPlayerTurn == true), if there is an action in progress for the current player, for example
                 // if he is being given tiles from the heap because he has no move,
                 // continue the loop and check again after the notify signal from the GUI.
-
             } while (true);
 
             int roundPoints = gameInstance.giveRoundPoints(); // give the round points to the winner
@@ -280,9 +307,11 @@ public class AllSevenGameThread extends Thread {
 
         System.out.println("%n%n%n");
         System.out.println("                              *** Player " + gameInstance.getWinnerPlayerName() + " has won the game by reaching the score limit! ***");
+        gameFrame.gameWinnerMessage(gameInstance.getWinnerPlayerName());
     }
 
     @Override
+
     public void run() {
         try {
             executeGame();
