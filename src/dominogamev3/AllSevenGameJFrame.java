@@ -112,7 +112,13 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given any more tiles.",
                 "Unavailable move", JOptionPane.ERROR_MESSAGE);
     }
-
+    
+    public void noPossibleMoveAvailableMessage() {
+        JOptionPane.showMessageDialog(null, "You have no possible moves with your tiles, so you will be given a random tile from the heap.",
+                "No available move", JOptionPane.ERROR_MESSAGE);
+    }
+        
+    
     private void submitAction() {
 
         if (jRadioButtonMoveType1.isSelected() == true) {

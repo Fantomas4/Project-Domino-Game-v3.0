@@ -160,8 +160,9 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
             }
         }
         
-        if (playersHavePossibleMove == false) {
-            // if no player was found to have a possible move, the round must end
+        if (playersHavePossibleMove == false && heap.getAllTiles().size() == 2) {
+            // if no player was found to have a possible move and the heap has reached its minimum
+            // size, the round must end
             return -2;
         }
         

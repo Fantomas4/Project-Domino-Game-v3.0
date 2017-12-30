@@ -213,6 +213,7 @@ public class AllSevenGameThread extends Thread {
                         // if the human does not have a possible move, give him a random tile from the heap
                         Tile randomTile;
                         if (gameInstance.getHeap().getAllTiles().size() > 2) {
+                            gameFrame.noPossibleMoveAvailableMessage();
                             // if the heap contains more than 2 pieces, one can be given to the user.
                             randomTile = gameInstance.getHeap().pickRandomTile();
                             gameInstance.getPlayingNowObj().addTileToPlayer(randomTile);
