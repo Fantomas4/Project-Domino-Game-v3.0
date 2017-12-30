@@ -224,7 +224,7 @@ public class AllSevenGameThread extends Thread {
                             // whether he now has a valid move or he must be given a random tile again
                         } else {
                             holdPlayerTurn = false;
-                            System.out.printf("> Two or less tiles are left in the heap. You can not be given another tile.");
+                            System.out.printf("> Two tiles are left in the heap. You can not be given another tile.");
                             gameFrame.giveRandomHeapTileErrorMessage();
                         }
 
@@ -258,7 +258,6 @@ public class AllSevenGameThread extends Thread {
                         Tile randomTile;
 
                         if (gameInstance.getHeap().getAllTiles().size() > 2) {
-                            gameFrame.noPossibleMoveAvailableMessage();
                             // if the heap contains more than 2 pieces, one can be given to the bot.
                             randomTile = gameInstance.getHeap().pickRandomTile();
                             gameInstance.getPlayingNowObj().addTileToPlayer(randomTile);

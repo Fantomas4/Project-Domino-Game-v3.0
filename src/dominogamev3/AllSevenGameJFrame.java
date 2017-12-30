@@ -103,7 +103,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     }
     
     public void giveRandomHeapTileErrorMessage() {
-        JOptionPane.showMessageDialog(null, "Two or less tiles are left in the heap. You can not be given any more tiles.",
+        JOptionPane.showMessageDialog(null, "Two tiles are left in the heap. You can not be given any more tiles.",
                 "Unavailable move", JOptionPane.ERROR_MESSAGE);
     }
     
