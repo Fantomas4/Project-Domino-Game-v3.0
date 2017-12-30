@@ -467,6 +467,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jMoveChoicePanel.add(jRadioButton12);
 
+        tileChoicesButtonGroup.add(jRadioButton13);
         jRadioButton13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton13.setText("jRadioButton13");
         jMoveChoicePanel.add(jRadioButton13);
