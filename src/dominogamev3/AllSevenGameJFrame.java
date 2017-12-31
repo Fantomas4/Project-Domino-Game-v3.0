@@ -101,28 +101,27 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jRadioButton1.setSelected(true);
         choice = 1;
     }
-    
+
     public void giveRandomHeapTileErrorMessage() {
         JOptionPane.showMessageDialog(null, "Two tiles are left in the heap. You can not be given any more tiles.",
                 "Unavailable move", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void noPossibleMoveAvailableMessage() {
         JOptionPane.showMessageDialog(null, "You have no possible moves with your tiles, so you will be given a random tile from the heap.",
                 "No available move", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public void roundEndMessage(int roundPoints) {
         JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()
                 + "\nPoints given: " + roundPoints,
                 "Round end", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     public void gameWinnerMessage(String name) {
-        JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE); 
+        JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE);
     }
-        
-    
+
     private void submitAction() {
 
         if (jRadioButtonMoveType1.isSelected() == true) {
@@ -168,32 +167,36 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
                         + "On which side of the table do you want to place the tile?",
                         "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
 
-                String selectedString = selected.toString();
+                if (selected != null) {
+                    // the user has selected a choice and pressed the "OK" button
+                    String selectedString = selected.toString();
 
-                System.out.println("DIAG: object selected is: " + selected);
-                System.out.println("DIAG: selectedString is: " + selectedString);
+                    System.out.println("DIAG: object selected is: " + selected);
+                    System.out.println("DIAG: selectedString is: " + selectedString);
 
-                String side;
-                if (selectedString.equals("Left side")) {
-                    side = "left";
-                } else {
-                    side = "right";
-                }
+                    String side;
+                    if (selectedString.equals("Left side")) {
+                        side = "left";
+                    } else {
+                        side = "right";
+                    }
 
-                if (result.get(0).whereToPlace().equals(side)) {
-                    System.out.println("MPIKA PERIPTOSI 1");
-                    gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
-                } else if (result.get(1).whereToPlace().equals(side)) {
-                    System.out.println("MPIKA PERIPTOSI 2");
-                    gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
-                }
+                    if (result.get(0).whereToPlace().equals(side)) {
+                        System.out.println("MPIKA PERIPTOSI 1");
+                        gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
+                    } else if (result.get(1).whereToPlace().equals(side)) {
+                        System.out.println("MPIKA PERIPTOSI 2");
+                        gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
+                    }
 
-                // notify the gameThread that the human player has finished his move
-                // and recover it from its suspended state
-                System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
-                synchronized (sharedLock) {
-                    sharedLock.notifyAll();
-                }
+                    // notify the gameThread that the human player has finished his move
+                    // and recover it from its suspended state
+                    System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
+                    synchronized (sharedLock) {
+                        sharedLock.notifyAll();
+                    }
+                } // else, if the user has pressed the "CANCEL" button in the input
+            // dialog, nothing happends.
             }
         } else if (jRadioButtonMoveType2.isSelected() == true) {
             // user chose to take a random tile from the heap;

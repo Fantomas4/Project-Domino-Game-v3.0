@@ -36,19 +36,19 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // initialize necessary class fields
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
-        
+
         playerTilesLeftLabels = new JLabel[]{jTLeftLabel1, jTLeftLabel2, jTLeftLabel3, jTLeftLabel4};
-        
+
         playerScoreLabels = new JLabel[]{jScoreLabel1, jScoreLabel2, jScoreLabel3, jScoreLabel4};
-        
+
         playerNameLabels = new JLabel[]{jNameLabel1, jNameLabel2, jNameLabel3, jNameLabel4};
-        
+
         sharedLock = new Object();
 
         // initialize and start the Hungarian Game Thread
         gameThread = new HungarianGameThread(gamemode, username, this, sharedLock);
         gameThread.start();
-        
+
         // since the first radio button is always selected by default, 
         // we initialize the choice variable to 1 to reflect this.
         choice = 1;
@@ -58,7 +58,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     public JLabel getPlayingNowLabel() {
         return jPlayingNowLabel;
     }
-    
+
     public JLabel getRoundCounterLabel() {
         return jRoundCounterLabel;
     }
@@ -70,23 +70,23 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     public JRadioButton[] getChoiceRadioButtons() {
         return choiceRadioButtons;
     }
-    
+
     public JLabel[] getPlayerNameLabels() {
         return playerNameLabels;
     }
-    
+
     public JLabel[] getPlayerTilesLeftStatusLabels() {
         return playerTilesLeftLabels;
     }
-    
+
     public JLabel[] getPlayerScoreStatusLabels() {
         return playerScoreLabels;
     }
-    
+
     public JButton getSubmitButton() {
         return jSubmitButton;
     }
-    
+
     public void resetRadioButtonSelector() {
         // resets the selection of the tile choice radio buttons
         // by setting the jRadioButton1 as selected.
@@ -99,15 +99,15 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                 + "\nPoints given: " + roundPoints,
                 "Round end", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     public void gameWinnerMessage(String name) {
-        JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE); 
+        JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void submitAction() {
         ArrayList<PossibleMove> result;
         Tile chosenTile;
-        
+
         System.out.println("DIAG: *********** choice number is: " + choice);
 
         chosenTile = gameThread.getGameInstance().getPlayingNowObj().chooseTile(choice);
@@ -146,32 +146,38 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                     + "On which side of the table do you want to place the tile?",
                     "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
 
-            String selectedString = selected.toString();
+            
 
-            System.out.println("DIAG: object selected is: " + selected);
-            System.out.println("DIAG: selectedString is: " + selectedString);
+            if (selected != null) {
+                // the user has selected a choice and pressed the "OK" button
+                String selectedString = selected.toString();
+                
+                System.out.println("DIAG: object selected is: " + selected);
+                System.out.println("DIAG: selectedString is: " + selectedString);
 
-            String side;
-            if (selectedString.equals("Left side")) {
-                side = "left";
-            } else {
-                side = "right";
-            }
+                String side;
+                if (selectedString.equals("Left side")) {
+                    side = "left";
+                } else {
+                    side = "right";
+                }
 
-            if (result.get(0).whereToPlace().equals(side)) {
-                System.out.println("MPIKA PERIPTOSI 1");
-                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
-            } else if (result.get(1).whereToPlace().equals(side)) {
-                System.out.println("MPIKA PERIPTOSI 2");
-                gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
-            }
+                if (result.get(0).whereToPlace().equals(side)) {
+                    System.out.println("MPIKA PERIPTOSI 1");
+                    gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(0).needsRotation(), side);
+                } else if (result.get(1).whereToPlace().equals(side)) {
+                    System.out.println("MPIKA PERIPTOSI 2");
+                    gameThread.getGameInstance().humanPlays(choice, chosenTile, result.get(1).needsRotation(), side);
+                }
 
-            // notify the gameThread that the human player has finished his move
-            // and recover it from its suspended state
-            System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
-            synchronized (sharedLock) {
-                sharedLock.notifyAll();
-            }
+                // notify the gameThread that the human player has finished his move
+                // and recover it from its suspended state
+                System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
+                synchronized (sharedLock) {
+                    sharedLock.notifyAll();
+                }
+            } // else, if the user has pressed the "CANCEL" button in the input
+            // dialog, nothing happends.
         }
     }
 
@@ -714,7 +720,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HungarianGameJFrame(4,"testuser").setVisible(true);
+                new HungarianGameJFrame(4, "testuser").setVisible(true);
             }
         });
     }
