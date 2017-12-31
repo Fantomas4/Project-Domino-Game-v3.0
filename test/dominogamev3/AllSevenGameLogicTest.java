@@ -45,7 +45,7 @@ public class AllSevenGameLogicTest {
     public void testGiveRoundPoints() {
         System.out.println("giveRoundPoints");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode, "User");
         int humanPoints = instance.getPlayerOrderedList().get(0).getRemainingTilePoints();
         //System.out.println(humanPoints);
         int botPoints = instance.getPlayerOrderedList().get(1).getRemainingTilePoints();
@@ -57,6 +57,10 @@ public class AllSevenGameLogicTest {
         }
         if (botPoints > expPointsResult) {
             expPointsResult = botPoints;
+        }
+        if (humanPoints == botPoints) {
+            expPointsResult = 0;
+            expWinnerResult = "There is a tie, no winner occurred.";
         }
         int pointsResult = instance.giveRoundPoints();
         String winnerResult = instance.getWinnerPlayerName();
@@ -71,7 +75,7 @@ public class AllSevenGameLogicTest {
     public void testPossibleMoveExists() {
         System.out.println("possibleMoveExists");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode, "User");
         instance.setPlayingNowPlayer(0);
         Player subject = instance.getPlayingNowObj();
         boolean expResult = true;
@@ -86,7 +90,7 @@ public class AllSevenGameLogicTest {
     public void testCheckTileChoice() {
         System.out.println("checkTileChoice");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode, "User");
         instance.setPlayingNowPlayer(1);
         instance.botPlays();
         ArrayList<Tile> tableTiles = instance.getTable().getTable();
@@ -142,16 +146,42 @@ public class AllSevenGameLogicTest {
                 expResult.add(new PossibleMove(true, "left"));
                 assertEquals(expResult.get(0).needsRotation(), result.get(0).needsRotation());
                 assertEquals(expResult.get(0).whereToPlace(), result.get(0).whereToPlace());
-                ArrayList<PossibleMove> result2 = new ArrayList<>();
-                ArrayList<PossibleMove> expResult2 = new ArrayList<>();
-                Tile testTile2 = new Tile(7 - tablePiece.getNum1(), 7 - tablePiece.getNum2());
-                result2 = instance.checkTileChoice(testTile2);
-                expResult2.add(new PossibleMove(true, "left"));
-                expResult2.add(new PossibleMove(true, "right"));
-                assertEquals(expResult2.get(0).needsRotation(), result2.get(0).needsRotation());
-                assertEquals(expResult2.get(0).whereToPlace(), result2.get(0).whereToPlace());
-                assertEquals(expResult2.get(1).needsRotation(), result2.get(1).needsRotation());
-                assertEquals(expResult2.get(1).whereToPlace(), result2.get(1).whereToPlace());
+                if (tablePiece.getNum2() != 0) {
+                    ArrayList<PossibleMove> result2 = new ArrayList<>();
+                    ArrayList<PossibleMove> expResult2 = new ArrayList<>();
+                    Tile testTile2 = new Tile(7 - tablePiece.getNum1(), 7 - tablePiece.getNum2());
+                    if (testTile2.getNum1() + testTile2.getNum2() == 7) {
+                        expResult2.add(new PossibleMove(false, "left"));
+                        expResult2.add(new PossibleMove(false, "right"));
+                        expResult2.add(new PossibleMove(true, "left"));
+                        expResult2.add(new PossibleMove(true, "right"));
+                        result2 = instance.checkTileChoice(testTile2);
+                        assertEquals(expResult2.get(0).needsRotation(), result2.get(0).needsRotation());
+                        assertEquals(expResult2.get(0).whereToPlace(), result2.get(0).whereToPlace());
+                        assertEquals(expResult2.get(1).needsRotation(), result2.get(1).needsRotation());
+                        assertEquals(expResult2.get(1).whereToPlace(), result2.get(1).whereToPlace());
+                        assertEquals(expResult2.get(2).needsRotation(), result2.get(2).needsRotation());
+                        assertEquals(expResult2.get(2).whereToPlace(), result2.get(2).whereToPlace());
+                        assertEquals(expResult2.get(3).needsRotation(), result2.get(3).needsRotation());
+                        assertEquals(expResult2.get(3).whereToPlace(), result2.get(3).whereToPlace());
+                    } else {
+                        result2 = instance.checkTileChoice(testTile2);
+                        expResult2.add(new PossibleMove(true, "left"));
+                        expResult2.add(new PossibleMove(true, "right"));
+                        assertEquals(expResult2.get(0).needsRotation(), result2.get(0).needsRotation());
+                        assertEquals(expResult2.get(0).whereToPlace(), result2.get(0).whereToPlace());
+                        assertEquals(expResult2.get(1).needsRotation(), result2.get(1).needsRotation());
+                        assertEquals(expResult2.get(1).whereToPlace(), result2.get(1).whereToPlace());
+                    }
+                } else {
+                    ArrayList<PossibleMove> result2 = new ArrayList<>();
+                    ArrayList<PossibleMove> expResult2 = new ArrayList<>();
+                    Tile testTile2 = new Tile(7 - tablePiece.getNum1(), 7 - tablePiece.getNum1());
+                    result2 = instance.checkTileChoice(testTile2);
+                    expResult2.add(new PossibleMove(true, "left"));
+                    assertEquals(expResult2.get(0).needsRotation(), result2.get(0).needsRotation());
+                    assertEquals(expResult2.get(0).whereToPlace(), result2.get(0).whereToPlace());
+                }
             }
         }
     }
@@ -163,7 +193,7 @@ public class AllSevenGameLogicTest {
     public void testWhoPlaysNext() {
         System.out.println("whoPlaysNext");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode, "User");
         int expResult = 0;
         instance.setPlayingNowPlayer(1);
         int result = instance.whoPlaysNext();
@@ -182,7 +212,7 @@ public class AllSevenGameLogicTest {
     public void testBotPlays() {
         System.out.println("botPlays");
         int mode = 2;
-        AllSevenGameLogic instance = new AllSevenGameLogic(mode,"User");
+        AllSevenGameLogic instance = new AllSevenGameLogic(mode, "User");
         int index = 1;
         instance.setPlayingNowPlayer(index);
         instance.botPlays();

@@ -58,6 +58,10 @@ public class HungarianGameLogicTest {
         if (botPoints > expPointsResult) {
             expPointsResult = botPoints;
         }
+        if (humanPoints == botPoints) {
+            expPointsResult = 0;
+            expWinnerResult = "There is a tie, no winner occurred.";
+        }
         int pointsResult = instance.giveRoundPoints();
         String winnerResult = instance.getWinnerPlayerName();
         assertEquals(expPointsResult, pointsResult);
