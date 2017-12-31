@@ -78,7 +78,8 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Table", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("dominogamev3/Bundle"); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, bundle.getString("Solo1GameJFrame.jPanel2.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         jTableLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTableLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -97,23 +98,23 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Heap", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, bundle.getString("Solo1GameJFrame.jPanel3.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         jRowLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRowLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRowLabel2.setText("row2");
+        jRowLabel2.setText(bundle.getString("Solo1GameJFrame.jRowLabel2.text")); // NOI18N
 
         jRowLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRowLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRowLabel1.setText("row1");
+        jRowLabel1.setText(bundle.getString("Solo1GameJFrame.jRowLabel1.text")); // NOI18N
 
         jRowLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRowLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRowLabel4.setText("row4");
+        jRowLabel4.setText(bundle.getString("Solo1GameJFrame.jRowLabel4.text")); // NOI18N
 
         jRowLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRowLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRowLabel3.setText("row3");
+        jRowLabel3.setText(bundle.getString("Solo1GameJFrame.jRowLabel3.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -138,14 +139,14 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Choose your move", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, bundle.getString("Solo1GameJFrame.jPanel4.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Pick tile"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("Solo1GameJFrame.jPanel7.border.title"))); // NOI18N
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton1.setSelected(true);
-        jRadioButton1.setText("tile1");
+        jRadioButton1.setText(bundle.getString("Solo1GameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -154,7 +155,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton2.setText("tile2");
+        jRadioButton2.setText(bundle.getString("Solo1GameJFrame.jRadioButton2.text")); // NOI18N
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -163,7 +164,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton3.setText("tile3");
+        jRadioButton3.setText(bundle.getString("Solo1GameJFrame.jRadioButton3.text")); // NOI18N
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -172,7 +173,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton4.setText("tile4");
+        jRadioButton4.setText(bundle.getString("Solo1GameJFrame.jRadioButton4.text")); // NOI18N
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton4ActionPerformed(evt);
@@ -225,7 +226,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
         );
 
         jSubmitButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jSubmitButton.setText("Submit you choice!");
+        jSubmitButton.setText(bundle.getString("Solo1GameJFrame.jSubmitButton.text")); // NOI18N
         jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSubmitButtonActionPerformed(evt);
@@ -253,9 +254,9 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        jMenu1.setText("Game");
+        jMenu1.setText(bundle.getString("Solo1GameJFrame.jMenu1.text")); // NOI18N
 
-        jMenuItem1.setText("Reset current game");
+        jMenuItem1.setText(bundle.getString("Solo1GameJFrame.jMenuItem1.text")); // NOI18N
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -263,7 +264,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Exit to main Menu");
+        jMenuItem2.setText(bundle.getString("Solo1GameJFrame.jMenuItem2.text")); // NOI18N
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
