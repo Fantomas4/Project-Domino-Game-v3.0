@@ -230,9 +230,9 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         tileChoicesButtonGroup = new javax.swing.ButtonGroup();
         moveTypeButtonGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         jPlayingNowLabel = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jRoundCounterLabel = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jTablePanel = new javax.swing.JPanel();
         jTableLabel = new javax.swing.JLabel();
         jMoveChoicePanel = new javax.swing.JPanel();
@@ -259,88 +259,102 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jSubmitButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPlayer1Panel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jNameLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jTLeftLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScoreLabel1 = new javax.swing.JLabel();
         jPlayer2Panel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jNameLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jTLeftLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jScoreLabel2 = new javax.swing.JLabel();
         jPlayer3Panel = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jNameLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jTLeftLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jScoreLabel3 = new javax.swing.JLabel();
         jPlayer4Panel = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         jNameLabel4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jTLeftLabel4 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jScoreLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jRadioButtonMoveType1 = new javax.swing.JRadioButton();
         jRadioButtonMoveType2 = new javax.swing.JRadioButton();
+        jPanel3 = new javax.swing.JPanel();
+        jRoundCounterLabel = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
 
+        jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("dominogamev3/Bundle"); // NOI18N
+        jLabel14.setText(bundle.getString("AllSevenGameJFrame.jLabel14.text")); // NOI18N
+
         jPlayingNowLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jPlayingNowLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPlayingNowLabel.setText("... plays now");
 
-        jSeparator1.setForeground(new java.awt.Color(187, 187, 187));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jRoundCounterLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jRoundCounterLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jRoundCounterLabel.setText("Round ...");
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText(bundle.getString("AllSevenGameJFrame.jLabel13.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRoundCounterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 735, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-            .addComponent(jSeparator1)
-            .addComponent(jRoundCounterLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPlayingNowLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Table", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jTablePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, bundle.getString("AllSevenGameJFrame.jTablePanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         jTableLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTableLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTableLabel.setText("jTableLabel");
 
         javax.swing.GroupLayout jTablePanelLayout = new javax.swing.GroupLayout(jTablePanel);
         jTablePanel.setLayout(jTablePanelLayout);
         jTablePanelLayout.setHorizontalGroup(
             jTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTableLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1475, Short.MAX_VALUE)
         );
         jTablePanelLayout.setVerticalGroup(
             jTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTableLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
         );
 
-        jMoveChoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pick a tile from your hand to make your move", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jMoveChoicePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, bundle.getString("AllSevenGameJFrame.jMoveChoicePanel.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jMoveChoicePanel.setLayout(new java.awt.GridLayout(3, 4));
 
         tileChoicesButtonGroup.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jRadioButton1.setSelected(true);
-        jRadioButton1.setText("jRadioButton1");
+        jRadioButton1.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,7 +365,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton2.setText("jRadioButton2");
+        jRadioButton2.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +376,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton3.setText("jRadioButton3");
+        jRadioButton3.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,7 +387,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton4.setText("jRadioButton4");
+        jRadioButton4.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,7 +398,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton5.setText("jRadioButton5");
+        jRadioButton5.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +409,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton6);
         jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton6.setText("jRadioButton6");
+        jRadioButton6.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -406,7 +420,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton7);
         jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton7.setText("jRadioButton7");
+        jRadioButton7.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -417,7 +431,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton8);
         jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton8.setText("jRadioButton8");
+        jRadioButton8.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -428,7 +442,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton9.setText("jRadioButton9");
+        jRadioButton9.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,7 +453,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton10);
         jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton10.setText("jRadioButton10");
+        jRadioButton10.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,7 +464,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton11);
         jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton11.setText("jRadioButton11");
+        jRadioButton11.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,7 +475,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton12);
         jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton12.setText("jRadioButton12");
+        jRadioButton12.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -472,41 +486,41 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         tileChoicesButtonGroup.add(jRadioButton13);
         jRadioButton13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton13.setText("jRadioButton13");
+        jRadioButton13.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jMoveChoicePanel.add(jRadioButton13);
 
         tileChoicesButtonGroup.add(jRadioButton14);
         jRadioButton14.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton14.setText("jRadioButton14");
+        jRadioButton14.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jMoveChoicePanel.add(jRadioButton14);
 
         tileChoicesButtonGroup.add(jRadioButton15);
         jRadioButton15.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton15.setText("jRadioButton15");
+        jRadioButton15.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jMoveChoicePanel.add(jRadioButton15);
 
         tileChoicesButtonGroup.add(jRadioButton16);
         jRadioButton16.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton16.setText("jRadioButton16");
+        jRadioButton16.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jMoveChoicePanel.add(jRadioButton16);
 
         tileChoicesButtonGroup.add(jRadioButton17);
         jRadioButton17.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton17.setText("jRadioButton17");
+        jRadioButton17.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jMoveChoicePanel.add(jRadioButton17);
 
         tileChoicesButtonGroup.add(jRadioButton18);
         jRadioButton18.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton18.setText("jRadioButton18");
+        jRadioButton18.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jMoveChoicePanel.add(jRadioButton18);
 
         tileChoicesButtonGroup.add(jRadioButton19);
         jRadioButton19.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton19.setText("jRadioButton19");
+        jRadioButton19.setText(bundle.getString("AllSevenGameJFrame.jRadioButton12.text")); // NOI18N
         jMoveChoicePanel.add(jRadioButton19);
 
         jSubmitButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jSubmitButton.setText("Submit you choice!");
+        jSubmitButton.setText(bundle.getString("AllSevenGameJFrame.jSubmitButton.text")); // NOI18N
         jSubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSubmitButtonActionPerformed(evt);
@@ -514,185 +528,187 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jSubmitButton);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, bundle.getString("AllSevenGameJFrame.jPanel2.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jPanel2.setLayout(new java.awt.GridLayout(1, 4, 20, 20));
 
         jPlayer1Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+        jPlayer1Panel.setLayout(new java.awt.GridLayout(3, 2));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(bundle.getString("AllSevenGameJFrame.jLabel1.text")); // NOI18N
+        jPlayer1Panel.add(jLabel1);
 
         jNameLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jNameLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jNameLabel1.setText("Name: ");
+        jPlayer1Panel.add(jNameLabel1);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText(bundle.getString("AllSevenGameJFrame.jLabel2.text")); // NOI18N
+        jPlayer1Panel.add(jLabel2);
 
         jTLeftLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jTLeftLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTLeftLabel1.setText("Tiles left: ...");
+        jPlayer1Panel.add(jTLeftLabel1);
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText(bundle.getString("AllSevenGameJFrame.jLabel3.text")); // NOI18N
+        jPlayer1Panel.add(jLabel3);
 
         jScoreLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jScoreLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jScoreLabel1.setText("Score: ...");
-
-        javax.swing.GroupLayout jPlayer1PanelLayout = new javax.swing.GroupLayout(jPlayer1Panel);
-        jPlayer1Panel.setLayout(jPlayer1PanelLayout);
-        jPlayer1PanelLayout.setHorizontalGroup(
-            jPlayer1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-            .addComponent(jNameLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScoreLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPlayer1PanelLayout.setVerticalGroup(
-            jPlayer1PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer1PanelLayout.createSequentialGroup()
-                .addComponent(jNameLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTLeftLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScoreLabel1)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        jPlayer1Panel.add(jScoreLabel1);
 
         jPanel2.add(jPlayer1Panel);
 
         jPlayer2Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+        jPlayer2Panel.setLayout(new java.awt.GridLayout(3, 2));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText(bundle.getString("AllSevenGameJFrame.jLabel1.text")); // NOI18N
+        jPlayer2Panel.add(jLabel4);
 
         jNameLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jNameLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jNameLabel2.setText("Name: ");
+        jPlayer2Panel.add(jNameLabel2);
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText(bundle.getString("AllSevenGameJFrame.jLabel2.text")); // NOI18N
+        jPlayer2Panel.add(jLabel5);
 
         jTLeftLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jTLeftLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTLeftLabel2.setText("Tiles left: ...");
+        jPlayer2Panel.add(jTLeftLabel2);
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText(bundle.getString("AllSevenGameJFrame.jLabel3.text")); // NOI18N
+        jPlayer2Panel.add(jLabel6);
 
         jScoreLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jScoreLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jScoreLabel2.setText("Score: ...");
-
-        javax.swing.GroupLayout jPlayer2PanelLayout = new javax.swing.GroupLayout(jPlayer2Panel);
-        jPlayer2Panel.setLayout(jPlayer2PanelLayout);
-        jPlayer2PanelLayout.setHorizontalGroup(
-            jPlayer2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-            .addComponent(jScoreLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jNameLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPlayer2PanelLayout.setVerticalGroup(
-            jPlayer2PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer2PanelLayout.createSequentialGroup()
-                .addComponent(jNameLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTLeftLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScoreLabel2)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        jPlayer2Panel.add(jScoreLabel2);
 
         jPanel2.add(jPlayer2Panel);
 
         jPlayer3Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+        jPlayer3Panel.setLayout(new java.awt.GridLayout(3, 2));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText(bundle.getString("AllSevenGameJFrame.jLabel1.text")); // NOI18N
+        jPlayer3Panel.add(jLabel7);
 
         jNameLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jNameLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jNameLabel3.setText("Name: ");
+        jPlayer3Panel.add(jNameLabel3);
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText(bundle.getString("AllSevenGameJFrame.jLabel2.text")); // NOI18N
+        jPlayer3Panel.add(jLabel8);
 
         jTLeftLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jTLeftLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTLeftLabel3.setText("Tiles left: ...");
+        jPlayer3Panel.add(jTLeftLabel3);
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText(bundle.getString("AllSevenGameJFrame.jLabel3.text")); // NOI18N
+        jPlayer3Panel.add(jLabel9);
 
         jScoreLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jScoreLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jScoreLabel3.setText("Score: ...");
-
-        javax.swing.GroupLayout jPlayer3PanelLayout = new javax.swing.GroupLayout(jPlayer3Panel);
-        jPlayer3Panel.setLayout(jPlayer3PanelLayout);
-        jPlayer3PanelLayout.setHorizontalGroup(
-            jPlayer3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-            .addComponent(jScoreLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jNameLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPlayer3PanelLayout.setVerticalGroup(
-            jPlayer3PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer3PanelLayout.createSequentialGroup()
-                .addComponent(jNameLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTLeftLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScoreLabel3)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        jPlayer3Panel.add(jScoreLabel3);
 
         jPanel2.add(jPlayer3Panel);
 
         jPlayer4Panel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(187, 187, 187), 1, true));
+        jPlayer4Panel.setLayout(new java.awt.GridLayout(3, 2));
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText(bundle.getString("AllSevenGameJFrame.jLabel1.text")); // NOI18N
+        jPlayer4Panel.add(jLabel10);
 
         jNameLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jNameLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jNameLabel4.setText("Name: ");
+        jPlayer4Panel.add(jNameLabel4);
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText(bundle.getString("AllSevenGameJFrame.jLabel2.text")); // NOI18N
+        jPlayer4Panel.add(jLabel11);
 
         jTLeftLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jTLeftLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTLeftLabel4.setText("Tiles left: ...");
+        jPlayer4Panel.add(jTLeftLabel4);
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText(bundle.getString("AllSevenGameJFrame.jLabel3.text")); // NOI18N
+        jPlayer4Panel.add(jLabel12);
 
         jScoreLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jScoreLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jScoreLabel4.setText("Score: ...");
-
-        javax.swing.GroupLayout jPlayer4PanelLayout = new javax.swing.GroupLayout(jPlayer4Panel);
-        jPlayer4Panel.setLayout(jPlayer4PanelLayout);
-        jPlayer4PanelLayout.setHorizontalGroup(
-            jPlayer4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTLeftLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-            .addComponent(jScoreLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jNameLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPlayer4PanelLayout.setVerticalGroup(
-            jPlayer4PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPlayer4PanelLayout.createSequentialGroup()
-                .addComponent(jNameLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTLeftLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScoreLabel4)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        jPlayer4Panel.add(jScoreLabel4);
 
         jPanel2.add(jPlayer4Panel);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Choose move type", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, bundle.getString("AllSevenGameJFrame.jPanel4.border.title"), javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
         jPanel4.setLayout(new java.awt.GridLayout(1, 2));
 
         moveTypeButtonGroup.add(jRadioButtonMoveType1);
         jRadioButtonMoveType1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jRadioButtonMoveType1.setSelected(true);
-        jRadioButtonMoveType1.setText("Play using a tile from your hand");
+        jRadioButtonMoveType1.setText(bundle.getString("AllSevenGameJFrame.jRadioButtonMoveType1.text")); // NOI18N
         jRadioButtonMoveType1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel4.add(jRadioButtonMoveType1);
 
         moveTypeButtonGroup.add(jRadioButtonMoveType2);
         jRadioButtonMoveType2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jRadioButtonMoveType2.setText("Pass and get a random tile from the heap");
+        jRadioButtonMoveType2.setText(bundle.getString("AllSevenGameJFrame.jRadioButtonMoveType2.text")); // NOI18N
         jRadioButtonMoveType2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel4.add(jRadioButtonMoveType2);
 
-        jMenu1.setText("File");
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(187, 187, 187)));
 
-        jMenuItem1.setText("New game");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
+        jRoundCounterLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jRoundCounterLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText(bundle.getString("AllSevenGameJFrame.jLabel15.text")); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRoundCounterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jRoundCounterLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jMenu1.setText(bundle.getString("AllSevenGameJFrame.jMenu1.text")); // NOI18N
+
+        jMenuItem1.setText(bundle.getString("AllSevenGameJFrame.jMenuItem1.text")); // NOI18N
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Reset current game");
+        jMenuItem2.setText(bundle.getString("AllSevenGameJFrame.jMenuItem2.text")); // NOI18N
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Exit");
-        jMenu1.add(jMenuItem3);
-
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -705,23 +721,28 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTablePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1485, Short.MAX_VALUE)
                     .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jMoveChoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -731,10 +752,6 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
@@ -844,12 +861,25 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jMoveChoicePanel;
     private javax.swing.JLabel jNameLabel1;
     private javax.swing.JLabel jNameLabel2;
@@ -857,6 +887,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jNameLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPlayer1Panel;
     private javax.swing.JPanel jPlayer2Panel;
@@ -890,7 +921,6 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jScoreLabel3;
     private javax.swing.JLabel jScoreLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jSubmitButton;
     private javax.swing.JLabel jTLeftLabel1;
     private javax.swing.JLabel jTLeftLabel2;

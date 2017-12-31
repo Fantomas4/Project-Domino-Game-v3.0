@@ -44,11 +44,11 @@ public class AllSevenGameThread extends Thread {
     private void updatePlayingNowLabel() {
         // Set the GUI label that shows who plays now:
         System.out.println("DIAG: updateguielements CHECKPOINT 1");
-        gameFrame.getPlayingNowLabel().setText(gameInstance.getPlayingNowObj().getPlayerName() + " plays now");
+        gameFrame.getPlayingNowLabel().setText(gameInstance.getPlayingNowObj().getPlayerName());
     }
 
     private void updateRoundCounterLabel() {
-        gameFrame.getRoundCounterLabel().setText("Round: " + gameInstance.getRoundCount());
+        gameFrame.getRoundCounterLabel().setText(Integer.toString(gameInstance.getRoundCount()));
     }
 
     private void resetPlayerStatusPanel() {
@@ -73,7 +73,7 @@ public class AllSevenGameThread extends Thread {
         JLabel[] nameLabels = gameFrame.getPlayerNameLabels();
 
         for (int i = 0; i < playerList.size(); i++) {
-            nameLabels[i].setText("Player: " + playerList.get(i).getPlayerName());
+            nameLabels[i].setText(playerList.get(i).getPlayerName());
         }
 
     }
@@ -82,7 +82,7 @@ public class AllSevenGameThread extends Thread {
         JLabel[] tLeftLabels = gameFrame.getPlayerTilesLeftStatusLabels();
 
         for (int i = 0; i < playerList.size(); i++) {
-            tLeftLabels[i].setText("Tiles left: " + playerList.get(i).getPlayerTilesAmount());
+            tLeftLabels[i].setText(Integer.toString(playerList.get(i).getPlayerTilesAmount()));
         }
     }
 
@@ -90,7 +90,7 @@ public class AllSevenGameThread extends Thread {
         JLabel[] scoreLabels = gameFrame.getPlayerScoreStatusLabels();
 
         for (int i = 0; i < playerList.size(); i++) {
-            scoreLabels[i].setText("Score: " + playerList.get(i).getScore());
+            scoreLabels[i].setText(Integer.toString(playerList.get(i).getScore()));
         }
     }
 

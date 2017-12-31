@@ -245,7 +245,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton2.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -262,7 +262,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton3.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -279,7 +279,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton4.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -296,7 +296,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton5.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -313,7 +313,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton6.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -330,7 +330,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton7.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -347,7 +347,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton8.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -364,7 +364,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton9.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -381,7 +381,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton10.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -398,7 +398,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton11.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>
@@ -415,7 +415,7 @@
               <Font name="Dialog" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton12.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="dominogamev3/Bundle.properties" key="HungarianGameJFrame.jRadioButton1.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
           </Properties>

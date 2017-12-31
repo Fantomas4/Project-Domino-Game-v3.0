@@ -321,7 +321,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton2.setText(bundle.getString("HungarianGameJFrame.jRadioButton2.text")); // NOI18N
+        jRadioButton2.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,7 +332,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton3.setText(bundle.getString("HungarianGameJFrame.jRadioButton3.text")); // NOI18N
+        jRadioButton3.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,7 +343,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton4.setText(bundle.getString("HungarianGameJFrame.jRadioButton4.text")); // NOI18N
+        jRadioButton4.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,7 +354,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton5.setText(bundle.getString("HungarianGameJFrame.jRadioButton5.text")); // NOI18N
+        jRadioButton5.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,7 +365,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton6);
         jRadioButton6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton6.setText(bundle.getString("HungarianGameJFrame.jRadioButton6.text")); // NOI18N
+        jRadioButton6.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -376,7 +376,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton7);
         jRadioButton7.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton7.setText(bundle.getString("HungarianGameJFrame.jRadioButton7.text")); // NOI18N
+        jRadioButton7.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -387,7 +387,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton8);
         jRadioButton8.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton8.setText(bundle.getString("HungarianGameJFrame.jRadioButton8.text")); // NOI18N
+        jRadioButton8.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -398,7 +398,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton9);
         jRadioButton9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton9.setText(bundle.getString("HungarianGameJFrame.jRadioButton9.text")); // NOI18N
+        jRadioButton9.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,7 +409,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton10);
         jRadioButton10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton10.setText(bundle.getString("HungarianGameJFrame.jRadioButton10.text")); // NOI18N
+        jRadioButton10.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,7 +420,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton11);
         jRadioButton11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton11.setText(bundle.getString("HungarianGameJFrame.jRadioButton11.text")); // NOI18N
+        jRadioButton11.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,7 +431,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton12);
         jRadioButton12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jRadioButton12.setText(bundle.getString("HungarianGameJFrame.jRadioButton12.text")); // NOI18N
+        jRadioButton12.setText(bundle.getString("HungarianGameJFrame.jRadioButton1.text")); // NOI18N
         jRadioButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
