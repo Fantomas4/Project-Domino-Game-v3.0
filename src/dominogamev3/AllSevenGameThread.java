@@ -26,6 +26,8 @@ public class AllSevenGameThread extends Thread {
     // will hold the turn on the current player. Used for when a human player has no possible move
     // and is being given tiles from the heap until a move is possible. In this scenario, the turn
     // must remain as is and should not progress to the next player.
+    
+    private static boolean stopThread; // Used to check whether the thread must terminate or not.
 
     private static Object sharedLock;
 
@@ -42,7 +44,14 @@ public class AllSevenGameThread extends Thread {
         playerList = gameInstance.getPlayerOrderedList();
         this.gameFrame = gameFrame;
         holdPlayerTurn = false;
+        
+        stopThread = false;
+        
         this.sharedLock = sharedLock;
+    }
+    
+    public void setStopFlag(boolean value) {
+        stopThread = value;
     }
 
     /**
@@ -311,6 +320,13 @@ public class AllSevenGameThread extends Thread {
                 // else (holdPlayerTurn == true), if there is an action in progress for the current player, for example
                 // if he is being given tiles from the heap because he has no move,
                 // continue the loop and check again after the notify signal from the GUI.
+                
+                // we check if the stopThread flag has been set to true,
+                // meaning the thread should exit immediately
+                if (stopThread == true) {
+                    return;
+                }
+                
             } while (true);
 
             int roundPoints = gameInstance.giveRoundPoints(); // give the round points to the winner

@@ -7,6 +7,7 @@ package dominogamev3;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,7 +18,8 @@ import javax.swing.JRadioButton;
  * @author Sierra Kilo
  */
 public class AllSevenGameJFrame extends javax.swing.JFrame {
-
+    
+    JFrame previousFrame; // holds the JFrame object of the previous Frame (in this case, the main Menu Frame)
     private AllSevenGameThread gameThread;
     private JRadioButton[] moveTypeRadioButtons;
     private JRadioButton[] choiceRadioButtons;
@@ -33,10 +35,12 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
      * @param gamemode an integer that determines the amount of players to be added to the game. The range of the values is 2-4.
      * @param username a String that is used to get the username of the human player participating in the game.
      */
-    public AllSevenGameJFrame(int gamemode, String username) {
+    public AllSevenGameJFrame(int gamemode, String username, JFrame previousFrame) {
         initComponents();
 
         // initialize necessary class fields
+        this.previousFrame = previousFrame;
+        
         moveTypeRadioButtons = new JRadioButton[]{jRadioButtonMoveType1, jRadioButtonMoveType2};
 
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
@@ -59,6 +63,18 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         // we initialize the choice variable to 1 to reflect this.
         choice = 1;
 
+    }
+    
+    private void stopGameEngineThread() {
+        // notify the gameThread in case it currently waits,
+        // so as to proceed to the stopThread flag checking point of its do-while loop
+        System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
+        synchronized (sharedLock) {
+            sharedLock.notifyAll();
+        }
+
+        // set the stopThread flag inside the gameThread class to true.
+        gameThread.setStopFlag(true);
     }
 
     /**
@@ -765,6 +781,11 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText(bundle.getString("AllSevenGameJFrame.jMenuItem2.text")); // NOI18N
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -877,6 +898,13 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         submitAction();
     }//GEN-LAST:event_jSubmitButtonActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        stopGameEngineThread();
+        previousFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -914,7 +942,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AllSevenGameJFrame(2, "testuser").setVisible(true);
+                new AllSevenGameJFrame(2, "testuser", new MainMenuJFrame()).setVisible(true);
             }
         });
     }

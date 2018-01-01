@@ -7,6 +7,7 @@ package dominogamev3;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,6 +19,7 @@ import javax.swing.JRadioButton;
  */
 public class HungarianGameJFrame extends javax.swing.JFrame {
 
+    JFrame previousFrame; // holds the JFrame object of the previous Frame (in this case, the main Menu Frame)
     private HungarianGameThread gameThread;
     private JRadioButton[] choiceRadioButtons;
     private JLabel[] playerTilesLeftLabels;
@@ -30,10 +32,12 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainGameJFrame
      */
-    public HungarianGameJFrame(int gamemode, String username) {
+    public HungarianGameJFrame(int gamemode, String username, JFrame previousFrame) {
         initComponents();
 
         // initialize necessary class fields
+        this.previousFrame = previousFrame;
+
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
 
@@ -53,6 +57,18 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // we initialize the choice variable to 1 to reflect this.
         choice = 1;
 
+    }
+
+    private void stopGameEngineThread() {
+        // notify the gameThread in case it currently waits,
+        // so as to proceed to the stopThread flag checking point of its do-while loop
+        System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
+        synchronized (sharedLock) {
+            sharedLock.notifyAll();
+        }
+
+        // set the stopThread flag inside the gameThread class to true.
+        gameThread.setStopFlag(true);
     }
 
     public JLabel getPlayingNowLabel() {
@@ -146,12 +162,10 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
                     + "On which side of the table do you want to place the tile?",
                     "Multiple moves", JOptionPane.DEFAULT_OPTION, null, values, "0");
 
-            
-
             if (selected != null) {
                 // the user has selected a choice and pressed the "OK" button
                 String selectedString = selected.toString();
-                
+
                 System.out.println("DIAG: object selected is: " + selected);
                 System.out.println("DIAG: selectedString is: " + selectedString);
 
@@ -622,6 +636,11 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText(bundle.getString("HungarianGameJFrame.jMenuItem2.text")); // NOI18N
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -731,6 +750,13 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         submitAction();
     }//GEN-LAST:event_jSubmitButtonActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        stopGameEngineThread();
+        previousFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -768,7 +794,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HungarianGameJFrame(4, "testuser").setVisible(true);
+                new HungarianGameJFrame(4, "testuser", new MainMenuJFrame()).setVisible(true);
             }
         });
     }

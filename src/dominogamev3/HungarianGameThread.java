@@ -25,13 +25,22 @@ public class HungarianGameThread extends Thread {
     private HungarianGameJFrame gameFrame;
     ArrayList<Player> playerList; 
     
+    private static boolean stopThread; // Used to check whether the thread must terminate or not.
+    
     private static Object sharedLock;
 
     public HungarianGameThread(int gamemode, String username, HungarianGameJFrame gameFrame, Object sharedLock) {
         gameInstance = new HungarianGameLogic(gamemode, username);
         playerList = gameInstance.getPlayerOrderedList();
         this.gameFrame = gameFrame;
+        
+        stopThread = false;
+        
         this.sharedLock = sharedLock;
+    }
+    
+    public void setStopFlag(boolean value) {
+        stopThread = value;
     }
 
     public HungarianGameLogic getGameInstance() {
@@ -213,6 +222,12 @@ public class HungarianGameThread extends Thread {
                 } else {
                     // round ends
                     break;
+                }
+                
+                // we check if the stopThread flag has been set to true,
+                // meaning the thread should exit immediately
+                if (stopThread == true) {
+                    return;
                 }
 
             } while (true);            

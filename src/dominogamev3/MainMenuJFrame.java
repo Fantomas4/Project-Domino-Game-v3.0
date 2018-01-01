@@ -181,7 +181,7 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         int gamemode = Integer.parseInt(input) + 1;
         System.out.println(input);
         //We switch to the HungarianGameJFrame
-        JFrame HungarianGameFrame = new HungarianGameJFrame(gamemode, username);
+        JFrame HungarianGameFrame = new HungarianGameJFrame(gamemode, username, this);
         setVisible(false);
         HungarianGameFrame.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -197,7 +197,7 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         int gamemode = Integer.parseInt(input) + 1;
         System.out.println(input);
         //We switch to the AllSevenGameJFrame
-        JFrame mainGameFrame = new AllSevenGameJFrame(gamemode, username);
+        JFrame mainGameFrame = new AllSevenGameJFrame(gamemode, username, this);
         setVisible(false);
         mainGameFrame.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
