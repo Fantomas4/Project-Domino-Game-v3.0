@@ -30,6 +30,8 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainGameJFrame
+     * @param gamemode an integer that determines the amount of players to be added to the game. The range of the values is 2-4.
+     * @param username a String that is used to get the username of the human player participating in the game.
      */
     public AllSevenGameJFrame(int gamemode, String username) {
         initComponents();
@@ -59,42 +61,82 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Used to get the object of the playingNow JLabel.
+     * @return the JLabel object of the playingNow label.
+     */
     public JLabel getPlayingNowLabel() {
         return jPlayingNowLabel;
     }
 
+    /**
+     * Used to get the object of the roundCounter JLabel.
+     * @return the JLabel object of the roundCounter label.
+     */
     public JLabel getRoundCounterLabel() {
         return jRoundCounterLabel;
     }
 
+    /**
+     * Used to get the object of the Table JLabel.
+     * @return the JLabel object of the Table label.
+     */
     public JLabel getTableLabel() {
         return jTableLabel;
     }
 
+    /**
+     * Used to get the JRadioButton[] array of the JRadioButton objects representing the tile choice JRadioButtons.
+     * @return a JRadioButton[] array containing the JRadioButton objects of the tile choice Radio Buttons.
+     */
     public JRadioButton[] getChoiceRadioButtons() {
         return choiceRadioButtons;
     }
 
+    /**
+     * Used to get the JLabel[] array of the JLabel objects representing the playerName labels.
+     * @return a JLabel[] array containing the JLabel objects of the playerName labels.
+     */
     public JLabel[] getPlayerNameLabels() {
         return playerNameLabels;
     }
 
+    /**
+     * Used to get the JLabel[] array of the JLabel objects representing the playerTilesLeft labels.
+     * @return a JLabel[] array containing the JLabel objects of the playerTilesLeft labels.
+     */
     public JLabel[] getPlayerTilesLeftStatusLabels() {
         return playerTilesLeftLabels;
     }
 
+    /**
+     * Used to get the JLabel[] array of the JLabel objects representing the playerScore labels.
+     * @return a JLabel[] array containing the JLabel objects of the playerScore labels.
+     */
     public JLabel[] getPlayerScoreStatusLabels() {
         return playerScoreLabels;
     }
 
+    /**
+     * Used to get the JButton object of the Submit Button.
+     * @return the JButton object of the Submit button.
+     */
     public JButton getSubmitButton() {
         return jSubmitButton;
     }
 
+    /**
+     * Used to get the JRadioButton[] array of the JRadioButton objects representing the MoveType Radio Buttons.
+     * @return a JRadioButton[] array containing the JRadioButton objects of the MoveType Radio Buttons.
+     */
     public JRadioButton[] getMoveTypeRadioButtons() {
         return moveTypeRadioButtons;
     }
 
+    /**
+     * Called to reset the selection of the tile choice Radio Buttons 
+     * by setting the JRadioButton1 as selected.
+     */
     public void resetRadioButtonSelector() {
         // resets the selection of the tile choice radio buttons
         // by setting the jRadioButton1 as selected.
@@ -102,22 +144,40 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         choice = 1;
     }
 
+    /**
+     * Called to display the error message for the scenario in which two tiles are left in the heap
+     * and there was an attempt to give one to the human player.
+     */
     public void giveRandomHeapTileErrorMessage() {
         JOptionPane.showMessageDialog(null, "Two tiles are left in the heap. You can not be given any more tiles.",
                 "Unavailable move", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Called to display the error message for the scenario in which the player has no possible move 
+     * with any of his hand tiles.
+     */
     public void noPossibleMoveAvailableMessage() {
         JOptionPane.showMessageDialog(null, "You have no possible moves with your tiles, so you will be given a random tile from the heap.",
                 "No available move", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Called to display the information message that informs the human user about
+     * the round winner player's name and the amount of points the round winner was given.
+     * @param roundPoints
+     */
     public void roundEndMessage(int roundPoints) {
         JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()
                 + "\nPoints given: " + roundPoints,
                 "Round end", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Called to display the information message that informs the human user about
+     * the game winner player's name.
+     * @param name a String representing the name of the user who won the game.
+     */
     public void gameWinnerMessage(String name) {
         JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -217,7 +277,6 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         }
     }
 
-    // Getter functions code END
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
