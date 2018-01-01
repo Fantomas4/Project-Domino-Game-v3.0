@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
 /**
- *
+ * A Class used to create and manage a thread in which an AllSevenGame instance runs.
  * @author Sierra Kilo
  */
 public class AllSevenGameThread extends Thread {
@@ -29,6 +29,14 @@ public class AllSevenGameThread extends Thread {
 
     private static Object sharedLock;
 
+    /**
+     * Creates and initializes an AllSevenGameThread object.
+     * 
+     * @param gamemode the amount of players participating in the game. The accepted range is 2-4.
+     * @param username a String representing the name of the human player participating in the game.
+     * @param gameFrame an AllSevenGameJFrame object representing the Frame of the GUI used for the game.
+     * @param sharedLock an object representing the sharedLock used between the GUI thread and the AllSevenGameThread for their synchronization.
+     */
     public AllSevenGameThread(int gamemode, String username, AllSevenGameJFrame gameFrame, Object sharedLock) {
         gameInstance = new AllSevenGameLogic(gamemode, username);
         playerList = gameInstance.getPlayerOrderedList();
@@ -37,6 +45,10 @@ public class AllSevenGameThread extends Thread {
         this.sharedLock = sharedLock;
     }
 
+    /**
+     * Used to get the game instance of the AllSeven game in its current state.
+     * @return an AllSevenGameLogic object representing the current state of the game instance of the AllSeven game.
+     */
     public AllSevenGameLogic getGameInstance() {
         return gameInstance;
     }
@@ -157,6 +169,10 @@ public class AllSevenGameThread extends Thread {
         gameFrame.getSubmitButton().setEnabled(false);
     }
 
+    /**
+     * The main method that when called, initializes the back-end game engine of the AllSevenGame
+     * @throws InterruptedException
+     */
     public void executeGame() throws InterruptedException {
 
         resetPlayerStatusPanel();
@@ -309,6 +325,9 @@ public class AllSevenGameThread extends Thread {
         gameFrame.gameWinnerMessage(gameInstance.getWinnerPlayerName());
     }
 
+    /**
+     * Used to call the executeGame() method and initialize the back-end game engine of the AllSevenGame.
+     */
     @Override
 
     public void run() {
