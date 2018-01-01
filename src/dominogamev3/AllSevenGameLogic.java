@@ -10,13 +10,18 @@ package dominogamev3;
 import java.util.ArrayList;
 
 /**
- *
+ * This class holds the logic code and necessary methods used for the AllSeven game.
  * @author Sierra Kilo
  */
 
 
 public class AllSevenGameLogic extends MultiplayerGameLogic {
 
+    /**
+     * Constructs and initializes an AllSevenGameLogic object. The accepted range of the variable is 2-4.
+     * @param mode the amount of players participating in the game.
+     * @param username a String representing the name of the human player of the game.
+     */
     public AllSevenGameLogic(int mode, String username) {
 
         super();
@@ -41,6 +46,14 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
         }
     }
 
+    /**
+     * Called at the end of every round to calculate the total of the round
+     * points and give it to the appropriate player. Also saves the object of
+     * the player who won the round to the winner class field.
+     * 
+     * @return an integer value representing the total round points that have
+     * been given to the appropriate player.
+     */
     public int giveRoundPoints() {
 
         //increases player points in player object and returns total points added.
@@ -89,6 +102,16 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
 
     }
 
+    /**
+     * Checks whether there are any possible moves for a specific player by
+     * comparing the tiles in his hand with the current state of the game table.
+     *
+     * @param subject the Player object of the player for who we want to check
+     * if any possible moves exist.
+     * @return a boolean value that is true if at least one possible move was
+     * found for the given player (Player object) or false if no possible moves
+     * where found.
+     */
     public boolean possibleMoveExists(Player subject) {
         ArrayList<PossibleMove> result;
         ArrayList<Tile> playerTiles;
@@ -105,6 +128,19 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
         return false;
     }
 
+    /**
+     * Checks for the possible moves with a specific tile based on the current
+     * state of the table. Any possible move found is saved in a PossibleMove
+     * object that describes its details. All the PossibleMove objects created
+     * (each describing a possible move) are then added to an ArrayList that is
+     * returned. If no possible moves are found, an empty ArrayList is returned.
+     *
+     * @param piece the Tile object for which we want to check what possible
+     * moves exist based on the current state of the game table.
+     * @return an ArrayList containing PossibleMove objects, each describing the
+     * details of a possible move. If no possible move exists for the given
+     * tile, an empty ArrayList is returned.
+     */
     public ArrayList<PossibleMove> checkTileChoice(Tile piece) {
 
         ArrayList<PossibleMove> result = new ArrayList<>();
@@ -143,6 +179,12 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
         return result;
     }
 
+    /**
+     * Called immediately after a player's move to check whose turn is to play.
+     *
+     * @return an integer representing the index of the Player object in the
+     * playerOrderedList of the player whose turn is to play now.
+     */
     public int whoPlaysNext() {
         
         int resultIndex;
@@ -179,6 +221,9 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
         return resultIndex;
     }
 
+    /**
+     * Called to find and execute a move for the bot player playing now.
+     */
     public void botPlays() {
         ArrayList<Tile> botTiles = playingNowObj.getPlayerTiles();
         ArrayList<PossibleMove> botResult;
@@ -200,6 +245,4 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
             }
         }
     }
-
-    //NOTE: All methods except: checkTileChoice(), whoPlaysNext() are common for all game types.
 }

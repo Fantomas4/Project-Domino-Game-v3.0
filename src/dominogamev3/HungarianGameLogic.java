@@ -20,7 +20,7 @@ public class HungarianGameLogic extends MultiplayerGameLogic {
     /**
      * Constructs and initializes a HungarianGameLogic object.
      *
-     * @param mode the amount of players participating in the game.
+     * @param mode the amount of players participating in the game. The accepted range of the variable is 2-4.
      * @param username a String representing the name of the human player of the game.
      */
     public HungarianGameLogic(int mode, String username) {
