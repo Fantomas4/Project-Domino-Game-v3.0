@@ -24,8 +24,8 @@ public class BasicGameLogic {
     }
     
     /**
-     *
-     * @return
+     * Returns the heap of the game in its current state.
+     * @return a Heap object representing the heap of the game in its current state.
      */
     public Heap getHeap() {
         return heap;
