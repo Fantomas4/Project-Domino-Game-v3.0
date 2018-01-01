@@ -10,7 +10,9 @@ package dominogamev3;
 import java.util.ArrayList;
 
 /**
- * This class holds the logic code and necessary methods used for the AllSeven game.
+ * This class holds the logic code and necessary methods used for the AllSeven
+ * game.
+ *
  * @author Sierra Kilo
  */
 
@@ -18,9 +20,12 @@ import java.util.ArrayList;
 public class AllSevenGameLogic extends MultiplayerGameLogic {
 
     /**
-     * Constructs and initializes an AllSevenGameLogic object. The accepted range of the variable is 2-4.
+     * Constructs and initializes an AllSevenGameLogic object. The accepted
+     * range of the variable is 2-4.
+     *
      * @param mode the amount of players participating in the game.
-     * @param username a String representing the name of the human player of the game.
+     * @param username a String representing the name of the human player of the
+     * game.
      */
     public AllSevenGameLogic(int mode, String username) {
 
@@ -50,7 +55,7 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
      * Called at the end of every round to calculate the total of the round
      * points and give it to the appropriate player. Also saves the object of
      * the player who won the round to the winner class field.
-     * 
+     *
      * @return an integer value representing the total round points that have
      * been given to the appropriate player.
      */
@@ -60,14 +65,16 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
         int totalPoints = 0;
         int minPoints = playerOrderedList.get(0).getRemainingTilePoints();
         int minPlayerIndex = 0;
-        boolean tie = true; // used to check if all the players have the same 
-        // amount of points in their hand. Initial value is set to true.
+        boolean tie = false; // used to check if at least two of the participating players have the same 
+        // amount of points in their hand. In this case, the round is considered a TIE and no points are awarded.
 
-        // checks if there is a tie of points between all players.
-        for (int i = 1; i < playerOrderedList.size(); i++) {
-            if (playerOrderedList.get(i - 1).getRemainingTilePoints() != playerOrderedList.get(i).getRemainingTilePoints()) {
-                tie = false;
-                break;
+        // checks if there is a tie
+        for (int i = 0; i < playerOrderedList.size(); i++) {
+            for (int j = i + 1; j < playerOrderedList.size(); j++) {
+                if (playerOrderedList.get(i).getRemainingTilePoints() == playerOrderedList.get(j).getRemainingTilePoints()) {
+                    tie = true;
+                    break;
+                }
             }
         }
 
@@ -186,7 +193,7 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
      * playerOrderedList of the player whose turn is to play now.
      */
     public int whoPlaysNext() {
-        
+
         int resultIndex;
         boolean playersHavePossibleMove = false;
 
@@ -196,18 +203,17 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
             if (player.getPlayerTiles().size() == 0) {
                 return -1; // a player has played all his tile, and the round must end.
             }
-            
+
             if (possibleMoveExists(player) == true) {
                 playersHavePossibleMove = true;
             }
         }
-        
+
         if (playersHavePossibleMove == false && heap.getAllTiles().size() == 2) {
             // if no player was found to have a possible move and the heap has reached its minimum
             // size, the round must end
             return -2;
         }
-        
 
         int indexLimit = playerOrderedList.size() - 1; // last index number
         resultIndex = playingNowIndex + 1; // we begin from the immediate next index from the index of the player playing now.
@@ -217,7 +223,7 @@ public class AllSevenGameLogic extends MultiplayerGameLogic {
             // if we reach the last true index number, we reset the pos to 0 index.
             resultIndex = 0;
         }
-        
+
         return resultIndex;
     }
 

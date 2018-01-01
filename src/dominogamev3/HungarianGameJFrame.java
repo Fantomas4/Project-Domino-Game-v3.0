@@ -20,6 +20,10 @@ import javax.swing.JRadioButton;
 public class HungarianGameJFrame extends javax.swing.JFrame {
 
     JFrame previousFrame; // holds the JFrame object of the previous Frame (in this case, the main Menu Frame)
+    
+    private int gamemode; // the amount of players participating in the game
+    private String username; // the name of the human player
+    
     private HungarianGameThread gameThread;
     private JRadioButton[] choiceRadioButtons;
     private JLabel[] playerTilesLeftLabels;
@@ -37,6 +41,8 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
         // initialize necessary class fields
         this.previousFrame = previousFrame;
+        this.gamemode = gamemode; 
+        this.username = username; 
 
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
@@ -50,13 +56,17 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         sharedLock = new Object();
 
         // initialize and start the Hungarian Game Thread
-        gameThread = new HungarianGameThread(gamemode, username, this, sharedLock);
-        gameThread.start();
+        startGameEngineThread();
 
         // since the first radio button is always selected by default, 
         // we initialize the choice variable to 1 to reflect this.
         choice = 1;
 
+    }
+    
+    private void startGameEngineThread() {
+        gameThread = new HungarianGameThread(gamemode, username, this, sharedLock);
+        gameThread.start();
     }
 
     private void stopGameEngineThread() {
@@ -633,6 +643,11 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         jMenu1.setText(bundle.getString("HungarianGameJFrame.jMenu1.text")); // NOI18N
 
         jMenuItem1.setText(bundle.getString("HungarianGameJFrame.jMenuItem1.text")); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText(bundle.getString("HungarianGameJFrame.jMenuItem2.text")); // NOI18N
@@ -756,6 +771,12 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         stopGameEngineThread();
         previousFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        stopGameEngineThread();
+        startGameEngineThread();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

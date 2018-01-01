@@ -62,14 +62,16 @@ public class HungarianGameLogic extends MultiplayerGameLogic {
         int totalPoints = 0;
         int minPoints = playerOrderedList.get(0).getRemainingTilePoints();
         int minPlayerIndex = 0;
-        boolean tie = true; // used to check if all the players have the same 
-        // amount of points in their hand. Initial value is set to true.
-
-        // checks if there is a tie of points between all players.
-        for (int i = 1; i < playerOrderedList.size(); i++) {
-            if (playerOrderedList.get(i - 1).getRemainingTilePoints() != playerOrderedList.get(i).getRemainingTilePoints()) {
-                tie = false;
-                break;
+        boolean tie = false; // used to check if at least two of the participating players have the same 
+        // amount of points in their hand. In this case, the round is considered a TIE and no points are awarded.
+        
+        // checks if there is a tie
+        for(int i = 0 ; i < playerOrderedList.size() ; i++) {
+            for (int j = i + 1 ; j < playerOrderedList.size() ; j++) {
+                if (playerOrderedList.get(i).getRemainingTilePoints() == playerOrderedList.get(j).getRemainingTilePoints()) {
+                    tie = true;
+                    break;
+                }
             }
         }
 
