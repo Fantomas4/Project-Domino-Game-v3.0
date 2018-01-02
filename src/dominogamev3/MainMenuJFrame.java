@@ -165,59 +165,71 @@ public class MainMenuJFrame extends javax.swing.JFrame {
         JFrame Solo1GameFrame = new Solo1GameJFrame(this);
         setVisible(false);
         Solo1GameFrame.setVisible(true);
-        
-        
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         // TODO add your handling code here:
-        String input;
+        Object input;
         // Firstly, we display the InputDialog to the user so that he enters his name.
         input = enterUsernameInputDialog();
-        String username = input;
-        // Then, we display the InputDialog to the user so that the amount of bots is set.
-        input = enterBotsAmountInputDialog();
-        int gamemode = Integer.parseInt(input) + 1;
-        System.out.println(input);
-        //We switch to the HungarianGameJFrame
-        JFrame HungarianGameFrame = new HungarianGameJFrame(gamemode, username, this);
-        setVisible(false);
-        HungarianGameFrame.setVisible(true);
+
+        if (input != null) {
+            String username = input.toString();
+
+            // Then, we display the InputDialog to the user so that the amount of bots is set.
+            input = enterBotsAmountInputDialog();
+
+            if (input != null) {
+                int gamemode = Integer.parseInt(input.toString()) + 1;
+                System.out.println(input);
+                //We switch to the HungarianGameJFrame
+                JFrame mainGameFrame = new HungarianGameJFrame(gamemode, username, this);
+                setVisible(false);
+                mainGameFrame.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String input;
+        Object input;
         // Firstly, we display the InputDialog to the user so that he enters his name.
         input = enterUsernameInputDialog();
-        String username = input;
-        // Then, we display the InputDialog to the user so that the amount of bots is set.
-        input = enterBotsAmountInputDialog();
-        int gamemode = Integer.parseInt(input) + 1;
-        System.out.println(input);
-        //We switch to the AllSevenGameJFrame
-        JFrame mainGameFrame = new AllSevenGameJFrame(gamemode, username, this);
-        setVisible(false);
-        mainGameFrame.setVisible(true);
+
+        if (input != null) {
+            String username = input.toString();
+
+            // Then, we display the InputDialog to the user so that the amount of bots is set.
+            input = enterBotsAmountInputDialog();
+
+            if (input != null) {
+                int gamemode = Integer.parseInt(input.toString()) + 1;
+                System.out.println(input);
+                //We switch to the AllSevenGameJFrame
+                JFrame mainGameFrame = new AllSevenGameJFrame(gamemode, username, this);
+                setVisible(false);
+                mainGameFrame.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private String enterUsernameInputDialog() {
+    private Object enterUsernameInputDialog() {
         return JOptionPane.showInputDialog("Enter your name: ");
     }
-    
-    private String enterBotsAmountInputDialog() {
+
+    private Object enterBotsAmountInputDialog() {
         String[] choices = {"1", "2", "3"};
-        String input = (String) JOptionPane.showInputDialog(null, "Please enter the amount of bots you wish to play againist: ",
+        return (String) JOptionPane.showInputDialog(null, "Please enter the amount of bots you wish to play againist: ",
                 "New game setup", JOptionPane.QUESTION_MESSAGE, null, // Use
                 // default
                 // icon
                 choices, // Array of choices
                 choices[0]); // Initial choice
-        
-        return input;
     }
-    
+
     /**
      * @param args the command line arguments
      */
