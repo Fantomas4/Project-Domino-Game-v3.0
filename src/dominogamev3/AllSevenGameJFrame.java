@@ -20,6 +20,10 @@ import javax.swing.JRadioButton;
 public class AllSevenGameJFrame extends javax.swing.JFrame {
     
     JFrame previousFrame; // holds the JFrame object of the previous Frame (in this case, the main Menu Frame)
+    
+    private int gamemode; // the amount of players participating in the game
+    private String username; // the name of the human player
+    
     private AllSevenGameThread gameThread;
     private JRadioButton[] moveTypeRadioButtons;
     private JRadioButton[] choiceRadioButtons;
@@ -40,6 +44,8 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
         // initialize necessary class fields
         this.previousFrame = previousFrame;
+        this.gamemode = gamemode; 
+        this.username = username; 
         
         moveTypeRadioButtons = new JRadioButton[]{jRadioButtonMoveType1, jRadioButtonMoveType2};
 
@@ -56,14 +62,19 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         sharedLock = new Object();
 
         // initialize and start the AllSeven Game Thread
-        gameThread = new AllSevenGameThread(gamemode, username, this, sharedLock);
-        gameThread.start();
+        startGameEngineThread();
 
         // since the first radio button is always selected by default, 
         // we initialize the choice variable to 1 to reflect this.
         choice = 1;
 
     }
+    
+    private void startGameEngineThread() {
+        gameThread = new AllSevenGameThread(gamemode, username, this, sharedLock);
+        gameThread.start();
+    }
+
     
     private void stopGameEngineThread() {
         // notify the gameThread in case it currently waits,
@@ -778,6 +789,11 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         jMenu1.setText(bundle.getString("AllSevenGameJFrame.jMenu1.text")); // NOI18N
 
         jMenuItem1.setText(bundle.getString("AllSevenGameJFrame.jMenuItem1.text")); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText(bundle.getString("AllSevenGameJFrame.jMenuItem2.text")); // NOI18N
@@ -900,10 +916,16 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
         stopGameEngineThread();
         previousFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        stopGameEngineThread();
+        startGameEngineThread();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
