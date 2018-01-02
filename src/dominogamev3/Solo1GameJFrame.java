@@ -190,9 +190,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
                     .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                     .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton4)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jRadioButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +203,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
                 .addComponent(jRadioButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton4)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -331,6 +329,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         initializeGameInstance();
+        resetChoiceRadioButtons(); // sets all choice radio buttons back to enabled.
         updateGuiElements();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -483,6 +482,19 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
 
         
 
+    }
+    
+    public void resetChoiceRadioButtons() {
+        // sets all choice Radio Buttons to enabled
+        // in case a new game is started from the menu bar
+        // and some choice Radio Buttons were disabled durning the previous game
+        // because their corresponding row was emptied.
+        
+        jRadioButton1.setEnabled(true);
+        jRadioButton2.setEnabled(true);
+        jRadioButton3.setEnabled(true);
+        jRadioButton4.setEnabled(true);
+        
     }
     
     private void initializeGameInstance() {
