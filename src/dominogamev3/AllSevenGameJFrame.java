@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 /**
- *
+ * Class used for the creation, initialization and functions of the GUI for the AllSeven game.
  * @author Sierra Kilo
  */
 public class AllSevenGameJFrame extends javax.swing.JFrame {
@@ -167,8 +167,6 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
      * by setting the JRadioButton1 as selected.
      */
     public void resetRadioButtonSelector() {
-        // resets the selection of the tile choice radio buttons
-        // by setting the jRadioButton1 as selected.
         jRadioButton1.setSelected(true);
         choice = 1;
     }
@@ -194,7 +192,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     /**
      * Called to display the information message that informs the human user about
      * the round winner player's name and the amount of points the round winner was given.
-     * @param roundPoints
+     * @param roundPoints integer representing the amount of points the round winner was given.
      */
     public void roundEndMessage(int roundPoints) {
         JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()

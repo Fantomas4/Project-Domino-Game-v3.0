@@ -14,16 +14,18 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 /**
+ * Class used for the creation, initialization and functions of the GUI for the
+ * Hungarian game.
  *
  * @author Sierra Kilo
  */
 public class HungarianGameJFrame extends javax.swing.JFrame {
 
     JFrame previousFrame; // holds the JFrame object of the previous Frame (in this case, the main Menu Frame)
-    
+
     private int gamemode; // the amount of players participating in the game
     private String username; // the name of the human player
-    
+
     private HungarianGameThread gameThread;
     private JRadioButton[] choiceRadioButtons;
     private JLabel[] playerTilesLeftLabels;
@@ -35,14 +37,18 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainGameJFrame
+     *
+     * @param gamemode
+     * @param username
+     * @param previousFrame
      */
     public HungarianGameJFrame(int gamemode, String username, JFrame previousFrame) {
         initComponents();
 
         // initialize necessary class fields
         this.previousFrame = previousFrame;
-        this.gamemode = gamemode; 
-        this.username = username; 
+        this.gamemode = gamemode;
+        this.username = username;
 
         choiceRadioButtons = new JRadioButton[]{jRadioButton1, jRadioButton2, jRadioButton3, jRadioButton4, jRadioButton5, jRadioButton6,
             jRadioButton7, jRadioButton8, jRadioButton9, jRadioButton10, jRadioButton11, jRadioButton12};
@@ -63,7 +69,7 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         choice = 1;
 
     }
-    
+
     private void startGameEngineThread() {
         gameThread = new HungarianGameThread(gamemode, username, this, sharedLock);
         gameThread.start();
@@ -81,51 +87,115 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         gameThread.setStopFlag(true);
     }
 
+    /**
+     * Used to get the object of the playingNow JLabel.
+     *
+     * @return the JLabel object of the playingNow label.
+     */
     public JLabel getPlayingNowLabel() {
         return jPlayingNowLabel;
     }
 
+    /**
+     * Used to get the object of the roundCounter JLabel.
+     *
+     * @return the JLabel object of the roundCounter label.
+     */
     public JLabel getRoundCounterLabel() {
         return jRoundCounterLabel;
     }
 
+    /**
+     * Used to get the object of the Table JLabel.
+     *
+     * @return the JLabel object of the Table label.
+     */
     public JLabel getTableLabel() {
         return jTableLabel;
     }
 
+    /**
+     * Used to get the JRadioButton[] array of the JRadioButton objects
+     * representing the tile choice JRadioButtons.
+     *
+     * @return a JRadioButton[] array containing the JRadioButton objects of the
+     * tile choice Radio Buttons.
+     */
     public JRadioButton[] getChoiceRadioButtons() {
         return choiceRadioButtons;
     }
 
+    /**
+     * Used to get the JLabel[] array of the JLabel objects representing the
+     * playerName labels.
+     *
+     * @return a JLabel[] array containing the JLabel objects of the playerName
+     * labels.
+     */
     public JLabel[] getPlayerNameLabels() {
         return playerNameLabels;
     }
 
+    /**
+     * Used to get the JLabel[] array of the JLabel objects representing the
+     * playerTilesLeft labels.
+     *
+     * @return a JLabel[] array containing the JLabel objects of the
+     * playerTilesLeft labels.
+     */
     public JLabel[] getPlayerTilesLeftStatusLabels() {
         return playerTilesLeftLabels;
     }
 
+    /**
+     * Used to get the JLabel[] array of the JLabel objects representing the
+     * playerScore labels.
+     *
+     * @return a JLabel[] array containing the JLabel objects of the playerScore
+     * labels.
+     */
     public JLabel[] getPlayerScoreStatusLabels() {
         return playerScoreLabels;
     }
 
+    /**
+     * Used to get the JButton object of the Submit Button.
+     *
+     * @return the JButton object of the Submit button.
+     */
     public JButton getSubmitButton() {
         return jSubmitButton;
     }
 
+    /**
+     * Called to reset the selection of the tile choice radio buttons by setting
+     * the jRadioButton1 as selected.
+     */
     public void resetRadioButtonSelector() {
-        // resets the selection of the tile choice radio buttons
-        // by setting the jRadioButton1 as selected.
         jRadioButton1.setSelected(true);
         choice = 1;
     }
 
+    /**
+     * Called to display the information message that informs the human user
+     * about the round winner player's name and the amount of points the round
+     * winner was given.
+     *
+     * @param roundPoints integer representing the amount of points the round
+     * winner was given.
+     */
     public void roundEndMessage(int roundPoints) {
         JOptionPane.showMessageDialog(null, "*** END OF ROUND! ***\nRound Winner: " + gameThread.getGameInstance().getWinnerPlayerName()
                 + "\nPoints given: " + roundPoints,
                 "Round end", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Called to display the information message that informs the human user
+     * about the game winner player's name.
+     *
+     * @param name a String representing the name of the user who won the game.
+     */
     public void gameWinnerMessage(String name) {
         JOptionPane.showMessageDialog(null, "*** Player " + name + " has won the game by reaching the score limit! ***", "We have a winner!", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -769,22 +839,22 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         stopGameEngineThread();
-        
+
         while (gameThread.getState() != Thread.State.TERMINATED) {
             System.out.println("diag: TO THREAD DEN TERMATISE AKOMA!");
         }
-        
+
         previousFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         stopGameEngineThread();
-        
+
         while (gameThread.getState() != Thread.State.TERMINATED) {
             System.out.println("diag: TO THREAD DEN TERMATISE AKOMA!");
         }
-        
+
         startGameEngineThread();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
