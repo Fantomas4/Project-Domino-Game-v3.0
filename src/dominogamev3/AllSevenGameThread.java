@@ -50,6 +50,10 @@ public class AllSevenGameThread extends Thread {
         this.sharedLock = sharedLock;
     }
     
+    /**
+     * Called to change the value of the stopThread flag.
+     * @param value the new boolean value for the stopThread flag.
+     */
     public void setStopFlag(boolean value) {
         stopThread = value;
         System.out.println("DIAG: Mpika setStopFlag kai to neo value stopThread einai: " + stopThread);

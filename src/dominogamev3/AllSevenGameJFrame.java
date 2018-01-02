@@ -19,7 +19,7 @@ import javax.swing.JRadioButton;
  */
 public class AllSevenGameJFrame extends javax.swing.JFrame {
     
-    JFrame previousFrame; // holds the JFrame object of the previous Frame (in this case, the main Menu Frame)
+    JFrame previousFrame; // holds the JFrame object of the previous Frame (in this case, the main Menu Frame).
     
     private int gamemode; // the amount of players participating in the game
     private String username; // the name of the human player
@@ -38,6 +38,7 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
      * Creates new form MainGameJFrame
      * @param gamemode an integer that determines the amount of players to be added to the game. The range of the values is 2-4.
      * @param username a String that is used to get the username of the human player participating in the game.
+     * @param previousFrame holds the JFrame object of the previous Frame (in this case, the main Menu Frame).
      */
     public AllSevenGameJFrame(int gamemode, String username, JFrame previousFrame) {
         initComponents();
