@@ -12,7 +12,14 @@ package dominogamev3;
  */
 public class BasicGameLogic {
     
+    /**
+     * Field containing a Heap object representing the heap used for the game.
+     */
     protected Heap heap;
+
+    /**
+     * Field containing a Table object representing the table used for the game.
+     */
     protected Table table;
     
     /**

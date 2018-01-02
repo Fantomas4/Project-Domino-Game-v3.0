@@ -12,18 +12,62 @@ import java.util.ArrayList;
  * @author Sierra Kilo
  */
 public class MultiplayerGameLogic extends BasicGameLogic {
-    
-    protected int gamemode; // 2: two players (one human, one bot), 3: 3 players (one human, two bots) etc.
-    protected ArrayList<Player> playerOrderedList; // The first position of the list containes the player that is to play now.
-    protected Player playingNowObj; // holds the Player object of the player who currently plays.
-    protected int playingNowIndex;  // holds the index of the Player object in the playerOrderedList for the player who currently plays.
-    protected String winnerName; // holds the name of the winner of the round or the final winner of the game,
-                               // set by giveRoundPoints or scoreLimitReached() function accordingly.
-    protected int tilesAmount; // how many tiles each player is supposed to be given. Depends on type of game (2,3 or 4 players).
-    // value is initialized for gamemode == 2 (2 players).
-    protected int scoreLimit; // the amount of points that when reached by a player, leads to the end of the game.
-    protected int roundCount; // used to count the number of rounds for a multiplayer game instance.
-            
+
+    /**
+     * Integer the value of which determines the current game mode. The meaning
+     * of its values is: 2: two players (one human, one bot), 3: 3 players (one
+     * human, two bots) etc.
+     */
+    protected int gamemode;
+
+    /**
+     * ArrayList containing Player objects that represent each one of the
+     * players participating in the game. The list is ordered to reflect the
+     * order in which the players should take turns. The first position of the
+     * list contains the player that is to play now.
+     */
+    protected ArrayList<Player> playerOrderedList;
+
+    /**
+     * holds the Player object of the player who currently plays.
+     */
+    protected Player playingNowObj;
+
+    /**
+     * Integer that holds the index of the Player object in the
+     * playerOrderedList for the player who currently plays.
+     */
+    protected int playingNowIndex;
+
+    /**
+     * String that holds the name of the winner of the round or the final winner
+     * of the game, set by giveRoundPoints or scoreLimitReached() function
+     * accordingly.
+     */
+    protected String winnerName;
+
+    /**
+     * Integer representing how many tiles each player is supposed to be given.
+     * Depends on type of game (2,3 or 4 players). value is initialized for
+     * gamemode == 2 (2 players).
+     */
+    protected int tilesAmount;
+
+    /**
+     * Integer representing the amount of points that when reached by a player,
+     * leads to the end of the game.
+     */
+    protected int scoreLimit;
+
+    /**
+     * Integer used to count the number of rounds for a multiplayer game
+     * instance.
+     */
+    protected int roundCount;
+
+    /**
+     * Constructs and initializes the MultiplayerGameLogic class object.
+     */
     public MultiplayerGameLogic() {
         super();
         roundCount = 1;
@@ -51,10 +95,10 @@ public class MultiplayerGameLogic extends BasicGameLogic {
         return index;
 
     }
-    
-     /**
-     * Called in order to execute a specific move for the human player playing now, using
-     * a specific tile in the human player's hand.
+
+    /**
+     * Called in order to execute a specific move for the human player playing
+     * now, using a specific tile in the human player's hand.
      *
      * @param choice a number (1 - amount of tiles in player's hand)
      * representing the tile in the player's hand that will be used for the
@@ -163,11 +207,21 @@ public class MultiplayerGameLogic extends BasicGameLogic {
     public String getWinnerPlayerName() {
         return winnerName;
     }
-    
+
+    /**
+     * Called to increase the roundCount counter variable by 1.
+     */
     public void incRoundCount() {
         roundCount++;
     }
-    
+
+    /**
+     * Called to get the current value of the roundCount counter variable,
+     * representing the current round of the game.
+     *
+     * @return an integer representing the current value of the roundCount
+     * variable.
+     */
     public int getRoundCount() {
         return roundCount;
     }
