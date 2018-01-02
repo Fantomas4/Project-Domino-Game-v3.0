@@ -73,19 +73,21 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
     private void startGameEngineThread() {
         gameThread = new AllSevenGameThread(gamemode, username, this, sharedLock);
         gameThread.start();
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^STARTED GAME ENGINE!");
     }
 
     
     private void stopGameEngineThread() {
         // notify the gameThread in case it currently waits,
         // so as to proceed to the stopThread flag checking point of its do-while loop
-        System.out.println("DIAG: PREPARING FOR NOTIFYALL...");
+        System.out.println("DIAG: PREPARING FOR ----- EXIT------ NOTIFYALL...");
         synchronized (sharedLock) {
             sharedLock.notifyAll();
         }
 
         // set the stopThread flag inside the gameThread class to true.
         gameThread.setStopFlag(true);
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^STOPPED GAME ENGINE!");
     }
 
     /**
@@ -918,12 +920,22 @@ public class AllSevenGameJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         stopGameEngineThread();
+        
+        while (gameThread.getState() != Thread.State.TERMINATED) {
+            System.out.println("diag: TO THREAD DEN TERMATISE AKOMA!");
+        }
+        
         previousFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         stopGameEngineThread();
+        
+        while (gameThread.getState() != Thread.State.TERMINATED) {
+            System.out.println("diag: TO THREAD DEN TERMATISE AKOMA!");
+        }
+        
         startGameEngineThread();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

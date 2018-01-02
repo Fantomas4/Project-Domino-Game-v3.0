@@ -769,12 +769,22 @@ public class HungarianGameJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
         stopGameEngineThread();
+        
+        while (gameThread.getState() != Thread.State.TERMINATED) {
+            System.out.println("diag: TO THREAD DEN TERMATISE AKOMA!");
+        }
+        
         previousFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         stopGameEngineThread();
+        
+        while (gameThread.getState() != Thread.State.TERMINATED) {
+            System.out.println("diag: TO THREAD DEN TERMATISE AKOMA!");
+        }
+        
         startGameEngineThread();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

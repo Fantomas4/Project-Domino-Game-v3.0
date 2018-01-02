@@ -52,6 +52,7 @@ public class AllSevenGameThread extends Thread {
     
     public void setStopFlag(boolean value) {
         stopThread = value;
+        System.out.println("DIAG: Mpika setStopFlag kai to neo value stopThread einai: " + stopThread);
     }
 
     /**
@@ -233,6 +234,7 @@ public class AllSevenGameThread extends Thread {
                         }
 
                         System.out.println("DIAG: PROCEEDING...");
+                        System.out.println("DIAG: stopThread status after PROCEEDING is: " + stopThread);
 
                     } else {
                         // if the human does not have a possible move, give him a random tile from the heap
@@ -323,7 +325,10 @@ public class AllSevenGameThread extends Thread {
                 
                 // we check if the stopThread flag has been set to true,
                 // meaning the thread should exit immediately
+                System.out.println("BEFOREEEEEEEEEEEEEEEE EXIT THREAD EXIT THREAD EXIT THREAD!!!!!");
+                System.out.println("DIAG: EXIT FLAG STATUS IS: " + stopThread);
                 if (stopThread == true) {
+                    System.out.println("EXIT THREAD EXIT THREAD EXIT THREAD!!!!!");
                     return;
                 }
                 
