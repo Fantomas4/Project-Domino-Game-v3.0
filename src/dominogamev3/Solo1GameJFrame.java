@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
- *
+ * Class used for the creation, initialization and functions of the GUI for the Solo1 game.
  * @author Sierra Kilo
  */
 public class Solo1GameJFrame extends javax.swing.JFrame {
     
-    JFrame previousFrame; // stores the previous frame tha led to the Solo1GameJFrame, which is the MainMenuJFrame
+    JFrame previousFrame; // stores the previous frame that led to the Solo1GameJFrame, which is the MainMenuJFrame.
 
     Solo1GameLogic gameInstance;
     Tile chosenTile; // holds the Tile object representing the tile chosen by the user through the GUI to play with.
@@ -27,6 +27,7 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainGameJFrame
+     * @param previousFrame stores the previous frame that led to the Solo1GameJFrame, which is the MainMenuJFrame.
      */
     public Solo1GameJFrame(JFrame previousFrame) {
         initComponents();
@@ -484,11 +485,13 @@ public class Solo1GameJFrame extends javax.swing.JFrame {
 
     }
     
+    /**
+     * Sets all choice Radio Buttons to enabled
+     * in case a new game is started from the menu bar
+     * and some choice Radio Buttons were disabled during the previous game
+     * because their corresponding row was emptied.
+     */
     public void resetChoiceRadioButtons() {
-        // sets all choice Radio Buttons to enabled
-        // in case a new game is started from the menu bar
-        // and some choice Radio Buttons were disabled durning the previous game
-        // because their corresponding row was emptied.
         
         jRadioButton1.setEnabled(true);
         jRadioButton2.setEnabled(true);
