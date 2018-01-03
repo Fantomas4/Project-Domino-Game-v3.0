@@ -6,8 +6,8 @@
 package dominogamev3;
 
 /**
- * A Class containing the common logic fields and methods used by both Singleplayer 
- * and Multiplayer game types.
+ * A Class containing the common logic fields and methods used by both 
+ * Singleplayer and Multiplayer game types.
  * @author Sierra Kilo
  */
 public class BasicGameLogic {

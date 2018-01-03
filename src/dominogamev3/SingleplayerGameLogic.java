@@ -6,11 +6,14 @@
 package dominogamev3;
 
 /**
- * Class containing the common logic and methods used by all singleplayer type games.
+ * Class containing the common logic and methods used specifically by singleplayer type games.
  * @author Sierra Kilo
  */
 public class SingleplayerGameLogic extends BasicGameLogic {
     
+    /**
+     * Constructs and initializes the SingleplayerGameLogic class object.
+     */
     public SingleplayerGameLogic() {
         super();
     }

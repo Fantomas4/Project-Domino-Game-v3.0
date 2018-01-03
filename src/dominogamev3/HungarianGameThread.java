@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 /**
- *
+ * A Class used to create and manage a thread in which a Hungarian game instance runs.
  * @author Sierra Kilo
  */
 public class HungarianGameThread extends Thread {
@@ -29,6 +29,13 @@ public class HungarianGameThread extends Thread {
     
     private static Object sharedLock;
 
+    /**
+     *
+     * @param gamemode the amount of players participating in the game. The accepted range is 2-4.
+     * @param username a String representing the name of the human player participating in the game.
+     * @param gameFrame a HungarianGameJFrame object representing the Frame of the GUI used for the game.
+     * @param sharedLock an object representing the sharedLock used between the GUI thread and the Hungarian game thread for their synchronization.
+     */
     public HungarianGameThread(int gamemode, String username, HungarianGameJFrame gameFrame, Object sharedLock) {
         gameInstance = new HungarianGameLogic(gamemode, username);
         playerList = gameInstance.getPlayerOrderedList();
@@ -39,10 +46,18 @@ public class HungarianGameThread extends Thread {
         this.sharedLock = sharedLock;
     }
     
+    /**
+     * Called to change the value of the stopThread flag.
+     * @param value the new boolean value for the stopThread flag.
+     */
     public void setStopFlag(boolean value) {
         stopThread = value;
     }
 
+    /**
+     * Used to get the game instance of the Hungarian game in its current state.
+     * @return a HungarianGameLogic object representing the current state of the game instance of the Hungarian game.
+     */
     public HungarianGameLogic getGameInstance() {
         return gameInstance;
     }
@@ -151,6 +166,10 @@ public class HungarianGameThread extends Thread {
         gameFrame.getSubmitButton().setEnabled(false);
     }
 
+    /**
+     * The main method that when called, initializes and runs the back-end game engine of the Hungarian game.
+     * @throws InterruptedException
+     */
     public void executeGame() throws InterruptedException {
         
         resetPlayerStatusPanel();
@@ -244,6 +263,9 @@ public class HungarianGameThread extends Thread {
         gameFrame.gameWinnerMessage(gameInstance.getWinnerPlayerName());
     }
 
+    /**
+     * Used to call the executeGame() method that starts the back-end game engine of the HungarianGame.
+     */
     @Override
     public void run() {
         try {

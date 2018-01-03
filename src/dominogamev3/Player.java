@@ -16,9 +16,25 @@ import java.util.ArrayList;
  */
 public class Player {
 
+    /**
+     * ArrayList containing Tile objects, each representing one of the tiles
+     * in the player's hand.
+     */
     protected ArrayList<Tile> playerTiles;
+
+    /**
+     * Integer representing the total score of the player in points.
+     */
     protected int score;
+
+    /**
+     * String representing the player's name
+     */
     protected String name;
+
+    /**
+     * Heap object representing the heap of the current game.
+     */
     protected Heap heap;
 
     /**
@@ -135,6 +151,12 @@ public class Player {
 
     //////////////////////////////////////////////////////////////////////////////////
     //xrisi mono apo to allsevengamelogic
+
+    /**
+     * Receives a tile and adds it to the player's hand.
+     * @param tile a Tile object representing the tile that is to
+     * be added to the player's hand.
+     */
     
     public void addTileToPlayer(Tile tile) {
         

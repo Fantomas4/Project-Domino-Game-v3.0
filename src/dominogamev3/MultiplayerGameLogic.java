@@ -8,7 +8,7 @@ package dominogamev3;
 import java.util.ArrayList;
 
 /**
- *
+ * Class containing the common logic and methods used specifically by multiplayer type games.
  * @author Sierra Kilo
  */
 public class MultiplayerGameLogic extends BasicGameLogic {

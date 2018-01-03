@@ -37,7 +37,7 @@ public class AllSevenGameThread extends Thread {
      * @param gamemode the amount of players participating in the game. The accepted range is 2-4.
      * @param username a String representing the name of the human player participating in the game.
      * @param gameFrame an AllSevenGameJFrame object representing the Frame of the GUI used for the game.
-     * @param sharedLock an object representing the sharedLock used between the GUI thread and the AllSevenGameThread for their synchronization.
+     * @param sharedLock an object representing the sharedLock used between the GUI thread and the AllSeven game thread for their synchronization.
      */
     public AllSevenGameThread(int gamemode, String username, AllSevenGameJFrame gameFrame, Object sharedLock) {
         gameInstance = new AllSevenGameLogic(gamemode, username);
@@ -184,7 +184,7 @@ public class AllSevenGameThread extends Thread {
     }
 
     /**
-     * The main method that when called, initializes the back-end game engine of the AllSevenGame
+     * The main method that when called, initializes and runs the back-end game engine of the AllSeven game.
      * @throws InterruptedException
      */
     public void executeGame() throws InterruptedException {
@@ -351,7 +351,7 @@ public class AllSevenGameThread extends Thread {
     }
 
     /**
-     * Used to call the executeGame() method and initialize the back-end game engine of the AllSevenGame.
+     * Used to call the executeGame() method that starts the back-end game engine of the AllSevenGame.
      */
     @Override
 
